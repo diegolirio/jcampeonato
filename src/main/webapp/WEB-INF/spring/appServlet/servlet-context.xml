@@ -7,6 +7,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+
+	<interceptors>
+		<beans:bean class="com.diegolirio.jcampeonato.interceptor.AuthorizerInterceptor" />
+	</interceptors> 
+
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -22,7 +28,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.diegolirio.jcampeonato" />
+	<context:component-scan base-package="com.diegolirio.jcampeonato.controller" />
 	
 	
 	

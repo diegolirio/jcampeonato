@@ -1,4 +1,4 @@
-package com.diegolirio.jcampeonato;
+package com.diegolirio.jcampeonato.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/template")
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
