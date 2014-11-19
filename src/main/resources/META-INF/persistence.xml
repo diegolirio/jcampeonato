@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE xml>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence"> 
+	
+	<persistence-unit name="mysql_q"> 
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties> 			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />  
+			<property name="hibernate.hbm2ddl.auto" value="update" /> 
+			<property name="hibernate.show_sql" value="true" /> 
+			<property name="hibernate.format_sql" value="true" />              
+		</properties>
+	</persistence-unit> 	
+	
+</persistence>

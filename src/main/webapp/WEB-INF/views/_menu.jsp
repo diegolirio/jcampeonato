@@ -46,7 +46,7 @@
 	<!--                                         <a href="#">Followers</a> -->
 	                                    </div>
 	                                    <div class="col-xs-4 text-center">
-	<!--                                         <a href="#">Sales</a> -->
+	                                        <a href="#">Meus campeonatos</a>
 	                                    </div>
 	                                    <div class="col-xs-4 text-center">
 	<!--                                         <a href="#">Friends</a> -->

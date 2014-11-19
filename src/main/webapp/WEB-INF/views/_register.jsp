@@ -2,9 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="bg-black">
-    <head>
+
         <meta charset="UTF-8">
-        <title>Campeonato | Log in</title>
+        <title>Registrar Nova Conta</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="${pageContext.request.contextPath}/static/adminlte-master/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -23,25 +23,29 @@
     <body class="bg-black">
 
         <div class="form-box" id="login-box">
-            <div class="header">LogIn</div>
+            <div class="header">Criar Nova Conta</div>
             <form action="" method="post">
                 <div class="body bg-gray">
+                	<c:if test="${not empty usuario}">
+	                    <div class="form-group">
+	                        <input type="text" name="name" class="form-control" placeholder="Full name"/>
+	                    </div>
+					</c:if>
                     <div class="form-group">
-                        <input type="text" name="userid" class="form-control" placeholder="Email"/>
-                    </div>
+                        <input type="email" name="email" class="form-control" placeholder="Email"/>
+                    </div>					
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Senha"/>
-                    </div>          
+                    </div>
                     <div class="form-group">
-                        <input type="checkbox" name="remember_me"/> Lembrar me
+                        <input type="password" name="password2" class="form-control" placeholder="Confirmar Senha"/>
                     </div>
                 </div>
-                <div class="footer">                                                               
-                    <button type="submit" class="btn bg-olive btn-block">Entrar</button>  
-                    
-                    <p><a href="#">Esqueci a senha</a></p>
-                    
-                    <a href="${pageContext.request.contextPath}/usuario/register" class="text-center">Criar nova conta</a>
+                <div class="footer">                    
+
+                    <button type="submit" class="btn bg-olive btn-block">Confirmar</button>
+
+                    <a href="${pageContext.request.contextPath}/usuario/login" class="text-center">Eu já tenho uma conta</a>
                 </div>
             </form>
 
@@ -55,11 +59,10 @@
             </div>
         </div>
 
-
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
-        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/bootstrap.min.js" type="text/javascript"></script>        
+        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/bootstrap.min.js" type="text/javascript"></script>
 
     </body>
 </html>
