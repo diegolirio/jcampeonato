@@ -1,14 +1,20 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-</body>
-</html>
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Quarta<span class="text-warning">Show</span>
+                        <small>.com</small>
+                        &nbsp; <a ng-show="true" href="#/campeonato/novo" class="btn btn-success btn-sm">Criar Novo Campeonato</a>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+						<h1>Hello</h1>
+				</section>
+				
+			</aside>
