@@ -15,4 +15,10 @@ public class CampeonatoController {
 		mv.addObject("content_import", "edicao-list");
 		return mv;
 	}
+	
+	@RequestMapping(value="/novo", method=RequestMethod.GET)
+	public String pageForm() {
+		return "campeonato/form";
+	}
+	
 }

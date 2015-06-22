@@ -14,7 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-		
+	
+	/**
+	 * Template
+	 * @return
+	 */
+	@RequestMapping(value = "/template", method = RequestMethod.GET)
+	public String template() {
+		logger.info("Page Template....");
+		return "template/index"; 
+	}	
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
