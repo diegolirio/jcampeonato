@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Perfil;
 import com.diegolirio.jcampeonato.model.Usuario;
+import com.diegolirio.jcampeonato.service.PerfilService;
 import com.diegolirio.jcampeonato.service.UsuarioService;
 
 /**
@@ -21,15 +23,26 @@ public class HomeController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+
+	private PerfilService perfilService;
 	
-	@RequestMapping(value="/create")
+	@RequestMapping(value="/criar_base")
 	public String create() {
 		
+		// Usuario diegolirio
 		Usuario usuario = new Usuario();
 		usuario.setEmail("diegolirio.dl@gmail.com");
 		usuario.setNome("Diego Lirio");
 		if(usuarioService.existeUsuarioEmail(usuario.getEmail()) == false)
 			usuarioService.save(usuario);
+		
+		
+		// Perfil ADM
+		Perfil perfil = this.perfilService.get(Perfil.class, 1l);
+		if(perfil == null) {
+			perfil = new Perfil(0, "Administrador");
+			this.perfilService.save(perfil);
+		}
 		
 		return "redirect:/";
 	}

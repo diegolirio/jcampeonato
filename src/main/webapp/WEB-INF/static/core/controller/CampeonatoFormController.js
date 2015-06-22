@@ -9,7 +9,8 @@ app.controller('CampeonatoFormController', ['CampeonatoService', function(Campeo
 	 * Salvar Campeonato
 	 */
 	self.save = function(campeonato) {
-		CampeonatoService.save(campeonato).then(function(resp) {
+		var idUsuario = 1;
+		CampeonatoService.save(campeonato, idUsuario).then(function(resp) {
 			self.campeonato = resp.data;
 			alert('Campeonato gravado com sucesso!');
 			self.next = true;
