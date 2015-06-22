@@ -1,5 +1,5 @@
 
-         <aside class="right-side" ng-controller="campeonatoFormController as campFormCtrl">
+         <aside class="right-side" ng-controller="CampeonatoFormController as campFormCtrl">
              <!-- Content Header (Page header) -->
              <section class="content-header">
                  <h1>
@@ -20,11 +20,14 @@
                             <h3 class="box-title">Campeonato</h3>
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" ng-submit="campFormCtrl.save(campFormCtrl.campeonato)">
+                        
+                        	<input type="hidden" class="form-control" ng-model="campFormCtrl.campeonato.id">
+                        
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Descrição <span class="text-muted">(Atenção: Digite um nome simples ex: Campeonato Brasileiro)</span> </label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control" ng-model="campFormCtrl.campeonato.descricao" required="required">
                                 </div>
                             </div><!-- /.box-body -->
 

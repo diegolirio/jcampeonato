@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.diegolirio.jcampeonato.model.Model;
+
 @Repository("dao")
 public class AbstractGenericDao<T> {
 
@@ -25,7 +27,11 @@ public class AbstractGenericDao<T> {
 	
 	@Transactional 
 	public void save(T object) {
-		this.manager.persist(object);
+		Model model = (Model) object;
+		if(model.getId() <= 0)
+			this.manager.persist(object);
+		else 
+			this.manager.merge(object);
 	}
  
 	@Transactional
@@ -34,9 +40,9 @@ public class AbstractGenericDao<T> {
 		this.manager.remove(t); 
 	}
 	
-	@Transactional
-	public void update(T object) {
-		this.manager.merge(object);
-	}	
+//	@Transactional
+//	public void update(T object) {
+//		this.manager.merge(object);
+//	}	
 	
 }

@@ -29,10 +29,6 @@ public abstract class AbstractGenericService<T> {
  
 	public void delete(Class<T> typeClass, long id) {
 		this.dao.delete(typeClass, id); 
-	}
-	
-	public void update(T object) {
-		this.dao.update(object);
-	}		
+	}	
 	
 }
