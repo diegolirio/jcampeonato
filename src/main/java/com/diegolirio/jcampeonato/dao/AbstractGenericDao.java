@@ -14,7 +14,7 @@ import com.diegolirio.jcampeonato.model.Model;
 public class AbstractGenericDao<T> {
 
 	@PersistenceContext(name="mysql_q")
-	private EntityManager manager;
+	protected EntityManager manager;
 	
 	public T get(Class<T> typeClass, long id) {
 		return this.manager.find(typeClass, id);

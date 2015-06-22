@@ -1,10 +1,8 @@
-package com.diegolirio.jcampeonato.controller;
+package com.diegolirio.jcampeonato.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import com.diegolirio.jcampeonato.model.Model;
 
 @Entity
 public class Campeonato extends Model {

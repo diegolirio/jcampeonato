@@ -53,7 +53,7 @@
 		<!--------- rotas e config da app angular ------------------->
 		<script src="${pageContext.request.contextPath}/static/core/app.js"></script>  
 		<!--------- Services ----------------> 
-<%-- 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService.js"></script>  --%>
+		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
