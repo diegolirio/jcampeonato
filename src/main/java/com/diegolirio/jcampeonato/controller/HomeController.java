@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Perfil;
+import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
 import com.diegolirio.jcampeonato.service.PerfilService;
+import com.diegolirio.jcampeonato.service.TipoEdicaoService;
 import com.diegolirio.jcampeonato.service.UsuarioService;
 
 /**
@@ -24,7 +26,12 @@ public class HomeController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	@Autowired
 	private PerfilService perfilService;
+
+	@Autowired
+	private TipoEdicaoService tipoEdicaoService;
+
 	
 	@RequestMapping(value="/criar_base")
 	public String create() {
@@ -42,6 +49,28 @@ public class HomeController {
 		if(perfil == null) {
 			perfil = new Perfil(0, "Administrador");
 			this.perfilService.save(perfil);
+		}
+		
+		// Tipo da Edicao...
+		TipoEdicao _grupoMataMata = this.tipoEdicaoService.get(TipoEdicao.class, 1l); //id=1
+		if(_grupoMataMata == null) {
+			_grupoMataMata = new TipoEdicao();
+			_grupoMataMata.setDescricao("1ª fase (fase de Grupo) e Mata-mata");
+			this.tipoEdicaoService.save(_grupoMataMata);
+		}
+		
+		TipoEdicao pontosCorridos = this.tipoEdicaoService.get(TipoEdicao.class, 2l); // id=2
+		if(pontosCorridos == null) {
+			pontosCorridos = new TipoEdicao();
+			pontosCorridos.setDescricao("Pontos Corridos");
+			this.tipoEdicaoService.save(pontosCorridos);
+		}
+
+		TipoEdicao mataMata = this.tipoEdicaoService.get(TipoEdicao.class, 3l); // id=3
+		if(mataMata == null) {
+			mataMata = new TipoEdicao();
+			mataMata.setDescricao("Mata-Mata");
+			this.tipoEdicaoService.save(mataMata);
 		}
 		
 		return "redirect:/";

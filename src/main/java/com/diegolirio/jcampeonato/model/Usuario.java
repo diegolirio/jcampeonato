@@ -14,6 +14,12 @@ public class Usuario extends Model {
 	
 	private String email;
 
+	public Usuario() {}
+
+	public Usuario(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}

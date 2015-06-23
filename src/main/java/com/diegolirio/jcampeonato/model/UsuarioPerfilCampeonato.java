@@ -1,10 +1,12 @@
 package com.diegolirio.jcampeonato.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-public class UsuarioPerfilCampeonato {
+@Entity
+public class UsuarioPerfilCampeonato extends Model {
 
 	@Id @GeneratedValue
 	private long id;

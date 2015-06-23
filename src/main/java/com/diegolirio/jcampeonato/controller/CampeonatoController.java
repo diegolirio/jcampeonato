@@ -1,5 +1,7 @@
 package com.diegolirio.jcampeonato.controller;
 
+import java.util.List;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,6 +76,18 @@ public class CampeonatoController {
 			this.usuarioPerfilCampeonatoService.save(usuPerfilCamp);
 			
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuPerfilCamp), HttpStatus.CREATED);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	@RequestMapping(value="/get/list/por/usuario/{idUsuario}", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getListPorUsuario(@PathVariable("idUsuario") long idUsuario) {
+		try {
+			List<Campeonato> campeonatos = this.campeonatoService.getListPorUsuario(new Usuario(idUsuario));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(campeonatos ), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

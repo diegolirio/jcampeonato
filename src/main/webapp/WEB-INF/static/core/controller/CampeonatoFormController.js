@@ -11,7 +11,7 @@ app.controller('CampeonatoFormController', ['CampeonatoService', function(Campeo
 	self.save = function(campeonato) {
 		var idUsuario = 1;
 		CampeonatoService.save(campeonato, idUsuario).then(function(resp) {
-			self.campeonato = resp.data;
+			self.campeonato = resp.data.campeonato;
 			alert('Campeonato gravado com sucesso!');
 			self.next = true;
 		}, function(error) {
