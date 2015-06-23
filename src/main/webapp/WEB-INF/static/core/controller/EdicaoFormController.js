@@ -5,6 +5,9 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 	
 	var self = this;
 	
+	/**
+	 * Inicializacao da Classe
+	 */
 	self.init = function() {
 		var usuarioTODO = 1;
 		CampeonatoService.getListCampeonatoPorUsuario(usuarioTODO).then(function(resp) {
@@ -20,6 +23,13 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 		});	
 		
 	}
+	
+	/**
+	 * Salvar Edicao... 
+	 */
+	self.save = function(edicao) {
+		alert(JSON.stringify(edicao));
+	};
 	
 	self.init();
 	

@@ -15,6 +15,7 @@
              <!-- Main content -->
              <section class="content">
 
+				<div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-header">
                             <h3 class="box-title">Edição</h3>
@@ -26,7 +27,7 @@
                         
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>Campeonato </label>
+                                    <label>Campeonato <a href="#/campeonato/novo"><span class="glyphicon glyphicon-plus"></span></a> </label>
                         			<select ng-model="edicaoFormCtrl.edicao.campeonato" ng-options="c.descricao for c in edicaoFormCtrl.campeonatos" class="form-control"></select>
                         		</div>
                         	</div>
@@ -54,7 +55,7 @@
                             </div>
                         </form>
                     </div><!-- /.box -->					
-					
+				</div>	
 	
 		     </section>
 	

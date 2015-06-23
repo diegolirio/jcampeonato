@@ -1,7 +1,7 @@
 /**
  * CampeonatoFormController responsavel pela view campeonato/form.jsp
  */
-app.controller('CampeonatoFormController', ['CampeonatoService', function(CampeonatoService) {
+app.controller('CampeonatoFormController', ['CampeonatoService', '$window', function(CampeonatoService, $window) {
 	
 	var self = this;
 	
@@ -14,6 +14,7 @@ app.controller('CampeonatoFormController', ['CampeonatoService', function(Campeo
 			self.campeonato = resp.data.campeonato;
 			alert('Campeonato gravado com sucesso!');
 			self.next = true;
+			$window.location.href = '#/edicao/novo'; 
 		}, function(error) {
 			alert(JSON.stringify(error));
 		});
