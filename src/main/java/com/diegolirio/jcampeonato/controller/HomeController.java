@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Perfil;
+import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
 import com.diegolirio.jcampeonato.service.PerfilService;
+import com.diegolirio.jcampeonato.service.StatusService;
 import com.diegolirio.jcampeonato.service.TipoEdicaoService;
 import com.diegolirio.jcampeonato.service.UsuarioService;
 
@@ -31,6 +33,9 @@ public class HomeController {
 
 	@Autowired
 	private TipoEdicaoService tipoEdicaoService;
+
+	@Autowired
+	private StatusService statusService;
 
 	
 	@RequestMapping(value="/criar_base")
@@ -73,6 +78,21 @@ public class HomeController {
 			this.tipoEdicaoService.save(mataMata);
 		}
 		
+		Status pendente = this.statusService.get(Status.class, 1l);
+		if(pendente == null) {
+			pendente = new Status("Pendente");
+			this.statusService.save(pendente);
+		}
+		Status andamento = this.statusService.get(Status.class, 2l);
+		if(andamento == null) {
+			andamento = new Status("Andamento");
+			this.statusService.save(andamento);
+		}
+		Status finalizado = this.statusService.get(Status.class, 3l);
+		if(finalizado == null) {
+			finalizado = new Status("Finalizado");
+			this.statusService.save(finalizado);
+		}		
 		return "redirect:/";
 	}
 	

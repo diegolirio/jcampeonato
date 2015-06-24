@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -19,6 +20,7 @@ public class Edicao extends Model {
 	
 	private String descricao;
 	
+	@JoinColumn(columnDefinition="default '1'")
 	@ManyToOne
 	private Status status;
 	
@@ -92,7 +94,9 @@ public class Edicao extends Model {
 	@Override
 	public String toString() {
 		return "Edicao [id=" + id + ", descricao=" + descricao + ", status="
-				+ status + ", campeonato=" + campeonato + "]";
-	}	
+				+ status + ", campeonato=" + campeonato + ", grupos=" + grupos
+				+ ", tipoEdicao=" + tipoEdicao + "]";
+	}
+
 	
 }

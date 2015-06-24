@@ -42,12 +42,13 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Tipo </label>
-                        			<select ng-model="edicaoFormCtrl.edicao.tipo" ng-options="t.descricao for t in edicaoFormCtrl.tipos" class="form-control"></select>
+                        			<select ng-model="edicaoFormCtrl.edicao.tipoEdicao" ng-options="t.descricao for t in edicaoFormCtrl.tipos" class="form-control"></select>
                         		</div>
                         	</div>                            
  
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
+                                <a href="#/edicao/pendentes" class="btn btn-default">Pendentes</a>
                                 <div class="pull-right">
                                 	<a ng-show="edicaoFormCtrl.next" href="#/grupos/novo" class="btn btn-success btn-sm">Anterior</a>
                                 	<a ng-show="edicaoFormCtrl.next" href="#/grupos/novo" class="btn btn-success btn-sm">Proximo >>></a>

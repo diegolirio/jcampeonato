@@ -1,7 +1,8 @@
 /**
  * EdicaoFormController responsavel pela view edicao/form.jsp
  */
-app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService', function(CampeonatoService, TipoEdicaoService) {
+app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService', 'EdicaoService', '$routeParams',
+                                        function(CampeonatoService, TipoEdicaoService, EdicaoService, $routeParams) {
 	
 	var self = this;
 	
@@ -22,13 +23,26 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 			alert(JSON.stringify(error));
 		});	
 		
+		if($routeParams.id > 0) {
+			EdicaoService.getPorId($routeParams.id).then(function(resp) {
+				self.edicao = resp.data;
+			}, function(error) {
+				alert(JSON.stringify(error));
+			});
+		}
+		
 	}
 	
 	/**
 	 * Salvar Edicao... 
 	 */
 	self.save = function(edicao) {
-		alert(JSON.stringify(edicao));
+		EdicaoService.save(edicao).then(function(resp) {
+			alert("Edicao: " + edicao.campeonato.descricao + " " + edicao.descricao + " gravado com sucesso");
+			self.edicao = resp.data;
+		}, function(error) {
+			alert(JSON.stringify(error));
+		});
 	};
 	
 	self.init();
