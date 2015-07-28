@@ -15,7 +15,11 @@ app.config(['$routeProvider', function($routeProvider) {
 		// Edicao
 		.when('/edicao/pendentes', { templateUrl: SERVER_APP + '/edicao/list'})		 
 		.when('/edicao/novo',      { templateUrl: SERVER_APP + '/edicao/novo'}) 
-		.when('/edicao/novo/:id',  { templateUrl: SERVER_APP + '/edicao/novo'});
+		.when('/edicao/novo/:id',  { templateUrl: SERVER_APP + '/edicao/novo'})
+		// Grupo
+		.when('/grupo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/grupo/novo'})
+		// Time
+		.when('/jogo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/jogo/novo'});
 		//.when('/login_post', { templateUrl: SERVER_APP + '/usuario/login?u=jsantos' } )		
 		//.when('/show', { templateUrl: SERVER_APP + '/home'});	 
 }]);  

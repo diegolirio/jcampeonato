@@ -13,6 +13,8 @@ public class Grupo extends Model {
 	
 	@ManyToOne
 	private Edicao edicao;
+	
+	private String descricao;
 
 	public long getId() {
 		return id;
@@ -28,6 +30,14 @@ public class Grupo extends Model {
 
 	public void setEdicao(Edicao edicao) {
 		this.edicao = edicao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

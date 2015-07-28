@@ -6,6 +6,21 @@
                      Edição
                      <small>{{edicaoFormCtrl.edicao.campeonato.descricao}} {{edicaoFormCtrl.edicao.descricao}}</small>
                  </h1>
+                 
+				<div class="row">
+					<div class="col-lg-12">
+						<ol class="breadcrumb">
+							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Campeonato</a></li>
+							<li class="text-warning" style="font-size:30px;"><i class="glyphicon glyphicon-star"></i> Campeonato/Edicao</li>
+							<li><i class="fa fa-edit"></i> Grupos/Chaves</li>	
+							<li><i class="fa fa-edit"></i> Times/nos Grupos</li>	
+							<li><i class="fa fa-edit"></i> Jogos X Jogos</li>	
+							<li><i class="fa fa-edit"></i> Confirmação</li>	
+						</ol>
+					</div>
+				</div>                 
+				                 
+                 
                  <ol class="breadcrumb">
                      <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
                      <li class="active">Edição</li>
