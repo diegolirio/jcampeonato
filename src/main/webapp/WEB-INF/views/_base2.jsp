@@ -58,12 +58,15 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script> 
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
 		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- jQuery 2.0.2 -->

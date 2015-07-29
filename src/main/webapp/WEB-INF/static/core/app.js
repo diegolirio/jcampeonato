@@ -18,8 +18,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		.when('/edicao/novo/:id',  { templateUrl: SERVER_APP + '/edicao/novo'})
 		// Grupo
 		.when('/grupo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/grupo/novo'})
-		// Time
-		.when('/jogo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/jogo/novo'});
+		// Classificacao
+		.when('/classificacao/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/classificacao/novo'});
 		//.when('/login_post', { templateUrl: SERVER_APP + '/usuario/login?u=jsantos' } )		
 		//.when('/show', { templateUrl: SERVER_APP + '/home'});	 
 }]);  

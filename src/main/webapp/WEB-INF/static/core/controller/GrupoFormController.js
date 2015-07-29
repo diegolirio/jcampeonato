@@ -14,6 +14,8 @@ app.controller('GrupoFormController', ['$routeParams', '$route', '$location', 'E
 		}).then(function(edicaoResponse) {
 			GrupoService.getListaPorEdicao(edicaoResponse.data).then(function(resp) {
 				self.grupos = resp.data;
+				if(self.grupos.length > 0)
+					self.next = true;
 			}, function(error) {
 				alert('Erro ao busca lista de Grupos:\n\n'+error.data);
 			}); 

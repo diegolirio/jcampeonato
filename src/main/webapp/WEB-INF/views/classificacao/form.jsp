@@ -1,10 +1,10 @@
 
-         <aside class="right-side" ng-controller="GrupoFormController as grpFormCtrl">
+         <aside class="right-side" ng-controller="ClassificacaoFormController as classFormCtrl">
              <!-- Content Header (Page header) -->
              <section class="content-header">
                  <h1>
-                     Grupos
-                     <small>Edição {{grpFormCtrl.edicao.campeonato.descricao}} {{grpFormCtrl.edicao.descricao}}</small>
+                     Times ...
+                     <small>Edição {{classFormCtrl.edicao.campeonato.descricao}} {{classFormCtrl.edicao.descricao}} - classificacao</small>
                  </h1>
                  
 				<div class="row">
@@ -12,8 +12,8 @@
 						<ol class="breadcrumb">
 							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Campeonato</a></li>
 							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Campeonato/Edicao</a></li>
-							<li class="text-warning" style="font-size:30px;"><i class="glyphicon glyphicon-star"></i> Grupos/Chaves</li>	
-							<li><i class="fa fa-edit"></i> Times/nos Grupos</li>	
+							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Grupos/Chaves</a></li>	
+							<li class="text-warning" style="font-size:30px;"><i class="glyphicon glyphicon-star"></i> Times/nos Grupos</li>	
 							<li><i class="fa fa-edit"></i> Jogos X Jogos</li>	
 							<li><i class="fa fa-edit"></i> Confirmação</li>	
 						</ol>
@@ -22,7 +22,7 @@
                  
                  <ol class="breadcrumb">
                      <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
-                     <li class="active">Grupos</li>
+                     <li class="active">Classificacao</li>
                  </ol>
              </section>
 
@@ -31,27 +31,34 @@
 
                     <div class="box box-primary">
                         <div class="box-header">
-                            <h3 class="box-title">Grupo</h3>
+                            <h3 class="box-title">Adicionar Times nos Grupos</h3>
                         </div><!-- /.box-header -->
+                        
                         <!-- form start -->
-                        <form role="form" ng-submit="grpFormCtrl.save(grpFormCtrl.grupo)">
-                        
-                        	<input type="hidden" class="form-control" ng-model="grpFormCtrl.grupo.id">
-                        
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Descrição <span class="text-muted">(Ex: A, B ou Serie A para grupo unico)</span> </label>
-                                    <input type="text" class="form-control" ng-model="grpFormCtrl.grupo.descricao" required="required">
-                                </div>
-                            </div><!-- /.box-body -->
-
-                            <div class="box-footer"> 
-                                <button type="submit" class="btn btn-primary">Salvar</button>
-                                <div class="pull-right">
-                                	<a ng-show="grpFormCtrl.next" href="#/classificacao/novo/edicao/{{grpFormCtrl.edicao.id}}" class="btn btn-success btn-sm">Proximo</a>
-                                </div>
-                            </div>
-                        </form>
+						<div class="col-lg-12">
+				
+									<form ng-submit="classFormCtrl.save(classFormCtrl.classificacao)">
+				
+										<input type="hidden" class="form-control" ng-model="classFormCtrl.classificacao.id">
+				
+										<div class="form-group col-lg-4">
+											<label>Time </label>
+											<a href="/jchampionship/time/page/simple?idSelected=id_times" onclick="showWindowPopup(this.href, 750, 900); return false;"><i class="glyphicon glyphicon-plus"></i></a>
+											<select ng-model="classFormCtrl.classificacao.time" ng-options="t.nome for t in classFormCtrl.times" class="form-control"></select> 
+										</div>
+										
+										<div class="form-group col-lg-4">
+											<label>Grupo </label> <span id="id_message_grupo"></span>
+											<select ng-model="classFormCtrl.classificacao.grupo" ng-options="g.descricao for g in classFormCtrl.grupos" class="form-control"></select>
+										</div>
+										
+										<br/>
+										
+										<input type="submit" class="btn btn-success" value="Adicionar Time ao Grupo" >
+				
+									</form>
+														
+						</div>
                     </div><!-- /.box -->		
                     
                     <div class="col-md-7">
