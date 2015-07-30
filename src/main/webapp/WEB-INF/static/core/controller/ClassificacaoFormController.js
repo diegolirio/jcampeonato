@@ -13,12 +13,22 @@ app.controller('ClassificacaoFormController', ['$routeParams', '$route', 'Edicao
 			self.edicao = resp.data;
 			return self.edicao;
 		}).then(function(edicao) {
-			// busca grupos 
-			GrupoService.getListaPorEdicao(edicao).then(function(resp) {
+			// busca grupos para popular o combo (select)
+			//GrupoService.getListaPorEdicao(edicao).then(function(resp) {
+			//	self.grupos = resp.data;
+			//}, function(error) {
+			//	alert(error.data);
+			//});
+			
+			// Busca os grupos com as classificacoes para popular os ja vinculados 
+			GrupoService.getGruposClassificacoesPorEdicao(edicao).then(function(resp) {
 				self.grupos = resp.data;
+				alert('Classificacoes deve estar dentro de grupo...');
+				alert(JSON.stringify(self.grupos));
 			}, function(error) {
 				alert(error.data);
-			});			
+			});				
+			
 		}, function(error) {
 			alert(error.data);
 		});
@@ -29,9 +39,6 @@ app.controller('ClassificacaoFormController', ['$routeParams', '$route', 'Edicao
 		}, function(error) {
 			alert(error);
 		});
-		
-		//ClassificacaoService.getListaPorEdicao
-		alert('Popular Cadastrados...'); 
 		
 	};
 	

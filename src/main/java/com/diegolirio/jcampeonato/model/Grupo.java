@@ -1,9 +1,14 @@
 package com.diegolirio.jcampeonato.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
 public class Grupo extends Model {
@@ -15,6 +20,10 @@ public class Grupo extends Model {
 	private Edicao edicao;
 	
 	private String descricao;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy="grupo")
+	private List<Classificacao> classificacoes; 
 
 	public long getId() {
 		return id;
@@ -38,6 +47,14 @@ public class Grupo extends Model {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public List<Classificacao> getClassificacoes() {
+		return classificacoes;
+	}
+
+	public void setClassificacoes(List<Classificacao> classificacoes) {
+		this.classificacoes = classificacoes;
 	}
 	
 	

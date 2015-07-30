@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Classificacao;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Grupo;
+import com.diegolirio.jcampeonato.service.ClassificacaoService;
 import com.diegolirio.jcampeonato.service.GrupoService;
 
 @Controller
@@ -22,6 +24,8 @@ public class GrupoController {
 
 	@Autowired
 	private GrupoService grupoService;
+	@Autowired
+	private ClassificacaoService classificacaoService;
 
 	@RequestMapping(value="/novo", method=RequestMethod.GET)
 	public String pageNovo() {
@@ -65,6 +69,27 @@ public class GrupoController {
 	public ResponseEntity<String> getListaPorEdicao(@PathVariable("edicaoId") long edicaoId) {
 		try {
 			List<Grupo> grupos = this.grupoService.getListaPorEdicao(new Edicao(edicaoId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(grupos), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+	}
+
+	/**
+	 * 
+	 * @param edicaoId
+	 * @return
+	 */
+	@RequestMapping(value="/get/lista/com/classificacao/por/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getGruposClassificacoesPorEdicao(@PathVariable("edicaoId") long edicaoId) {
+		try {
+			List<Grupo> grupos = this.grupoService.getListaPorEdicao(new Edicao(edicaoId));
+			for (Grupo grupo : grupos) {
+				List<Classificacao> byGrupo = this.classificacaoService.getClassificacoesByGrupo(grupo);
+				System.out.println(byGrupo.size()); 
+				grupo.setClassificacoes(byGrupo);
+			}
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(grupos), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();

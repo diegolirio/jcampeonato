@@ -20,6 +20,10 @@ app.factory('GrupoService', ['$http', function($http) {
 		return $http.get(serverURL('/get/lista/por/edicao/'+edicao.id));
 	};
 	
+	var _getGruposClassificacoesPorEdicao = function(edicao) {
+		return $http.get(serverURL('/get/lista/com/classificacao/por/edicao/'+edicao.id));
+	};
+	
 	var _excluir = function(grupo) {
 		return $http.post(serverURL('/delete/'+grupo.id));
 	};
@@ -31,6 +35,8 @@ app.factory('GrupoService', ['$http', function($http) {
 		save : _save,
 		
 		getListaPorEdicao : _getListaPorEdicao,
+		
+		getGruposClassificacoesPorEdicao : _getGruposClassificacoesPorEdicao,
 		
 		excluir : _excluir
 		

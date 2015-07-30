@@ -61,9 +61,9 @@
 						</div>
                     </div><!-- /.box -->		
                     
-                    <div class="col-md-7">
+                    <div class="col-md-7" ng-repeat="g in classFormCtrl.grupos">
                             <div class="box">
-                               
+                                <h2>Grupo {{g.descricao}}</h2>
                                 <div class="box-body">
                                     <table class="table table-bordered">
                                         <tr>
@@ -71,10 +71,10 @@
                                             <th>Descrição</th>
                                             <th style="width: 10px"></th>
                                         </tr>
-                                        <tr ng-repeat="g in grpFormCtrl.grupos">
-                                            <td>{{g.id}}</td>
-                                            <td>{{g.descricao}}</td>
-                                            <td><a href ng-click="grpFormCtrl.excluir(g)">Excluir</a></td>
+                                        <tr ng-repeat="c in classFormCtrl.classificacoes">
+                                            <td>{{c.id}}</td>
+                                            <td>{{c.time.nome}}</td>
+                                            <td><a href ng-click="classFormCtrl.excluir(c)">Excluir</a></td>
                                         </tr>
                                     </table>
                                 </div><!-- /.box-body -->
