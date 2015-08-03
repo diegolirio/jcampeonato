@@ -25,6 +25,12 @@ public class Grupo extends Model {
 	@OneToMany(mappedBy="grupo")
 	private List<Classificacao> classificacoes; 
 
+	public Grupo() {}
+	
+	public Grupo(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}

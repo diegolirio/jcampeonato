@@ -18,6 +18,6 @@ public class ClassificacaoDao extends AbstractGenericDao<Classificacao> {
 		@SuppressWarnings("unchecked")
 		List<Classificacao> list = query.getResultList();
 		return list;
-	}	
-	
+	}
+
 }

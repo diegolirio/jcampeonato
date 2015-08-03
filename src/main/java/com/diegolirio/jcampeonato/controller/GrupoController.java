@@ -86,9 +86,10 @@ public class GrupoController {
 		try {
 			List<Grupo> grupos = this.grupoService.getListaPorEdicao(new Edicao(edicaoId));
 			for (Grupo grupo : grupos) {
-				List<Classificacao> byGrupo = this.classificacaoService.getClassificacoesByGrupo(grupo);
-				System.out.println(byGrupo.size()); 
-				grupo.setClassificacoes(byGrupo);
+				List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupo);
+				System.out.println(classificacoes.size()); 
+				//grupo.setClassificacoes(classificacoes);
+				grupos.get(grupos.indexOf(grupo)).setClassificacoes(classificacoes);
 			}
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(grupos), HttpStatus.OK);
 		} catch(Exception e) {

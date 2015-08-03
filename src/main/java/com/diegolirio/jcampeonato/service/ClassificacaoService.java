@@ -18,6 +18,5 @@ public class ClassificacaoService extends AbstractGenericService<Classificacao> 
 	public List<Classificacao> getClassificacoesByGrupo(Grupo grupo) {
 		return this.classificacaoDao.getClassificacoesByGrupo(grupo);
 	}
-		
-	
+
 }

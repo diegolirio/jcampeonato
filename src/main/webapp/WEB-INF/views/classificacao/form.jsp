@@ -71,7 +71,7 @@
                                             <th>Descrição</th>
                                             <th style="width: 10px"></th>
                                         </tr>
-                                        <tr ng-repeat="c in classFormCtrl.classificacoes">
+                                        <tr ng-repeat="c in g.classificacoes"> 
                                             <td>{{c.id}}</td>
                                             <td>{{c.time.nome}}</td>
                                             <td><a href ng-click="classFormCtrl.excluir(c)">Excluir</a></td>
