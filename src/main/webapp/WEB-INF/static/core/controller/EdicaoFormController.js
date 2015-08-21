@@ -36,19 +36,20 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 		
 		CampeonatoService.getListCampeonatoPorUsuario(usuarioTODO).then(function(resp) {
 			self.campeonatos = resp.data;
+		}).then(function() {
+			TipoEdicaoService.getListTipo().then(function(resp) {
+				self.tipos = resp.data;
+			}, function(error) {
+				alert(JSON.stringify(error));
+			});			
+		}).then(function() {
+			if($routeParams.id > 0) {
+				setEdicao($routeParams.id);
+			}					
 		}, function(error) {
 			alert(JSON.stringify(error));
 		});
 
-		TipoEdicaoService.getListTipo().then(function(resp) {
-			self.tipos = resp.data;
-		}, function(error) {
-			alert(JSON.stringify(error));
-		});	
-		
-		if($routeParams.id > 0) {
-			setEdicao($routeParams.id);
-		}		
 	}
 	
 	/**

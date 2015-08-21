@@ -27,14 +27,14 @@
                         <li ng-show="usuarioLoginCtrl.isLoggedIn" class="dropdown user user-menu">
                             <a href="?#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>{{usuarioLoginCtrl.usuario.nome}} <i class="caret"></i></span>
+                                <span>{{usuarioLoginCtrl.usuarioLogado.nome}} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="${pageContext.request.contextPath}/static/adminlte-master/img/avatar-215x215.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{usuarioLoginCtrl.usuario.nome}} - Web Developer
+                                        {{usuarioLoginCtrl.usuarioLogado.nome}} - Web Developer
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>

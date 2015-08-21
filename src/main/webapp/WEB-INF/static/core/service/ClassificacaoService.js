@@ -4,36 +4,42 @@
 app.factory('ClassificacaoService', ['$http', '$q',
                                     function($http, $q) {
 	
-	var serverURL = function(url) {
+	var _serverURL = function(url) {
 		return SERVER_APP + '/classificacao' + url;
 	};
 	
 	var _save = function(classificacao) {
-		return $http.post(serverURL('/save'), classificacao);
+		return $http.post(_serverURL('/save'), classificacao);
 	};
 	
 	var _getClassificacoesByGrupo = function(grupo) {
-		return $http.get(serverURL('/get/list/by/grupo/'+grupo.id));
+		return $http.get(_serverURL('/get/list/by/grupo/'+grupo.id));
+	};
+
+	/**
+	 * Busca classificacoes por edicao
+	 */
+	var _getClassificacoesByEdicao = function(edicao) {
+		return $http.get(_serverURL('/get/list/by/edicao/'+edicao.id));
 	};
 	
-	var _getClassificacoesByGrupoSync = function(grupo) {
-		var deferred = $q.defer();
-		$http.get(serverURL('/get/list/by/grupo/'+grupo.id)).success(function(data,status,headers,config) {
-	        deferred.resolve(data);
-	    }).error(function(data,status,headers,config){
-	        deferred.reject(status);
-	    });
-		return deferred.promise;
-	};
+	/**
+	 * Excluir Classificacao
+	 */
+	var _deleteClassificacao = function(classificacao) {
+		return $http.post(_serverURL('/delete/'+classificacao.id));
+	}
 	
 	
 	return {
 		
 		save : _save,
 		
+		deleteClassificacao : _deleteClassificacao,
+		
 		getClassificacoesByGrupo : _getClassificacoesByGrupo,
 		
-		getClassificacoesByGrupoSync : _getClassificacoesByGrupoSync
+		getClassificacoesByEdicao : _getClassificacoesByEdicao
 		
 	};
 	

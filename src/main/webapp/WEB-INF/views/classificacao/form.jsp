@@ -37,24 +37,31 @@
                         <!-- form start -->
 						<div class="col-lg-12">
 				
-									<form ng-submit="classFormCtrl.save(classFormCtrl.classificacao)">
+									<form ng-submit="classFormCtrl.save(classFormCtrl.classificacao)" name="formClass">
 				
 										<input type="hidden" class="form-control" ng-model="classFormCtrl.classificacao.id">
 				
-										<div class="form-group col-lg-4">
+										<div class="form-group col-lg-4" >
 											<label>Time </label>
 											<a href="/jchampionship/time/page/simple?idSelected=id_times" onclick="showWindowPopup(this.href, 750, 900); return false;"><i class="glyphicon glyphicon-plus"></i></a>
-											<select ng-model="classFormCtrl.classificacao.time" ng-options="t.nome for t in classFormCtrl.times" class="form-control"></select> 
+											<select ng-model="classFormCtrl.classificacao.time" ng-options="t.nome for t in classFormCtrl.times" class="form-control" required="required"></select> 
 										</div>
 										
 										<div class="form-group col-lg-4">
 											<label>Grupo </label> <span id="id_message_grupo"></span>
-											<select ng-model="classFormCtrl.classificacao.grupo" ng-options="g.descricao for g in classFormCtrl.grupos" class="form-control"></select>
+											<select ng-model="classFormCtrl.classificacao.grupo" ng-options="g.descricao for g in classFormCtrl.grupos" class="form-control" required="required"></select>
 										</div>
 										
 										<br/>
 										
-										<input type="submit" class="btn btn-success" value="Adicionar Time ao Grupo" >
+										<button class="btn btn-success" ng-disabled="formClass.$invalid">
+											Adicionar Time ao Grupo
+										</button>
+													
+						                 <div class="pull-right">
+						                 	<a href="#/jogo/novo/edicao/{{classFormCtrl.edicao.id}}" class="btn btn-primary btn-sm">Proximo</a>
+						                 </div>					
+										
 				
 									</form>
 														
@@ -71,17 +78,16 @@
                                             <th>Descrição</th>
                                             <th style="width: 10px"></th>
                                         </tr>
-                                        <tr ng-repeat="c in g.classificacoes"> 
+                                        <tr ng-repeat="c in classFormCtrl.classificacoes | filter: g.id"> 
                                             <td>{{c.id}}</td>
-                                            <td>{{c.time.nome}}</td>
+                                            <td>{{c.time.nome}} - {{ c.grupo.descricao }}</td>
                                             <td><a href ng-click="classFormCtrl.excluir(c)">Excluir</a></td>
                                         </tr>
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
-                    </div>	                    			
-					
-	
+                    </div>
+
 		     </section>
 	
 		</aside>

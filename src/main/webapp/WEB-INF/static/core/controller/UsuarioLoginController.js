@@ -16,7 +16,7 @@ app.controller('UsuarioLoginController', ['$window', 'UsuarioService', function(
 	 */
 	UsuarioService.getSession().then(function(resp) {
 		self.isLoggedIn = true;
-		self.usuario = resp.data;
+		self.usuarioLogado = resp.data;
 	}, function(error) {
 		console.log(error.data); 
 	});
@@ -25,6 +25,7 @@ app.controller('UsuarioLoginController', ['$window', 'UsuarioService', function(
 		var usuario = {"id":1, "nome": "Diego Lirio", "email": "diegolirio.dl@gmail.com"};
 		UsuarioService.login(usuario).then(function(resp) {
 			self.isLoggedIn = true;
+			self.usuarioLogado = resp.data;
 			$window.location.reload();
 		}, function(error) {
 			alert(JSON.stringify(error));

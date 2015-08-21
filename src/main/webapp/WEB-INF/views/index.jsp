@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html ng-app="app">
     <head>
         <meta charset="UTF-8">
-        <title>Campeonato ${edicao.campeonato.descricao} ${edicao.descricao}</title>
+        <title>Quarta Show</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="${pageContext.request.contextPath}/static/adminlte-master/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,7 +30,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-blue">
+    <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
     
 		<jsp:include page="_menu.jsp"></jsp:include>
 		
@@ -42,12 +40,35 @@
 			<jsp:include page="_menu_left.jsp"></jsp:include>
 			 
 			<!-- Right side column. Contains the navbar and content of the page -->
-			<jsp:include page="${content_import}.jsp"></jsp:include> 
+			<div ng-view></div>
 			 
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->
 
+	
+		<!-- ########################## AngularJS ########################################################################### -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.js"></script>
+		<!--------- rotas e config da app angular ------------------->
+		<script src="${pageContext.request.contextPath}/static/core/app.js"></script>  
+		<!--------- Services ----------------> 
+		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script> 
+		<!--------- Controllers ------------->
+		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>  
+		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
@@ -66,7 +87,7 @@
         <!-- jQuery Knob Chart -->
         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
         <!-- daterangepicker -->
-        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<%--         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script> --%>
         <!-- datepicker -->
         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
         <!-- Bootstrap WYSIHTML5 -->

@@ -60,7 +60,7 @@ public class HomeController {
 		TipoEdicao _grupoMataMata = this.tipoEdicaoService.get(TipoEdicao.class, 1l); //id=1
 		if(_grupoMataMata == null) {
 			_grupoMataMata = new TipoEdicao();
-			_grupoMataMata.setDescricao("1ª fase (fase de Grupo) e Mata-mata");
+			_grupoMataMata.setDescricao("1ï¿½ fase (fase de Grupo) e Mata-mata");
 			this.tipoEdicaoService.save(_grupoMataMata);
 		}
 		
@@ -110,9 +110,9 @@ public class HomeController {
 	 * Base ngview
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String base() {
-		logger.info("Page Base....");
-		return "_base2";
+	public String index() {
+		logger.info("Page index....");
+		return "index";
 	}
 	
 	/**

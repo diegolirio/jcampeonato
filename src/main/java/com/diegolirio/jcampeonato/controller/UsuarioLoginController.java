@@ -16,28 +16,38 @@ import com.diegolirio.jcampeonato.model.Usuario;
 @RequestMapping("/usuario/login")
 public class UsuarioLoginController {
 
-	// TODO mudar para POST
-	@RequestMapping(value="/efetuar")
+	/**
+	 * Efetuar Login
+	 * @param usuario
+	 * @param session
+	 * @return Response (JSON)
+	 */
+	@RequestMapping(value="/efetuar", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> efetuarLogin(@RequestBody Usuario usuario, HttpSession session) {
-		if(usuario== null) {
-			usuario = new Usuario();
-			usuario.setId(1);
-			usuario.setEmail("diegolirio.dl@gmail.com");
-			usuario.setNome("Diego Lirio");
+		try {
+			if(usuario== null) {
+				usuario = new Usuario();
+				usuario.setId(1);
+				usuario.setEmail("diegolirio.dl@gmail.com");
+				usuario.setNome("Diego Lirio");
+			}
+			session.setAttribute("usuarioLogado", usuario);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);
+		} catch(Exception e ) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		session.setAttribute("usuario", usuario);
-		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
 	/**
-	 * Verifica se há sessão(logado) do usuario
+	 * Verifica se hï¿½ sessï¿½o(logado) do usuario
 	 * @param session
 	 * @return restFull JSON usuario
 	 */
 	@RequestMapping(value="/session", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<String> getSessionLogged(HttpSession session) {
 		try {
-			Usuario usuario = (Usuario) session.getAttribute("usuario");
+			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 			if(usuario == null) 
 				throw new RuntimeException("Usuario desconectado");
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);

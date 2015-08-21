@@ -20,7 +20,7 @@ public class TipoEdicaoController {
 	@Autowired
 	private TipoEdicaoService tipoEdicaoService;
 
-	@RequestMapping(value="/get/list", method=RequestMethod.GET, produces="applicatin/json")
+	@RequestMapping(value="/get/list", method=RequestMethod.GET, produces="applicatin/json; chartset=UTF-8")
 	public ResponseEntity<String> getList() {
 		try {
 			List<TipoEdicao> tipos = this.tipoEdicaoService.getList(TipoEdicao.class);

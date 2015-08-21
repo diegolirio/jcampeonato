@@ -10,7 +10,7 @@
                             <img src="${pageContext.request.contextPath}/static/adminlte-master/img/avatar-215x215.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Olá, usuarioLoginCtrl.usuario.nome </p>
+                            <p>Olá, {{ usuarioLoginCtrl.usuarioLogado.nome }} </p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
