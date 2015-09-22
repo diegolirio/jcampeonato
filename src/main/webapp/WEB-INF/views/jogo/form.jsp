@@ -28,35 +28,30 @@
 
              <!-- Main content -->
              <section class="content">
-
+				<div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header">
                             <h3 class="box-title">Jogo</h3>
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" ng-submit="jgFormCtrl.save(jgFormCtrl.grupo)">
+                        <form role="form" ng-submit="jgFormCtrl.save(jgFormCtrl.jogo)">
                         
-                        	<input type="hidden" class="form-control" ng-model="jgFormCtrl.grupo.id">
-
-							<input type="hidden" name="id" value="${jogo.id}" >
-							<input type="hidden" name="status.id" value="${jogo.status.id}" >
-							<input type="hidden" name="grupo.edicao.id" value="${jogo.grupo.edicao.id}" >
-							<input type="hidden" name="sequencia" value="${empty jogo.sequencia ? -1 : jogo.sequencia}" >
+                        	<input type="hidden" ng-model="jgFormCtrl.jogo.id">
+							<input type="hidden" ng-model="jgFormCtrl.jogo.status.id" >
+							<input type="hidden" ng-model="jgFormCtrl.jogo.sequencia" >
 
 							<div class="form-group col-lg-1">
-								<label><small>Rodada</small> </label> <span id="id_message_rodada"></span>
-								<input class="form-control" type="text" name="rodada" title="somente numero" onclick="NumbersOnly(e); return false;" value="${jogo.rodada}">
+								<label><small>Rodada</small> </label> 
+								<input class="form-control" type="text" ng-model="jgFormCtrl.jogo.rodada">
 							</div>
 
 							<div class="form-group col-lg-3">
-								<label>Grupo </label> <span id="id_message_grupo"></span> 
-								<select class="form-control" id="id_grupos" name="grupo.id"  ${not empty jogo ? 'disabled="disabled"' : ''}>
-									<option value="">Selecione o Grupo...</option> 
-								</select> 
+								<label>Grupo </label> 
+								<select class="form-control" ng-model="jgFormCtrl.jogo.grupo" ng-options="g.descricao for g in jgFormCtrl.grupos"></select> 
 							</div>
 
 							<div class="form-group col-lg-3">
-								<label>Harbito </label> <span id="id_message_harbito"></span>
+								<label>Harbito </label> 
 								<a href="${pageContext.request.contextPath}/harbito/page/simple" onclick="showWindowPopup(this.href, 400, 600); return false;"><i class="glyphicon glyphicon-plus"></i></a> 
 								<select class="form-control" id="id_harbitos" name="harbito.id">
 									<option value="" selected="selected">Selecione o Harbito...</option>
@@ -64,7 +59,7 @@
 							</div>						
 			
 							<div class="form-group col-lg-3">
-								<label>Local </label> <span id="id_message_local"></span> 
+								<label>Local </label> 
 								<a href="${pageContext.request.contextPath}/local/page/simple" onclick="showWindowPopup(this.href, 400, 600); return false;"><i class="glyphicon glyphicon-plus"></i></a>
 								<select class="form-control" id="id_locais" name="local.id">
 									<option value="" selected="selected">Selecione o Local...</option>
@@ -96,8 +91,8 @@
 							<input type="submit" class="btn btn-success pull-right" value="${not empty jogo ? 'Salvar' : 'Adicionar Jogo'}" >
 			
                         </form>
-                        
-                    </div><!-- /.box -->		
+                     </div>
+                  </div><!-- /.box -->		
                   
 		     </section>
 	
