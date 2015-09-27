@@ -53,9 +53,7 @@
 							<div class="form-group col-lg-3">
 								<label>Harbito </label> 
 								<a href="${pageContext.request.contextPath}/harbito/page/simple" onclick="showWindowPopup(this.href, 400, 600); return false;"><i class="glyphicon glyphicon-plus"></i></a> 
-								<select class="form-control" id="id_harbitos" name="harbito.id">
-									<option value="" selected="selected">Selecione o Harbito...</option>
-								</select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.harbito" ng-options="h.nome for h in jgFormCtrl.harbitos"></select>
 							</div>						
 			
 							<div class="form-group col-lg-3">
