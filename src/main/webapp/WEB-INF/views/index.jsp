@@ -59,7 +59,8 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
-		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/service/HarbitoService.js"></script>  
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
