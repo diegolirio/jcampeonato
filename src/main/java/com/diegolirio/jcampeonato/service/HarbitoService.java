@@ -11,7 +11,7 @@ import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Harbito;
 
 @Service("harbitoService")
-public class HarbitoService {
+public class HarbitoService extends AbstractGenericService<Harbito> {
 
 	@Autowired @Qualifier("harbitoDao")
 	private HarbitoDao harbitoDao;

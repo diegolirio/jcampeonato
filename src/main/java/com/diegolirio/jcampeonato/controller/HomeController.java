@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Harbito;
 import com.diegolirio.jcampeonato.model.Perfil;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
+import com.diegolirio.jcampeonato.service.HarbitoService;
 import com.diegolirio.jcampeonato.service.PerfilService;
 import com.diegolirio.jcampeonato.service.StatusService;
 import com.diegolirio.jcampeonato.service.TipoEdicaoService;
@@ -36,6 +38,9 @@ public class HomeController {
 
 	@Autowired
 	private StatusService statusService;
+
+	@Autowired
+	private HarbitoService harbitoService;
 
 	
 	@RequestMapping(value="/criar_base")
@@ -93,6 +98,12 @@ public class HomeController {
 			finalizado = new Status("Finalizado");
 			this.statusService.save(finalizado);
 		}		
+		Harbito harbito = this.harbitoService.get(Harbito.class, 1l);
+		if(harbito == null) {
+			harbito = new Harbito();
+			harbito.setNome("Jose Pereira");
+			this.harbitoService.save(harbito);
+		}
 		return "redirect:/";
 	}
 	

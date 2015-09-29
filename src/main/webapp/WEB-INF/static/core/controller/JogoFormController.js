@@ -20,7 +20,8 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			}, function(error) {
 				alert(error.data);
 			});	
-		}).then(function(respEdidcao) {
+			return respEdicao;
+		}).then(function(respEdicao) {
 			HarbitoService.getListaPorEdicao(respEdicao.data).then(function(resp) {
 				self.harbitos = resp.data;
 			}, function(error) {
