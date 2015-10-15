@@ -59,28 +59,22 @@
 							<div class="form-group col-lg-3">
 								<label>Local </label> 
 								<a href="${pageContext.request.contextPath}/local/page/simple" onclick="showWindowPopup(this.href, 400, 600); return false;"><i class="glyphicon glyphicon-plus"></i></a>
-								<select class="form-control" id="id_locais" name="local.id">
-									<option value="" selected="selected">Selecione o Local...</option>
-								</select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.local" ng-options="l.descricao for l in jgFormCtrl.locais"></select>
 							</div>						
 
 							<div class="form-group col-lg-2">
-								<label>Data e Hora </label> <span id="id_message_datahora"></span>
-								<input class="form-control datepicker" type="text" name="dataHora" value="${jogo.dataHoraStrEN}">
+								<label>Data e Hora </label>
+								<input class="form-control datepicker" type="text" ng-model="jgFormCtrl.jogo.dataHora">
 							</div>
 
 							<div class="form-group col-lg-5">
 								<label>Time A </label> <span id="id_message_timea"></span>
-								<select class="form-control" id="id_timea" name="timeA.id" ${not empty jogo ? 'disabled="disabled"' : ''}>
-									<option value="" selected="selected">Selecione o Time A...</option>
-								</select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.timeA" ng-options="t.nome for t in jgFormCtrl.times"></select>
 							</div>						
 							<div class="form-group col-lg-2 text-center text-muted"><h1>X</h1></div>
 							<div class="form-group col-lg-5">
 								<label>Time B </label> <span id="id_message_timeb"></span> 
-								<select class="form-control" id="id_timeb" name="timeB.id" ${not empty jogo ? 'disabled="disabled"' : ''}>
-									<option value="" selected="selected">Selecione o Time B...</option>
-								</select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.timeB" ng-options="t.nome for t in jgFormCtrl.times"></select>
 							</div>																														
 			
 							<br/>

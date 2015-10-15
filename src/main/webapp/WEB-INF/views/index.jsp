@@ -61,6 +61,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/service/HarbitoService.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/service/LocalService.js"></script>  
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
@@ -104,6 +105,12 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/AdminLTE/demo.js" type="text/javascript"></script>
+
+		<script>
+			$(function() {
+				$( ".datepicker" ).datepicker({ format: 'dd/mm/yyyy', language: 'pt-BR'});  
+			}); 
+		</script>
 
     </body>
 </html>

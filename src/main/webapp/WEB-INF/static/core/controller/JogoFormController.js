@@ -1,8 +1,8 @@
 /**
  * 
  */
-app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'EdicaoService', 'GrupoService', 'HarbitoService',
-                                      function($routeParams, $route, $location, EdicaoService, GrupoService, HarbitoService) {
+app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'EdicaoService', 'GrupoService', 'HarbitoService', 'LocalService',
+                                      function($routeParams, $route, $location, EdicaoService, GrupoService, HarbitoService, LocalService) {
 	
 	var self = this;
 	
@@ -24,6 +24,13 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 		}).then(function(respEdicao) {
 			HarbitoService.getListaPorEdicao(respEdicao.data).then(function(resp) {
 				self.harbitos = resp.data;
+			}, function(error) {
+				alert(error.data);
+			});
+			return respEdicao;
+		}).then(function(respEdicao) {
+			LocalService.getListaPorEdicao(respEdicao.data).then(function(resp) {
+				self.locais = resp.data;
 			}, function(error) {
 				alert(error.data);
 			});
