@@ -11,9 +11,22 @@ app.factory('TimeService', ['$http', function($http) {
 		return $http.get(serverURL('/get/list'));
 	};
 	
+	var _getListaPorEdicao = function(edicao) {
+		return _getTimes();
+	};
+	
+	/**
+	 * Grava Jogo
+	 */
+	var save = function(jogo) {
+		http.post(serverURL('/save'), jogo);
+	};
+	
 	return {
 		
-		getTimes : _getTimes
+		getTimes : _getTimes,
+		
+		getListaPorEdicao : _getListaPorEdicao
 		
 	};
 	

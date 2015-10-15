@@ -1,10 +1,14 @@
 /**
  * 
  */
-app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'EdicaoService', 'GrupoService', 'HarbitoService', 'LocalService',
-                                      function($routeParams, $route, $location, EdicaoService, GrupoService, HarbitoService, LocalService) {
+app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'EdicaoService', 'GrupoService', 'HarbitoService', 'LocalService', 'TimeService',
+                                      function($routeParams, $route, $location, EdicaoService, GrupoService, HarbitoService, LocalService, TimeService) {
 	
 	var self = this;
+	
+	/*
+	 * Pega todos os Harbitos. TODO mudar para pegar todos os harbitos do campeonato
+	 */
 	
 	self.init = function() {
 		/*
@@ -34,16 +38,16 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			}, function(error) {
 				alert(error.data);
 			});
+			return respEdicao;
+		}).then(function(respEdicao) {
+			TimeService.getListaPorEdicao(respEdicao.data).then(function(resp) {
+				self.times = resp.data;
+			}, function(error) {
+				alert(error.data);
+			});			
 		}, function(error) {
 			alert(error.data);
 		});
-		
-		/*
-		 * Pega todos os Harbitos. TODO mudar para pegar todos os harbitos do campeonato
-		 */
-//		HarbitoService.getList().then(function(resp) {
-//			self.harbitos = resp.data;
-//		});
 		
 	};
 	
@@ -52,7 +56,12 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 	 */
 	self.save = function(jogo) {
 		//grupo.edicao = self.edicao;
-		alert(JSON.stringify(jogo));
+		//alert(JSON.stringify(jogo));
+		jogoService.save(jogo).then(function(resp) {
+			
+		}, function(error) {
+			alert(error.data);
+		});
 	};	
 	
 	self.init();
