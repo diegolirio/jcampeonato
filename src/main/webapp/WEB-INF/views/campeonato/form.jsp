@@ -37,6 +37,7 @@
                                 	<a ng-show="campFormCtrl.next" href="#/edicao/novo" class="btn btn-success btn-sm">Proximo</a>
                                 </div>
                             </div>
+                            
                         </form>
                     </div><!-- /.box -->					
 					

@@ -9,7 +9,7 @@ import com.diegolirio.jcampeonato.dao.CampeonatoDao;
 import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Usuario;
 
-@Service("/campeonatoService")
+@Service("campeonatoService")
 public class CampeonatoService extends AbstractGenericService<Campeonato> {
 
 	@Autowired

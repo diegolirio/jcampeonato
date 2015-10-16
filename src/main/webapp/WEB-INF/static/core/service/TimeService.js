@@ -18,15 +18,17 @@ app.factory('TimeService', ['$http', function($http) {
 	/**
 	 * Grava Jogo
 	 */
-	var save = function(jogo) {
-		http.post(serverURL('/save'), jogo);
+	var _save = function(time, campeonato) {
+		return $http.post(serverURL('/save/from/campeonato/'+campeonato.id), time);
 	};
 	
 	return {
 		
 		getTimes : _getTimes,
 		
-		getListaPorEdicao : _getListaPorEdicao
+		getListaPorEdicao : _getListaPorEdicao,
+		
+		save : _save 
 		
 	};
 	

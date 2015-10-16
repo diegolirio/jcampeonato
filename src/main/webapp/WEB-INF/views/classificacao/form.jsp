@@ -1,5 +1,9 @@
 
+
          <aside class="right-side" ng-controller="ClassificacaoFormController as classFormCtrl">
+
+	         <jsp:include page="_time-modal-form.jsp"></jsp:include>
+    
              <!-- Content Header (Page header) -->
              <section class="content-header">
                  <h1>
@@ -43,7 +47,7 @@
 				
 										<div class="form-group col-lg-4" >
 											<label>Time </label>
-											<a href="/jchampionship/time/page/simple?idSelected=id_times" onclick="showWindowPopup(this.href, 750, 900); return false;"><i class="glyphicon glyphicon-plus"></i></a>
+											<a href data-toggle="modal" data-target="#id-time-modal-form"><i class="glyphicon glyphicon-plus"></i></a> 
 											<select ng-model="classFormCtrl.classificacao.time" ng-options="t.nome for t in classFormCtrl.times" class="form-control" required="required"></select> 
 										</div>
 										

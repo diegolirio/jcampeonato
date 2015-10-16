@@ -20,11 +20,10 @@ app.controller('ClassificacaoFormController', ['$routeParams', '$route', 'Edicao
 			}).then(function(edicaoResp_c) {
 				ClassificacaoService.getClassificacoesByEdicao(edicaoResp_c).then(function(resp) {
 					self.classificacoes = resp.data;
-					console.log(JSON.stringify(resp));
 				}, function(error) {
 					alert(error.data);
 				});
-			}, function(error) {
+			}, function(error) { 
 				alert(error.data);
 			});
 		}, function(error) {
@@ -40,6 +39,9 @@ app.controller('ClassificacaoFormController', ['$routeParams', '$route', 'Edicao
 		
 	};
 	
+	/**
+	 * Salva classificacao
+	 */
 	self.save = function(classificacao) {
 		ClassificacaoService.save(classificacao).then(function(resp) {
 			$route.reload();
@@ -58,6 +60,18 @@ app.controller('ClassificacaoFormController', ['$routeParams', '$route', 'Edicao
 			alert(error.data);
 		});
 	}
+
+	/**
+	 * Salva o time
+	 */
+	self.saveTime = function(time, campeonato) {
+		TimeService.save(time, campeonato).then(function(resp) {
+			self.times.push(resp.data);
+			$('#id-time-modal-form').modal('hide'); 
+		}, function(error) {
+			alert(error.data);
+		}); 
+	};
 	
 	init();
 	
