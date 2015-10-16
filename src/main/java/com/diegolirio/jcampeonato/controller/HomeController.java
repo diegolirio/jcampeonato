@@ -65,7 +65,7 @@ public class HomeController {
 		TipoEdicao _grupoMataMata = this.tipoEdicaoService.get(TipoEdicao.class, 1l); //id=1
 		if(_grupoMataMata == null) {
 			_grupoMataMata = new TipoEdicao();
-			_grupoMataMata.setDescricao("1� fase (fase de Grupo) e Mata-mata");
+			_grupoMataMata.setDescricao("1a fase (fase de Grupo) e Mata-mata");
 			this.tipoEdicaoService.save(_grupoMataMata);
 		}
 		

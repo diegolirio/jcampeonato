@@ -34,7 +34,7 @@ public class ClassificacaoController {
 	 * @param classificacao
 	 * @return JSON
 	 */
-	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> save(@RequestBody Classificacao classificacao) {
 		try {
 			this.classificacaoService.save(classificacao);
@@ -50,7 +50,7 @@ public class ClassificacaoController {
 	 * @param classificacaoId
 	 * @return Response 
 	 */
-	@RequestMapping(value="/delete/{classificacaoId}", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/delete/{classificacaoId}", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> delete(@PathVariable("classificacaoId") long classificacaoId) {
 		try {
 			this.classificacaoService.delete(Classificacao.class, classificacaoId);
@@ -66,7 +66,7 @@ public class ClassificacaoController {
 	 * @param grupoId
 	 * @return
 	 */
-	@RequestMapping(value="/get/list/by/grupo/{grupoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/list/by/grupo/{grupoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getListByGrupo(@PathVariable("grupoId") long grupoId) {
 		try {
 			List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(new Grupo(grupoId));

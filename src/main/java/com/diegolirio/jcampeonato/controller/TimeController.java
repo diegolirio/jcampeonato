@@ -20,7 +20,7 @@ public class TimeController {
 	@Autowired
 	private TimeService timeService;
 
-	@RequestMapping(value="/get/list", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/list", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getList() {
 		try {
 			List<Time> times = this.timeService.getList(Time.class);

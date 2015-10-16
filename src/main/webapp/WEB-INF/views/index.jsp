@@ -62,6 +62,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/service/HarbitoService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/LocalService.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/service/JogoService.js"></script>  
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  

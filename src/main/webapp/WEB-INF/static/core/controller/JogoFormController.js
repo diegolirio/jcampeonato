@@ -1,8 +1,8 @@
 /**
  * 
  */
-app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'EdicaoService', 'GrupoService', 'HarbitoService', 'LocalService', 'TimeService',
-                                      function($routeParams, $route, $location, EdicaoService, GrupoService, HarbitoService, LocalService, TimeService) {
+app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'EdicaoService', 'GrupoService', 'HarbitoService', 'LocalService', 'TimeService', 'JogoService',
+                                      function($routeParams, $route, $location, EdicaoService, GrupoService, HarbitoService, LocalService, TimeService, JogoService) {
 	
 	var self = this;
 	
@@ -45,6 +45,13 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			}, function(error) {
 				alert(error.data);
 			});			
+			return respEdicao;
+		}).then(function(respEdicao) {
+			JogoService.getListaPorEdicao(respEdicao.data).then(function(resp) {
+				self.jogos = resp.data;
+			}, function(error) {
+				alert(error.data);
+			});
 		}, function(error) {
 			alert(error.data);
 		});
@@ -57,8 +64,17 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 	self.save = function(jogo) {
 		//grupo.edicao = self.edicao;
 		//alert(JSON.stringify(jogo));
-		jogoService.save(jogo).then(function(resp) {
-			
+		if(jogo.id == undefined) {
+			jogo.id = 0;
+			jogo.status = {};
+			jogo.status.id = 1; // pendente
+			jogo.sequencia = -1;
+			jogo.resultadoA = 0;
+			jogo.resultadoB = 0;
+		} 
+		
+		JogoService.save(jogo).then(function(resp) {
+			self.jogos.push(resp.data);
 		}, function(error) {
 			alert(error.data);
 		});

@@ -80,11 +80,50 @@
 							<br/>
 							
 							<a href="${pageContext.request.contextPath}/jogo/delete_confirm/${jogo.id}" onclick="showWindowPopup(this.href); return false;" class="btn btn-danger pull-right">Excluir</a>			
-							<input type="submit" class="btn btn-success pull-right" value="${not empty jogo ? 'Salvar' : 'Adicionar Jogo'}" >
+							<input type="submit" class="btn btn-success pull-right" value="Salvar" >
 			
                         </form>
                      </div>
                   </div><!-- /.box -->		
+				                  
+				  <div class="col-lg-12">
+						<table class="table table-striped table-hover well">
+							<thead class="text-center">
+								<tr class="text-danger">
+									<!-- <td>ID</td> -->
+									<td >Sequencia</td>
+									<td >Rodada</td>
+									<td >Grupo</td>
+									<td >Time A</td>
+									<td ></td>
+									<td class="text-center text-muted"></td>
+									<td ></td>
+									<td >Time B</td>
+									<td >Local</td>
+									<td >Harbito</td>
+									<td>Data</td>
+									<td title="Excluir">Excluir</td>
+								<tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" ng-repeat="j in jgFormCtrl.jogos">
+									<td><small class="text-muted">{{ j.sequencia }}</small></td>
+									<td >{{ j.rodada }}</td>
+									<td >{{ j.grupo.descricao }}</td>
+									<td >{{ j.timeA.nome }}</td>
+									<td >{{j.resultadoA }}</td>
+									<td class="text-muted">X</td>
+									<td >{{ j.resultadoB }}</td>
+									<td >{{ j.timeB.nome }}</td>
+									<td >{{ j.local.descricao }}</td>    
+									<td >{{ j.harbito.nome }}</td>
+									<td >{{ j.dataHora }} </td>
+									<td ng-show="j.status.id == 1"><a href="${pageContext.request.contextPath}/jogo/delete_confirm/${j.id}" onclick="showWindowPopup(this.href); return false;">Excluir</a></td>
+								</tr>
+							</tbody>								
+						</table>       				
+				 </div>                  
+                  
                   
 		     </section>
 	
