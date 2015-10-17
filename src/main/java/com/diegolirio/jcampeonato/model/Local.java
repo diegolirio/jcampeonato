@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +14,7 @@ import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
-public class Local {
+public class Local extends Model {
 
 	@Id @GeneratedValue
 	private long id;
@@ -25,6 +26,9 @@ public class Local {
 	@JsonBackReference
 	@OneToMany(mappedBy="local")
 	private List<Jogo> jogos;
+	
+	@ManyToOne
+	private Campeonato campeonato;
 
 	public long getId() {
 		return id;
@@ -48,6 +52,14 @@ public class Local {
 
 	public void setJogos(List<Jogo> jogos) {
 		this.jogos = jogos;
+	}
+
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
 	}
 
 	@Override

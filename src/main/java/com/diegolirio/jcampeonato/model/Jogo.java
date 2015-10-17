@@ -1,19 +1,13 @@
 package com.diegolirio.jcampeonato.model;
 
-import java.text.SimpleDateFormat;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
-public class Jogo {
+public class Jogo extends Model {
 
 	@Id @GeneratedValue
 	private long id;
@@ -47,10 +41,10 @@ public class Jogo {
 	
 	private int rodada = 0;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-    private java.util.Date dataHora;
-	
+//	@DateTimeFormat(pattern = "dd/MM/yyyy")
+//	@Temporal(TemporalType.DATE)
+//    private java.util.Date dataHora;
+//	
 	private int sequencia;
 	
 	public long getId() {
@@ -121,13 +115,13 @@ public class Jogo {
 		return status;
 	}
 
-	public java.util.Date getDataHora() {
-		return dataHora;
-	}
-
-	public void setDataHora(java.util.Date dataHora) {
-		this.dataHora = dataHora;
-	}
+//	public java.util.Date getDataHora() {
+//		return dataHora;
+//	}
+//
+//	public void setDataHora(java.util.Date dataHora) {
+//		this.dataHora = dataHora;
+//	}
 
 	public void setStatus(Status status) {
 		this.status = status;
@@ -140,13 +134,13 @@ public class Jogo {
 		this.rodada = rodada;
 	}
 
-	public String getDataHoraStrEN() {
-		return new SimpleDateFormat("yyyy/MM/dd").format(this.dataHora);
-	}
-	
-	public String getDataHoraStrBR() {
-		return new SimpleDateFormat("dd/MM/yyyy").format(this.dataHora);
-	}	
+//	public String getDataHoraStrEN() {
+//		return new SimpleDateFormat("yyyy/MM/dd").format(this.dataHora);
+//	}
+//	
+//	public String getDataHoraStrBR() {
+//		return new SimpleDateFormat("dd/MM/yyyy").format(this.dataHora);
+//	}	
 	
 	public int getSequencia() {
 		return sequencia;

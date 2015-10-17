@@ -14,7 +14,7 @@ app.factory('HarbitoService', ['$http', function($http) {
 	var _save = function(harbito) {
 		return $http.post(serverURL('/save'), harbito);
 	};
-	
+
 	var _getListaPorEdicao = function(edicao) {
 		return $http.get(serverURL('/get/lista/por/edicao/'+edicao.id));
 	};

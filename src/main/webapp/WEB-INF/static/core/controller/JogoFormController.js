@@ -11,7 +11,7 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 	 */
 	
 	self.init = function() {
-		/*
+		/* 
 		 * Pega a edicao por id (pathParams)
 		 */
 		EdicaoService.getPorId($routeParams.edicaoId).then(function(resp) {
@@ -79,6 +79,33 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			alert(error.data);
 		});
 	};	
+
+	/**
+	 * Salvar Harbito
+	 */
+	self.saveHarbito = function(harbito, campeonato) {
+		harbito.campeonato = campeonato;
+		HarbitoService.save(harbito).then(function(resp) {
+			self.harbitos.push(resp.data);
+			$('#id-harbito-modal-form').modal('hide');
+		}, function(error) {
+			alert(error.data);
+		});
+	};
+	
+	/**
+	 * Salvar Local
+	 */
+	self.saveLocal = function(local, campeonato) {
+		local.campeonato = campeonato;
+		LocalService.save(local).then(function(resp) {
+			self.locais.push(resp.data);
+			$('#id-local-modal-form').modal('hide');
+		}, function(error) {
+			alert(error.data);
+		});
+	};	
+	
 	
 	self.init();
 	

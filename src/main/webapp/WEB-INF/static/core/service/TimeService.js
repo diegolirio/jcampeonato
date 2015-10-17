@@ -18,8 +18,8 @@ app.factory('TimeService', ['$http', function($http) {
 	/**
 	 * Grava Jogo
 	 */
-	var _save = function(time, campeonato) {
-		return $http.post(serverURL('/save/from/campeonato/'+campeonato.id), time);
+	var _save = function(time) {
+		return $http.post(serverURL('/save'), time);
 	};
 	
 	return {

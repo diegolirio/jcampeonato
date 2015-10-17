@@ -2,6 +2,7 @@
          <aside class="right-side" ng-controller="JogoFormController as jgFormCtrl">
              
              <jsp:include page="_harbito-modal-form.jsp"></jsp:include>
+             <jsp:include page="_local-modal-form.jsp"></jsp:include>
              
              <!-- Content Header (Page header) -->
              <section class="content-header">
@@ -25,7 +26,7 @@
                  
                  <ol class="breadcrumb">
                      <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
-                     <li class="active">Grupos</li>
+                     <li class="active">Jogos</li>
                  </ol>
              </section>
 
@@ -61,7 +62,7 @@
 			
 							<div class="form-group col-lg-3">
 								<label>Local </label> 
-								<a href="${pageContext.request.contextPath}/local/page/simple" onclick="showWindowPopup(this.href, 400, 600); return false;"><i class="glyphicon glyphicon-plus"></i></a>
+								<a href  data-toggle="modal" data-target="#id-local-modal-form"><i class="glyphicon glyphicon-plus"></i></a>
 								<select class="form-control" ng-model="jgFormCtrl.jogo.local" ng-options="l.descricao for l in jgFormCtrl.locais"></select>
 							</div>						
 

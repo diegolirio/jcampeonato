@@ -1,11 +1,9 @@
 package com.diegolirio.jcampeonato.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 
@@ -18,8 +16,8 @@ public class Time extends Model {
 	private String nome;
 	
 	@JsonBackReference
-	@ManyToMany(mappedBy="times")
-	private List<Campeonato> campeonatos;
+	@ManyToOne
+	private Campeonato campeonato;
 
 	public long getId() {
 		return id;
@@ -37,12 +35,12 @@ public class Time extends Model {
 		this.nome = nome;
 	}
 
-	public List<Campeonato> getCampeonatos() {
-		return campeonatos;
+	public Campeonato getCampeonato() {
+		return campeonato;
 	}
 
-	public void setCampeonatos(List<Campeonato> campeonatos) {
-		this.campeonatos = campeonatos;
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
 	}
 
 	@Override
