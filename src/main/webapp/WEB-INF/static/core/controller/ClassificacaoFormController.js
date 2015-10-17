@@ -68,6 +68,7 @@ app.controller('ClassificacaoFormController', ['$routeParams', '$route', 'Edicao
 		TimeService.save(time, campeonato).then(function(resp) {
 			self.times.push(resp.data);
 			$('#id-time-modal-form').modal('hide'); 
+			//self.classificacao.time = resp.data;
 		}, function(error) {
 			alert(error.data);
 		}); 

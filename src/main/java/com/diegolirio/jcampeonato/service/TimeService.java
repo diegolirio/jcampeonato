@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.CampeonatoDao;
-import com.diegolirio.jcampeonato.dao.TimeDao;
 import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Time;
 
 @Service("timeService")
 public class TimeService extends AbstractGenericService<Time> {
 
-	@Autowired @Qualifier("timeDao")
-	private TimeDao timeDao;
+	//@Autowired @Qualifier("timeDao")
+	//private TimeDao timeDao;
 	
 	@Autowired @Qualifier("campeonatoDao")
 	private CampeonatoDao campeonatoDao;

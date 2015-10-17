@@ -1,5 +1,8 @@
 
          <aside class="right-side" ng-controller="JogoFormController as jgFormCtrl">
+             
+             <jsp:include page="_harbito-modal-form.jsp"></jsp:include>
+             
              <!-- Content Header (Page header) -->
              <section class="content-header">
                  <h1>
@@ -7,7 +10,7 @@
                      <small>Edição {{jgFormCtrl.edicao.campeonato.descricao}} {{jgFormCtrl.edicao.descricao}}</small>
                  </h1>
                  
-				<div class="row">
+				<div class="row"> 
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
 							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Campeonato</a></li>
@@ -52,7 +55,7 @@
 
 							<div class="form-group col-lg-3">
 								<label>Harbito </label> 
-								<a href="${pageContext.request.contextPath}/harbito/page/simple" onclick="showWindowPopup(this.href, 400, 600); return false;"><i class="glyphicon glyphicon-plus"></i></a> 
+								<a href  data-toggle="modal" data-target="#id-harbito-modal-form"><i class="glyphicon glyphicon-plus"></i></a> 
 								<select class="form-control" ng-model="jgFormCtrl.jogo.harbito" ng-options="h.nome for h in jgFormCtrl.harbitos"></select>
 							</div>						
 			

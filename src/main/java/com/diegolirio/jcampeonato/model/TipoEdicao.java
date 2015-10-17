@@ -13,9 +13,9 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 public class TipoEdicao extends Model {
 
 	@Id @GeneratedValue
-	public long id;
+	private long id;
 	
-	public String descricao;
+	private String descricao;
 
 	@JsonBackReference
 	@OneToMany(mappedBy="tipoEdicao")

@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
-public class Harbito {
+public class Harbito extends Model {
 
 	@Id @GeneratedValue
 	private long id;
