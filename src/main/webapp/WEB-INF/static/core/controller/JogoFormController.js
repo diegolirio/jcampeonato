@@ -73,6 +73,9 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			jogo.resultadoB = 0;
 		} 
 		
+		var dataArray = jogo.dataHora.split('/');
+		jogo.dataHora = dataArray[2]+"-"+dataArray[1]+"-"+dataArray[0];
+		
 		JogoService.save(jogo).then(function(resp) {
 			self.jogos.push(resp.data);
 		}, function(error) {
