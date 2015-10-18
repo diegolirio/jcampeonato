@@ -31,6 +31,11 @@ public class EdicaoController {
 	public String pageForm() {
 		return "edicao/form";
 	}	
+
+	@RequestMapping(value="/confirma/conclusao", method=RequestMethod.GET)
+	public String pageConfirmaConclusao() {
+		return "edicao/confirma-conclusao";
+	}	
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String pageList() {

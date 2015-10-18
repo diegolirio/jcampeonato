@@ -65,12 +65,14 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/JogoService.js"></script>  
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
 		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- jQuery 2.0.2 -->

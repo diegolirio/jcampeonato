@@ -82,10 +82,13 @@
 							</div>																														
 			
 							<br/>
+
+							<div class="pull-right">
+            	                <input type="submit" class="btn btn-success btn-sm" value="Salvar" >
+                               	<a ng-show="jgFormCtrl.jogos.length > 0 && jgFormCtrl.edicao.id == 1" href="#/edicao/{{jgFormCtrl.edicao.id}}/confirma/conclusao" class="btn btn-info btn-sm">Proximo</a>
+                            </div>							
 							
-							<a href="${pageContext.request.contextPath}/jogo/delete_confirm/${jogo.id}" onclick="showWindowPopup(this.href); return false;" class="btn btn-danger pull-right">Excluir</a>			
-							<input type="submit" class="btn btn-success pull-right" value="Salvar" >
-			
+							
                         </form>
                      </div>
                   </div><!-- /.box -->		

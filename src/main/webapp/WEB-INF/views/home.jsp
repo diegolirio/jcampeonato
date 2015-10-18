@@ -1,5 +1,5 @@
 
-            <aside class="right-side">
+            <aside ng-controller="HomeController as homeCtrl" class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
@@ -14,7 +14,29 @@
 
                 <!-- Main content -->
                 <section class="content">
-						<h1>Hello</h1>
+		                <div ng-repeat="e in homeCtrl.edicoes" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		                    <div class="panel panel-success">
+		                        <div class="panel-heading">
+		                            <div class="row">
+		                                <div class="col-xs-3">
+											<!-- <i class="fa fa-comments fa-5x"></i> -->
+											<img alt="{{ e.id }}" src="${pageContext.request.contextPath}">
+		                                </div>
+		                                <div class="col-xs-9 text-right">
+		                                    <div class="huge"><a href="${pageContext.request.contextPath}/edicao/{{ e.id }}">{{ e.campeonato.descricao }} <br/><span class="text-info">{{ e.descricao }}</span></a></div>
+		                                    <div>{{ e.status.descricao }}</div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <a href="${pageContext.request.contextPath}/edicao/{{ e.id }}">
+		                            <div class="panel-footer">
+		                                <span class="pull-left">Entrar</span>
+		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+		                                <div class="clearfix"></div>
+		                            </div>
+		                        </a>
+		                    </div>
+		                </div>
 				</section>
 				
 			</aside>
