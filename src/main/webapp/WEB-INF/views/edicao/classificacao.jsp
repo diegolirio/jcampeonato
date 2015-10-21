@@ -52,17 +52,17 @@
 													</tr>
 												</thead>
 												<tbody id="id_tbody">
-														<tr class="" ng-controller="class in edicaoCLassCtrl.classificacoes | filter: grupo.id">
+														<tr class="" ng-repeat="class in edicaoCLassCtrl.classificacoes | filter: grupo.id">
 															<td title="Colocacao" class="text-info text-center"><b>{{class.colocacao}}º</b></td>
-															<td ><a href="${pageContext.request.contextPath}/time/${c.time.id}/edicao/${edicao.id}">${c.time.nome}</a></td>
+															<td ><a href="#/time/{{c.time.id}}/edicao/{{edicao.id}}">{{class.time.nome}}</a></td>
 															<td class="text-center"><b>{{class.pontos}}</b></td>
 															<td class="text-center">{{class.jogos}}</td>
 															<td class="text-center">{{class.vitorias}}</td>
 															<td class="text-center">{{class.empates}}</td>
 															<td class="text-center">{{class.derrotas}}</td>
-															<td class="text-center">{{c.golsPro}}</td>
-															<td class="text-center">{{c.golsContra}}</td>
-															<td class="text-center">{{c.golsPro - c.golsContra}}</td>										
+															<td class="text-center">{{class.golsPro}}</td>
+															<td class="text-center">{{class.golsContra}}</td>
+															<td class="text-center">{{class.golsPro - class.golsContra}}</td>										
 															<td class="text-center"><small>{{class.pontos * 100 / ((class.jogos == 0 ? 1 : class.jogos) * 3)}}</small></td>
 														</tr>									
 												</tbody>								
@@ -74,6 +74,72 @@
 					    </div>
 					    <!-- /.row -->	    
 					     <br/>						    
+					
+					<!-- JOGOS -->
+					
+						      <h5 class="text-muted" ng-repeat="grupo in edicaoCLassCtrl.grupos">{{grupo.descricao}}</h5> 
+
+						      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos">   
+						      	
+						      		<div class="table-responsive">
+						      			<a href="#/jogo/{{jogo.id}}/resultado">
+<!-- 						        		<table class="table well text-center"> -->
+<!-- 						        			<thead> -->
+<!-- 						        				<tr> -->
+<!-- 						        					<td colspan="5" class="text-muted"> -->
+<!-- 						        						<small>  -->
+<!-- 						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }} -->
+<!-- 						        						</small> -->
+<%-- <%-- 														<c:if test="${not empty usuario && not empty admin && admin && j.status.id != 3}"> --%> --%>
+<!-- 												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="true"> edita jogo -->
+<!-- 												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span> -->
+<!-- 												   			</a>     -->
+<!-- <!-- 												   		</c:if>								        							 --> -->
+						        						
+<!-- 						        					</td> -->
+<!-- 						        				</tr> -->
+<!-- 						        			</thead> -->
+<!-- 						        			<tbody > -->
+<!-- 						        				<tr> -->
+<!-- 						        					<td> -->
+<!-- 						        						<h4 class="text-info">{{ jogo.timeA.nome }}</h4> -->
+<!-- 						        					</td> -->
+<!-- 						        					<td> -->
+<%-- <%-- 						        						<c:if test="${j.status.id != 1}"> --%> --%>
+<!-- 						        							<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoA }}</h4> -->
+<!-- <!-- 						        						</c:if> --> -->
+<!-- 													</td>	 -->
+<!-- 													<td><h4 class="text-muted">X</h4></td> -->
+<!-- 													<td>				 -->
+<%-- <%-- 									        			<c:if test="${j.status.id != 1}">  --%> --%>
+<!-- 									        				<h4 class="text-danger" >{{ jogng-show="jogo.status.id != 1"o.resultadoB }}</h4> -->
+<!-- <!-- 									        			</c:if>			 --> -->
+<!-- 									        		</td> -->
+<!-- 									        		<td> -->
+<!-- 									        			<h4 class="text-info">{{ jogo.timeB.nome }}</h4> -->
+<!-- 									        		</td>											        					 -->
+<!-- 						        				</tr> -->
+<!-- 						        			</tbody> -->
+<!-- 						        			<tfoot> -->
+<!-- 						        				<tr> -->
+<!-- 						        					<td colspan="3"> -->
+<%-- 						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/quartashow/img/${j.status.imgName}"/> ( {{ jogo.status.descricao }} )</span></small> --%>
+<!-- 													</td> -->
+<!-- 													<td colspan="2"> -->
+<!-- 														<small>{{ jogo.local.descricao }}</small> -->
+<!-- 													</td> -->
+<!-- 						        				</tr> -->
+<!-- 						        		</table> -->
+						        	    </a>
+						            </div>   
+						      		
+						      		<br/>
+						      </div>        
+					                    	
+					<!-- Fim JOGOS -->
+					
+					
+					
 					
 					<br/><br/> 
 					
