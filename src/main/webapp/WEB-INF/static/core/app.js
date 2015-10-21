@@ -17,6 +17,7 @@ app.config(['$routeProvider', function($routeProvider) {
 		.when('/edicao/novo',      { templateUrl: SERVER_APP + '/edicao/novo'}) 
 		.when('/edicao/novo/:id',  { templateUrl: SERVER_APP + '/edicao/novo'})
 		.when('/edicao/:id/confirma/conclusao',  { templateUrl: SERVER_APP + '/edicao/confirma/conclusao'})
+		.when('/edicao/:id/classificacao',       { templateUrl: SERVER_APP + '/edicao/classificacao'})
 		// Grupo
 		.when('/grupo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/grupo/novo'})
 		// Classificacao

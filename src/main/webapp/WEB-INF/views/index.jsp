@@ -73,6 +73,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- jQuery 2.0.2 -->

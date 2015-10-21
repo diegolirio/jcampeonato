@@ -23,12 +23,12 @@
 											<img alt="{{ e.id }}" src="${pageContext.request.contextPath}">
 		                                </div>
 		                                <div class="col-xs-9 text-right">
-		                                    <div class="huge"><a href="${pageContext.request.contextPath}/edicao/{{ e.id }}">{{ e.campeonato.descricao }} <br/><span class="text-info">{{ e.descricao }}</span></a></div>
+		                                    <div class="huge"><a href="#/edicao/{{ e.id }}/classificacao">{{ e.campeonato.descricao }} <br/><span class="text-info">{{ e.descricao }}</span></a></div>
 		                                    <div>{{ e.status.descricao }}</div>
 		                                </div>
 		                            </div>
 		                        </div>
-		                        <a href="${pageContext.request.contextPath}/edicao/{{ e.id }}">
+		                        <a href="#/edicao/{{ e.id }}/classificacao">
 		                            <div class="panel-footer">
 		                                <span class="pull-left">Entrar</span>
 		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

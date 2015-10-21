@@ -41,6 +41,12 @@ public class EdicaoController {
 	public String pageList() {
 		return "edicao/list";
 	}
+
+	@RequestMapping(value="/classificacao", method=RequestMethod.GET)
+	public String pageClassificacao() {
+		return "edicao/classificacao";
+	}
+	
 	
 	/*
 	 * Rest Full
