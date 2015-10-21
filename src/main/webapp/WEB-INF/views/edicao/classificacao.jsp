@@ -83,53 +83,48 @@
 						      	
 						      		<div class="table-responsive">
 						      			<a href="#/jogo/{{jogo.id}}/resultado">
-<!-- 						        		<table class="table well text-center"> -->
-<!-- 						        			<thead> -->
-<!-- 						        				<tr> -->
-<!-- 						        					<td colspan="5" class="text-muted"> -->
-<!-- 						        						<small>  -->
-<!-- 						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }} -->
-<!-- 						        						</small> -->
-<%-- <%-- 														<c:if test="${not empty usuario && not empty admin && admin && j.status.id != 3}"> --%> --%>
-<!-- 												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="true"> edita jogo -->
-<!-- 												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span> -->
-<!-- 												   			</a>     -->
-<!-- <!-- 												   		</c:if>								        							 --> -->
+						        		<table class="table well text-center">
+						        			<thead>
+						        				<tr>
+						        					<td colspan="5" class="text-muted">
+						        						<small> 
+						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
+						        						</small>
+						        							<!-- ng show se usuario ta logado e usuario eh admin e jogo != finalizado -->
+												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="true"> edita jogo
+												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
+												   			</a>    
 						        						
-<!-- 						        					</td> -->
-<!-- 						        				</tr> -->
-<!-- 						        			</thead> -->
-<!-- 						        			<tbody > -->
-<!-- 						        				<tr> -->
-<!-- 						        					<td> -->
-<!-- 						        						<h4 class="text-info">{{ jogo.timeA.nome }}</h4> -->
-<!-- 						        					</td> -->
-<!-- 						        					<td> -->
-<%-- <%-- 						        						<c:if test="${j.status.id != 1}"> --%> --%>
-<!-- 						        							<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoA }}</h4> -->
-<!-- <!-- 						        						</c:if> --> -->
-<!-- 													</td>	 -->
-<!-- 													<td><h4 class="text-muted">X</h4></td> -->
-<!-- 													<td>				 -->
-<%-- <%-- 									        			<c:if test="${j.status.id != 1}">  --%> --%>
-<!-- 									        				<h4 class="text-danger" >{{ jogng-show="jogo.status.id != 1"o.resultadoB }}</h4> -->
-<!-- <!-- 									        			</c:if>			 --> -->
-<!-- 									        		</td> -->
-<!-- 									        		<td> -->
-<!-- 									        			<h4 class="text-info">{{ jogo.timeB.nome }}</h4> -->
-<!-- 									        		</td>											        					 -->
-<!-- 						        				</tr> -->
-<!-- 						        			</tbody> -->
-<!-- 						        			<tfoot> -->
-<!-- 						        				<tr> -->
-<!-- 						        					<td colspan="3"> -->
-<%-- 						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/quartashow/img/${j.status.imgName}"/> ( {{ jogo.status.descricao }} )</span></small> --%>
-<!-- 													</td> -->
-<!-- 													<td colspan="2"> -->
-<!-- 														<small>{{ jogo.local.descricao }}</small> -->
-<!-- 													</td> -->
-<!-- 						        				</tr> -->
-<!-- 						        		</table> -->
+						        					</td>
+						        				</tr>
+						        			</thead>
+						        			<tbody >
+						        				<tr>
+						        					<td>
+						        						<h4 class="text-info">{{ jogo.timeA.nome }}</h4>
+						        					</td>
+						        					<td>
+					        							<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoA }}</h4>
+													</td>	
+													<td><h4 class="text-muted">X</h4></td>
+													<td>				
+								        				<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoB }}</h4>
+									        		</td>
+									        		<td>
+									        			<h4 class="text-info">{{ jogo.timeB.nome }}</h4>
+									        		</td>											        					
+						        				</tr>
+						        			</tbody>
+						        			<tfoot>
+						        				<tr>
+						        					<td colspan="3">
+						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/quartashow/img/${j.status.imgName}"/> ( {{ jogo.status.descricao }} )</span></small>
+													</td>
+													<td colspan="2">
+														<small>{{ jogo.local.descricao }}</small>
+													</td>
+						        				</tr>
+						        		</table>
 						        	    </a>
 						            </div>   
 						      		

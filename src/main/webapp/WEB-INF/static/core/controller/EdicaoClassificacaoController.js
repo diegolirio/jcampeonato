@@ -1,8 +1,8 @@
 /**
  * 
  */
-app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService', 'GrupoService', 'ClassificacaoService',
-                                                function($routeParams, EdicaoService, GrupoService, ClassificacaoService) {
+app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService', 'GrupoService', 'ClassificacaoService', 'JogoService',
+                                                function($routeParams, EdicaoService, GrupoService, ClassificacaoService, JogoService) {
 
 	var self = this;
 	
@@ -26,7 +26,8 @@ app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService',
 			}, function(error) {
 				alert(error.data);
 			});
-		}).then(function(edicaoResp) {
+			return edicaoResp;
+		}).then(function(edicaoResp) { 
 			// busca jogos encadeado com edicao
 			JogoService.getListaPorEdicao(edicaoResp.data).then(function(resp) {
 				self.jogos = resp.data;

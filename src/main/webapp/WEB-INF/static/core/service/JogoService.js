@@ -15,6 +15,13 @@ app.factory('JogoService', ['$http', function($http) {
 	};
 	
 	/**
+	 * busca jogo por id
+	 */
+	var _get = function(id) {
+		return $http.get(serverURL('/get/'+id)); 
+	};
+	
+	/**
 	 * Salvar Jogo
 	 */
 	var _save = function(jogo) {
@@ -25,6 +32,8 @@ app.factory('JogoService', ['$http', function($http) {
 	return {
 		
 		getListaPorEdicao : _getListaPorEdicao,
+		
+		get : _get,
 		
 		save : _save
 		

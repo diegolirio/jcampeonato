@@ -23,7 +23,9 @@ app.config(['$routeProvider', function($routeProvider) {
 		// Classificacao
 		.when('/classificacao/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/classificacao/novo'})
 		// Jogo
-		.when('/jogo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/jogo/novo'});
+		.when('/jogo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/jogo/novo'})
+		.when('/jogo/:id/resultado',  		  { templateUrl: SERVER_APP + '/jogo/resultado'})
+		;
 	
 	
 		//.when('/login_post', { templateUrl: SERVER_APP + '/usuario/login?u=jsantos' } )		
