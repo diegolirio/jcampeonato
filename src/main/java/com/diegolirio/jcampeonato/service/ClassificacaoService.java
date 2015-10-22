@@ -9,6 +9,7 @@ import com.diegolirio.jcampeonato.dao.ClassificacaoDao;
 import com.diegolirio.jcampeonato.model.Classificacao;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Grupo;
+import com.diegolirio.jcampeonato.model.Time;
 
 @Service("classificacaoService")
 public class ClassificacaoService extends AbstractGenericService<Classificacao> {
@@ -22,6 +23,10 @@ public class ClassificacaoService extends AbstractGenericService<Classificacao> 
 
 	public List<Classificacao> getClassificacoesByEdicao(Edicao edicao) {
 		return this.classificacaoDao.getClassificacoesByEdicao(edicao);
+	}
+	
+	public Classificacao getByEdicaoAndTime(Edicao edicao, Time time) {
+		return this.classificacaoDao.getByEdicaoAndTime(edicao, time);
 	}
 
 }

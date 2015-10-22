@@ -11,7 +11,10 @@ app.factory('ClassificacaoService', ['$http', '$q',
 	var _save = function(classificacao) {
 		return $http.post(_serverURL('/save'), classificacao);
 	};
-	
+
+	/**
+	 * Busca classificacoes por grupo
+	 */
 	var _getClassificacoesByGrupo = function(grupo) {
 		return $http.get(_serverURL('/get/list/by/grupo/'+grupo.id));
 	};
@@ -22,6 +25,13 @@ app.factory('ClassificacaoService', ['$http', '$q',
 	var _getClassificacoesByEdicao = function(edicao) {
 		return $http.get(_serverURL('/get/list/by/edicao/'+edicao.id));
 	};
+	
+	/**
+	 * pega a classificacao por edicao e time
+	 */
+	var _getByEdicaoAndTime = function(edicao, time) {
+		return $http.get(_serverURL('/get/list/by/edicao/'+edicao.id+'/time/'+time.id));
+	};	
 	
 	/**
 	 * Excluir Classificacao
@@ -39,7 +49,9 @@ app.factory('ClassificacaoService', ['$http', '$q',
 		
 		getClassificacoesByGrupo : _getClassificacoesByGrupo,
 		
-		getClassificacoesByEdicao : _getClassificacoesByEdicao
+		getClassificacoesByEdicao : _getClassificacoesByEdicao,
+		
+		getByEdicaoAndTime : _getByEdicaoAndTime
 		
 	};
 	

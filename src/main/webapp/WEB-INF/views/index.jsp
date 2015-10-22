@@ -63,6 +63,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/HarbitoService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/LocalService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/JogoService.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/service/JogadorService.js"></script>  
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
@@ -76,6 +77,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoResultadoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/controller/TimeFormController.js"></script> 
 		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- jQuery 2.0.2 -->

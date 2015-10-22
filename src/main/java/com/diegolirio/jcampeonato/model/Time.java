@@ -1,8 +1,11 @@
 package com.diegolirio.jcampeonato.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
@@ -18,6 +21,16 @@ public class Time extends Model {
 	@JsonBackReference
 	@ManyToOne
 	private Campeonato campeonato;
+	
+	@JsonBackReference
+	@ManyToMany
+	private List<Jogador> jogadores;
+
+	public Time(){}
+	
+	public Time(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;

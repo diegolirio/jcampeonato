@@ -27,13 +27,26 @@ public class TimeController {
 	@Autowired @Qualifier("campeonatoService")
 	private CampeonatoService campeonatoService;
 
+	/*
+	 * pages
+	 */
+	
 	/**
 	 * Pagina form
 	 * @return pagina form time
 	 */
 	@RequestMapping(value="/page")
+	public String pagePage() {
+		return "time/page"; 
+	}
+	
+	/**
+	 * Pagina form
+	 * @return pagina form time
+	 */
+	@RequestMapping(value="/form")
 	public String pageForm() {
-		return "time/page";
+		return "time/form"; 
 	}
 	
 	/*

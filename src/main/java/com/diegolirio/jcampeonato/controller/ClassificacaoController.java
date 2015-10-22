@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.diegolirio.jcampeonato.model.Classificacao;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Grupo;
+import com.diegolirio.jcampeonato.model.Time;
 import com.diegolirio.jcampeonato.service.ClassificacaoService;
 
 @Controller
@@ -28,6 +29,10 @@ public class ClassificacaoController {
 	public String pageNovo() {
 		return "classificacao/form";
 	}	
+	
+	/*
+	 * RestFull
+	 */
 	
 	/**
 	 * Save
@@ -87,6 +92,23 @@ public class ClassificacaoController {
 		try {
 			List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByEdicao(new Edicao(edicaoId));
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(classificacoes), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	/**
+	 * pega classificacao por edicao e time
+	 * @param edicaoId
+	 * @param timeId
+	 * @return classificacao do time JSON
+	 */
+	@RequestMapping(value="/get/list/by/edicao/{edicaoId}/time/{timeId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getByEdicaoAndTime(@PathVariable("edicaoId") long edicaoId, @PathVariable("timeId") long timeId) {
+		try {
+			Classificacao classificacao = this.classificacaoService.getByEdicaoAndTime(new Edicao(edicaoId), new Time(timeId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(classificacao), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
