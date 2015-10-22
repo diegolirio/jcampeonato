@@ -7,13 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.diegolirio.jcampeonato.model.Harbito;
 import com.diegolirio.jcampeonato.model.Perfil;
+import com.diegolirio.jcampeonato.model.Posicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
 import com.diegolirio.jcampeonato.service.HarbitoService;
 import com.diegolirio.jcampeonato.service.PerfilService;
+import com.diegolirio.jcampeonato.service.PosicaoService;
 import com.diegolirio.jcampeonato.service.StatusService;
 import com.diegolirio.jcampeonato.service.TipoEdicaoService;
 import com.diegolirio.jcampeonato.service.UsuarioService;
@@ -41,6 +42,9 @@ public class HomeController {
 
 	@Autowired
 	private HarbitoService harbitoService;
+
+	@Autowired
+	private PosicaoService posicaoService;
 
 	
 	@RequestMapping(value="/criar_base")
@@ -98,11 +102,22 @@ public class HomeController {
 			finalizado = new Status("Finalizado");
 			this.statusService.save(finalizado);
 		}		
-		Harbito harbito = this.harbitoService.get(Harbito.class, 1l);
-		if(harbito == null) {
-			harbito = new Harbito();
-			harbito.setNome("Jose Pereira");
-			this.harbitoService.save(harbito);
+		// posicao
+		Posicao gk = this.posicaoService.getBySigla("GK"); 
+		if(gk == null) {
+			gk = new Posicao();
+			gk.setDescricao("Goleiro");
+			gk.setSigla("GK");
+			gk.setImgName("golerio_24x24.png");
+			this.posicaoService.save(gk);
+		}
+		Posicao at = this.posicaoService.getBySigla("AT");
+		if(at == null) {
+			at = new Posicao();
+			at.setDescricao("Linha");
+			at.setSigla("AT");
+			at.setImgName("chuteira_32.png");
+			this.posicaoService.save(at);	
 		}
 		return "redirect:/";
 	}
