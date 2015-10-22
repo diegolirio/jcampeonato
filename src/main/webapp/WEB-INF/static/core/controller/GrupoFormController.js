@@ -8,7 +8,7 @@ app.controller('GrupoFormController', ['$routeParams', '$route', '$location', 'E
 	
 	self.init = function() {
 		
-		EdicaoService.getPorId($routeParams.edicaoId).then(function(resp) {
+		EdicaoService.get($routeParams.edicaoId).then(function(resp) {
 			self.edicao = resp.data;
 			return resp;
 		}).then(function(edicaoResponse) {

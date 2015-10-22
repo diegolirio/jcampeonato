@@ -23,7 +23,7 @@ app.factory('EdicaoService', ['$http', function($http) {
 		
 		getEdicoesPorStatus : _getEdicoesPorStatus,
 		
-		getPorId : _getPorId,
+		get : _getPorId,
 		
 		save : _save
 		

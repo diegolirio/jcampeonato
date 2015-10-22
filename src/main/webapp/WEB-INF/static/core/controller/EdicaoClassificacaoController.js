@@ -8,7 +8,7 @@ app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService',
 	
 	var init = function() {
 		// busca edicao
-		EdicaoService.getPorId($routeParams.id).then(function(resp) {
+		EdicaoService.get($routeParams.id).then(function(resp) {
 			self.edicao = resp.data;
 			return resp;
 		}).then(function(edicaoResp) {

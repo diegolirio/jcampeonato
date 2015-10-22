@@ -14,7 +14,7 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 		/* 
 		 * Pega a edicao por id (pathParams)
 		 */
-		EdicaoService.getPorId($routeParams.edicaoId).then(function(resp) {
+		EdicaoService.get($routeParams.edicaoId).then(function(resp) {
 			self.edicao = resp.data;
 			return resp;
 		}).then(function(respEdicao) {

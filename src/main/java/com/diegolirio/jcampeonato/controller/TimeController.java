@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,39 @@ public class TimeController {
 	@Autowired @Qualifier("campeonatoService")
 	private CampeonatoService campeonatoService;
 
+	/**
+	 * Pagina form
+	 * @return pagina form time
+	 */
+	@RequestMapping(value="/page")
+	public String pageForm() {
+		return "time/page";
+	}
+	
+	/*
+	 * RestFull
+	 */
+	
+	/**
+	 * pega o time por id
+	 * @param id
+	 * @return time JSON
+	 */
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> get(@PathVariable("id") long id) {
+		try {
+			Time time = this.timeService.get(Time.class, id);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(time), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value="/get/list", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getList() {
 		try {

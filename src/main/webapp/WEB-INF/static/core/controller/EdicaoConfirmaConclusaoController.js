@@ -9,7 +9,7 @@ app.controller('EdicaoConfirmaConclusaoController',
      
      var init = function() { 
     	 
- 		EdicaoService.getPorId($routeParams.id).then(function(resp) {
+ 		EdicaoService.get($routeParams.id).then(function(resp) {
 			self.edicao = resp.data;
 			return resp;
  		}).then(function(edicaoResp) {

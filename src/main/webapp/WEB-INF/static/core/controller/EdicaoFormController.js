@@ -7,7 +7,7 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 	var self = this;
 	
 	var setEdicao = function(id) {
-		EdicaoService.getPorId(id).then(function(resp) {
+		EdicaoService.get(id).then(function(resp) {
 			self.edicao = resp.data;
 			// Seleciona o tipo
 			for(var i = 0; i <= self.tipos.length-1; i++) {

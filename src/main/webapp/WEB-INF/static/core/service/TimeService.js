@@ -7,6 +7,13 @@ app.factory('TimeService', ['$http', function($http) {
 		return SERVER_APP + '/time' + url;
 	};	
 	
+	/**
+	 * Pega time por id
+	 */
+	var _get = function(id) {
+		return $http.get(serverURL('/get/'+id));
+	};
+	
 	var _getTimes = function() {
 		return $http.get(serverURL('/get/list'));
 	};
@@ -23,6 +30,8 @@ app.factory('TimeService', ['$http', function($http) {
 	};
 	
 	return {
+		
+		get : _get,
 		
 		getTimes : _getTimes,
 		
