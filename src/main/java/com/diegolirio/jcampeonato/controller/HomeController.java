@@ -12,7 +12,6 @@ import com.diegolirio.jcampeonato.model.Posicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
-import com.diegolirio.jcampeonato.service.HarbitoService;
 import com.diegolirio.jcampeonato.service.PerfilService;
 import com.diegolirio.jcampeonato.service.PosicaoService;
 import com.diegolirio.jcampeonato.service.StatusService;
@@ -39,9 +38,6 @@ public class HomeController {
 
 	@Autowired
 	private StatusService statusService;
-
-	@Autowired
-	private HarbitoService harbitoService;
 
 	@Autowired
 	private PosicaoService posicaoService;

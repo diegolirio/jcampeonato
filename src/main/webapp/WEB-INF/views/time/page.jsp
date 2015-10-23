@@ -21,7 +21,6 @@
 		    		<a ng-show="true" href="#/time/{{ timePageCtrl.time.id }}">
 		   				<span class="glyphicon glyphicon-pencil text-muted"></span>
 		   			</a>
-			   		</c:if>
 				</h1>			
 				 
 				<div ng-show="timePageCtrl.classificacao != null" class="row">

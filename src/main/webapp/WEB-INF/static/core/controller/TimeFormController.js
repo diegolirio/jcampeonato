@@ -29,6 +29,8 @@ app.controller('TimeFormController', ['$routeParams', 'TimeService', 'JogadorSer
 	 * salva jogador
 	 */
 	self.save = function(jogador) {
+		alert(JSON.stringify(self.time));
+		jogador.campeonato = self.time.campeonato;
 		alert(JSON.stringify(jogador));
 		JogadorService.save(jogador).then(function(resp) {
 			// add na lista

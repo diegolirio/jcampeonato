@@ -15,7 +15,14 @@ app.factory('JogadorService', ['$http', function($http) {
 	 */
 	var _getListByTime = function(time) {
 		return $http.get(_serverURL('/get/list/by/time/'+time.id));
-	}
+	};
+	
+	/**
+	 * salvar jogador
+	 */
+	var _save = function(jogador) {
+		return $http.post(_serverURL('/save'), jogador);
+	};
 	
 	return {
 		
