@@ -44,7 +44,7 @@
 								<span class="glyphicon glyphicon-arrow-left"> Voltar p/ {{jgResultCtrl.jogo.status.id == 2 ? 'Pendente' : 'Em andamento'}}</span>
 							</a>
 						</p> 
-						<p class="text-primary"> 
+						<p class="text-primary">  
 							<img src="${pageContext.request.contextPath}/static/quartashow/img/{{jgResultCtrl.jogo.status.imgName}}" /> {{jgResultCtrl.jogo.status.descricao}}
 						</p>
 						<p>Rodada: {{jgResultCtrl.jogo.rodada}}</p>		
@@ -52,7 +52,7 @@
 						<p>Data: {{jgResultCtrl.jogo.dataHora}}</p>
 					</div>
 
-					<div ng-show="jgResultCtrl.jogo.status.id == 2 && true}}">
+					<div ng-show="jgResultCtrl.jogo.status.id == 2 && true">
 						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/1" class="btn btn-outline btn-info">Adicionar Gol</a>
 						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/2" class="btn btn-outline btn-warning" onclick="showWindowPopup(this.href, 600, 800); return false;">Cartão Amarelo</a>
 						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-danger" onclick="showWindowPopup(this.href, 600, 800); return false;">Cartão Vermelho</a>
@@ -63,7 +63,7 @@
 			
 				    	<div class="row">
 							<div ng-show="jgResultCtrl.jogo.status.id == 1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
-								<a  href="#/escalacao/post/jogo/{{jgResultCtrl.jogo.id}}" class="btn btn-outline btn-success btn-lg btn-block">
+								<a  href ng-click="jgResultCtrl.createEscalacaoByJogo(jgResultCtrl.jogo)" class="btn btn-outline btn-default btn-lg btn-block">
 									Adicionar informações da Partida
 								</a>
 							</div>
@@ -93,7 +93,7 @@
 												</tr> 
 											</thead>								
 											<tbody id="id_tbody">
-												<tr ng-repeat="je in jgResultCtrl.jogadoresEscalados | filter: escalacao.id" ng-show="jgResultCtrl.escalacao.jogo.timeA.id == je.time.id" class="{{jgResultCtrl.jogo.resultadoA > jgResultCtrl.jogo.resultadoB ? 'success' : 'danger'}}" >
+												<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeA.id == je.time.id" class="{{jgResultCtrl.jogo.resultadoA > jgResultCtrl.jogo.resultadoB ? 'success' : 'danger'}}" >
 													<td>
 														<a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}" > 
 															<span class="text-danger">excluir</span>
@@ -128,7 +128,7 @@
 												</tr> 
 											</thead>								
 											<tbody id="id_tbody">     
-												<tr ng-repeat="je in jgResultCtrl.jogadoresEscalados | filter: escalacao.id" ng-show="jgResultCtrl.escalacao.jogo.timeB.id == je.time.id" class="{{jgResult.jogo.resultadoA < jogo.resultadoB ? 'success' : 'danger'}}" >
+												<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeB.id == je.time.id" class="{{jgResult.jogo.resultadoA < jogo.resultadoB ? 'success' : 'danger'}}" >
 												    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}"> <span class="text-danger">excluir</span></a></td>
 												    <td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 													<td class="jogador{{je.id}}"> 
@@ -151,7 +151,7 @@
 										</a>
 			                    	</div>
 
-
+ 
 								</div>
 						
 						</div>

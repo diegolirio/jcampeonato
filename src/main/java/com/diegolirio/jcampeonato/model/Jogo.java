@@ -50,6 +50,12 @@ public class Jogo extends Model {
     private java.util.Date dataHora;
 	
 	private int sequencia;
+
+	public Jogo() {}
+	
+	public Jogo(long id) {
+		this.id = id;
+	}
 	
 	public long getId() {
 		return id;
