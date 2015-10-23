@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.JogadorDao;
+import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Time;
 
@@ -18,6 +19,10 @@ public class JogadorService extends AbstractGenericService<Jogador> {
 
 	public List<Jogador> getListByTime(Time time) {
 		return this.jogadorDao.getListByTime(time);
+	}
+
+	public List<Jogador> getListByCampeonato(Campeonato campeonato) {
+		return this.jogadorDao.getListByCampeonato(campeonato);
 	}
 
 }

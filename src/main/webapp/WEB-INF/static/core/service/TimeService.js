@@ -23,10 +23,24 @@ app.factory('TimeService', ['$http', function($http) {
 	};
 	
 	/**
-	 * Grava Jogo
+	 * Grava Time
 	 */
 	var _save = function(time) {
 		return $http.post(serverURL('/save'), time);
+	};
+	
+	/**
+	 * Add jogador ao time
+	 */
+	var _addJogador = function(time, jogador) {
+		return $http.post(serverURL("/"+time.id+'/add/jogador/'+jogador.id));
+	};
+	
+	/**
+	 * Remove jogador do time
+	 */
+	var _removeJogador = function(time, jogador) {
+		return $http.post(serverURL("/"+time.id+'/remove/jogador/'+jogador.id));
 	};
 	
 	return {
@@ -37,7 +51,11 @@ app.factory('TimeService', ['$http', function($http) {
 		
 		getListaPorEdicao : _getListaPorEdicao,
 		
-		save : _save 
+		save : _save,
+		
+		addJogador : _addJogador,
+		
+		removeJogador : _removeJogador
 		
 	};
 	

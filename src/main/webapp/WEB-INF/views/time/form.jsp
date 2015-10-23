@@ -43,10 +43,10 @@
 						                </div>
 						                <div class="panel-body">
 							                                
-							                <form >
+							                <form ng-submit="timeFormCtrl.addJogadorTime(timeFormCtrl.time, timeFormCtrl.jogadorAddTime)">
 								                <div class="row">
 								                	<div class="col-lg-8">
-								                		<select ng-model="timeFormCtrl.jogador.nome" ng-options="j.nome for j in timeFormCtrl.jogadores" class="form-control"></select>
+								                		<select ng-model="timeFormCtrl.jogadorAddTime" ng-options="j.nome for j in timeFormCtrl.jogadores" class="form-control"></select>
 													</div>
 													<div class="col-lg-2">
 														<button type="submit" class="btn btn-primary">Adicionar Jogador</button>
@@ -66,11 +66,15 @@
 														<th ></th>
 													</tr>
 												<tbody id="id_tbody">
-													<tr ng-repeat="jogador in  timeFormCtrl.jogadores"> 
+													<tr ng-repeat="jogador in  timeFormCtrl.time.jogadores"> 
 														<td title="{{jogador.posicao.descricao}}">
 															<img src="${pageContext.request.contextPath}/static/quartashow/img/{{jogador.posicao.imgName }}"/></td> 
 														<td>{{jogador.nome}}</td>
-														<td><a href="${pageContext.request.contextPath}/time/system/{{timeFormCtrl.time.id}}/remove/jogador/{{jogador.id}}"><span class="text-danger">Retirar do Time</span></a></td>
+														<td>
+															<a href ng-click="timeFormCtrl.removeJogadorTime(timeFormCtrl.time, jogador)" class="btn btn-default">
+																<span class="glyphicon glyphicon-trash text-danger"></span>
+															</a>
+														</td>
 													</tr>									
 												</tbody>								
 											</table>                                
@@ -87,7 +91,7 @@
 				                    <h3 class="panel-title"><i class="fa fa-fw fa-table"></i> Jogadores</h3> 
 				                </div>
 				                <div class="panel-body">		    		
-									<form ng-submit="timeFormCtrl.save(timeFormCtrl.jogadorNovo)">
+									<form ng-submit="timeFormCtrl.saveJogador(timeFormCtrl.jogadorNovo)">
 										<h1 class="text-info"> Jogador</h1>
 										
 										<div class="form-group col-lg-12">

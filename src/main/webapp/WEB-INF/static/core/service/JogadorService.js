@@ -18,6 +18,14 @@ app.factory('JogadorService', ['$http', function($http) {
 	};
 	
 	/**
+	 * busca lista de jogadores por campeonato
+	 * passando o campeonato no corpo da requisicao
+	 */
+	var _getListByCampeonato = function(campeonato) {
+		return $http.get(_serverURL('/get/list/by/campeonato/'+campeonato.id));
+	};
+	
+	/**
 	 * salvar jogador
 	 */
 	var _save = function(jogador) {
@@ -26,7 +34,11 @@ app.factory('JogadorService', ['$http', function($http) {
 	
 	return {
 		
-		getListByTime : _getListByTime
+		getListByTime : _getListByTime,
+		
+		getListByCampeonato : _getListByCampeonato, 
+		
+		save : _save
 		
 	};
 	

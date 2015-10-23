@@ -56,6 +56,9 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 	 * Salvar Edicao... 
 	 */
 	self.save = function(edicao) {
+		//edicao.id = 0;
+		//edicao.status = {"id": 1};
+		//edicao = {"id":1,"descricao":"2015","status":{"id":1,"descricao":"Pendente","imgName":null},"campeonato":{"id":1,"descricao":"Quarta Show"},"tipoEdicao":{"id":1,"descricao":"1a fase (fase de Grupo) e Mata-mata"}};
 		EdicaoService.save(edicao).then(function(resp) {
 			alert("Edicao: " + edicao.campeonato.descricao + " " + edicao.descricao + " gravado com sucesso"); 
 			self.edicao = resp.data;	

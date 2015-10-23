@@ -38,8 +38,6 @@
                         <!-- form start -->
                         <form role="form" ng-submit="edicaoFormCtrl.save(edicaoFormCtrl.edicao)">
                         
-                        	<input type="hidden" class="form-control" ng-model="edicaoFormCtrl.edicao.id">
-                        
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Campeonato <a href="#/campeonato/novo"><span class="glyphicon glyphicon-plus"></span></a> </label>

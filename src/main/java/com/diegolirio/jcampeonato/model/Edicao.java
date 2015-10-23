@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 //@Table(uniqueConstraints=@UniqueConstraint(columnNames={"descricao", "campeonato.id"}))
@@ -27,7 +27,7 @@ public class Edicao extends Model {
 	@ManyToOne
 	private Campeonato campeonato;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="edicao")
 	private List<Grupo> grupos;
 	

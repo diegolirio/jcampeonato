@@ -75,7 +75,7 @@
 											<td class="text-muted"><img alt="foto" src="{{jogador.uriFoto}}" class="img-responsive img-circle" height="30" width="30"/> </td>
 											<td><img src="${pageContext.request.contextPath}/static/quartashow/img/{{jogador.posicao.imgName}}" alt="{{jogador.posicao.descricao}}"/></td>
 											<td>
-												<h5><a href="${pageContext.request.contextPath}/jogador/{{jogador.id}}/edicao/{{ timePageCtrl.edicao != null ? timePageCtrl.edicao.id : 0}"> {{ jogador.nome }} </a></h5>
+												<h5><a href="${pageContext.request.contextPath}/jogador/{{jogador.id}}/edicao/{{ timePageCtrl.edicao != null ? timePageCtrl.edicao.id : 0}}"> {{ jogador.nome }} </a></h5>
 											</td>
 											<td></td> 
 										</tr>

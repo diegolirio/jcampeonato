@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Time;
 import com.diegolirio.jcampeonato.service.CampeonatoService;
+import com.diegolirio.jcampeonato.service.JogadorService;
 import com.diegolirio.jcampeonato.service.TimeService;
 
 @Controller
@@ -26,6 +28,9 @@ public class TimeController {
 	
 	@Autowired @Qualifier("campeonatoService")
 	private CampeonatoService campeonatoService;
+
+	@Autowired @Qualifier("jogadorService")
+	private JogadorService jogadorService;
 
 	/*
 	 * pages
@@ -100,5 +105,43 @@ public class TimeController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	/**
+	 * Add jogador ao time
+	 * @param timeId
+	 * @param jogadorId
+	 * @return
+	 */
+	@RequestMapping(value="/{timeId}/add/jogador/{jogadorId}", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> addJogador(@PathVariable("timeId") long timeId, @PathVariable("jogadorId") long jogadorId) {
+		try {
+			Jogador jogador = this.jogadorService.get(Jogador.class, jogadorId);
+			Time time = this.timeService.get(Time.class, timeId);
+			timeService.addJogador(time, jogador);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogador ), HttpStatus.CREATED);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	/**
+	 * Remove jogador do time
+	 * @param timeId
+	 * @param jogadorId
+	 * @return
+	 */
+	@RequestMapping(value="/{timeId}/remove/jogador/{jogadorId}", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> removeJogador(@PathVariable("timeId") long timeId, @PathVariable("jogadorId") long jogadorId) {
+		try {
+			Jogador jogador = this.jogadorService.get(Jogador.class, jogadorId);
+			Time time = this.timeService.get(Time.class, timeId);
+			timeService.removeJogador(time, jogador);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}	
 	
 }

@@ -89,7 +89,7 @@ public class EdicaoController {
 	 * @param edicao
 	 * @return JSON
 	 */
-	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json")
 	public ResponseEntity<String> save(@RequestBody Edicao edicao) {
 		try {
 			this.edicaoService.save(edicao);

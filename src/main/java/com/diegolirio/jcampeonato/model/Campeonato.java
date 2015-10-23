@@ -12,6 +12,12 @@ public class Campeonato extends Model {
 	
 	private String descricao;
 
+	public Campeonato(){}
+	
+	public Campeonato(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	} 

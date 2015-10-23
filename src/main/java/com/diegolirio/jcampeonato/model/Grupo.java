@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 public class Grupo extends Model {
@@ -21,7 +21,8 @@ public class Grupo extends Model {
 	
 	private String descricao;
 	
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="grupo")
 	private List<Classificacao> classificacoes; 
 

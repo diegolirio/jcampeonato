@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 public class Time extends Model {
@@ -18,11 +19,11 @@ public class Time extends Model {
 	
 	private String nome;
 	
-	@JsonBackReference
 	@ManyToOne
 	private Campeonato campeonato;
 	
 	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	private List<Jogador> jogadores;
 
@@ -56,6 +57,19 @@ public class Time extends Model {
 		this.campeonato = campeonato;
 	}
 
+	public List<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(List<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
+
+//	@Override
+//	public boolean equals(Object obj) {
+//		return ((Time)obj).getId() == this.getId();
+//	};
+	
 	@Override
 	public String toString() {
 		return "Time [id=" + id + ", nome=" + nome + "]";

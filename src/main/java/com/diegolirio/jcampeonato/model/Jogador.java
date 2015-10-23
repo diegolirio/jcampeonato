@@ -31,6 +31,9 @@ public class Jogador extends Model {
 	@ManyToOne
 	private Posicao posicao;
 	
+	@ManyToOne
+	private Campeonato campeonato;
+	
 	private String uriFoto = "/jchampionship/static/quartashow/img/jogadores/jogador_no_photo.png";
 
 	public Jogador() {}
@@ -72,12 +75,25 @@ public class Jogador extends Model {
 		this.posicao = posicao;
 	}
 	
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
+	}
+
 	public String getUriFoto() {
 		return uriFoto;
 	}
 
 	public void setUriFoto(String uriFoto) {
 		this.uriFoto = uriFoto;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return ((Jogador) obj).getId() == this.id;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Time;
 import com.diegolirio.jcampeonato.service.JogadorService;
@@ -37,6 +38,22 @@ public class JogadorController {
 	public ResponseEntity<String> getListByTime(@PathVariable("timeId") long timeId) {
 		try {
 			List<Jogador> jogadores = this.jogadorService.getListByTime(new Time(timeId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadores), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	/**
+	 * pega lista de jogadores por campeonato
+	 * @param timeId
+	 * @return
+	 */
+	@RequestMapping(value="/get/list/by/campeonato/{campeonatoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListByCampeonato(@PathVariable("campeonatoId") long campeonatoId) {
+		try {
+			List<Jogador> jogadores = this.jogadorService.getListByCampeonato(new Campeonato(campeonatoId));
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadores), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
