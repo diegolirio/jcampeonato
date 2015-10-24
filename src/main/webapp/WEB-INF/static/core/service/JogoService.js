@@ -30,6 +30,13 @@ app.factory('JogoService', ['$http', function($http) {
 	};
 	
 	/**
+	 * Delete Jogo 
+	 */
+	var _deleteJogo = function(jogo) {
+		return $http.post(serverURL('/'+jogo.id+'/delete'));
+	};
+	
+	/**
 	 * finalizar Jogo
 	 */
 	var _finalizar = function(jogo) {
@@ -43,6 +50,8 @@ app.factory('JogoService', ['$http', function($http) {
 		get : _get,
 		
 		save : _save,
+		
+		deleteJogo : _deleteJogo,
 		
 		finalizar : _finalizar
  		

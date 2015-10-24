@@ -1,8 +1,10 @@
 /**
  * 
  */
-app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService', 'GrupoService', 'ClassificacaoService', 'JogoService',
-                                                function($routeParams, EdicaoService, GrupoService, ClassificacaoService, JogoService) {
+app.controller('EdicaoClassificacaoController',['$scope','$routeParams', 'EdicaoService', 'GrupoService', 'ClassificacaoService', 'JogoService',
+                                                'UsuarioPerfilCampeonatoService',
+                                               function($scope, $routeParams, EdicaoService, GrupoService, ClassificacaoService, JogoService,
+                                                UsuarioPerfilCampeonatoService) {
 
 	var self = this;
 	
@@ -10,6 +12,7 @@ app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService',
 		// busca edicao
 		EdicaoService.get($routeParams.id).then(function(resp) {
 			self.edicao = resp.data;
+			$scope.edicao = self.edicao;
 			return resp;
 		}).then(function(edicaoResp) {
 			// busca grupos encadeado com edicao
@@ -34,6 +37,16 @@ app.controller('EdicaoClassificacaoController',['$routeParams', 'EdicaoService',
 			}, function(error) {
 				alert(error.data);
 			});
+			return edicaoResp;
+		}).then(function(edicaoResp) {
+			// busca usuarioPerfilCampeonato encadeado com edicao
+ 			if($scope.usuarioLogado != null) {
+				UsuarioPerfilCampeonatoService.getByUsuarioAndCampeonato($scope.usuarioLogado, edicaoResp.data.campeonato).then(function(resp) {
+					self.usuarioPerfilCampeonato = resp.data;
+				}, function(error) {
+					alert('Erro ao busca perfil: ' + error.data);
+				});
+ 			}
 		}, function(error) {
 			alert(error.data);
 		});

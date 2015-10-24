@@ -75,8 +75,8 @@
 			
 					<br/><br/><br/> 
 			
-				    	<div class="row">
-							<div ng-show="jgResultCtrl.jogo.status.id == 1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+				    	<div ng-show="jgResultCtrl.jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
 								<a  href ng-click="jgResultCtrl.createEscalacaoByJogo(jgResultCtrl.jogo)" class="btn btn-outline btn-default btn-lg btn-block">
 									Adicionar informações da Partida
 								</a>

@@ -125,7 +125,7 @@
 									<td >{{ j.local.descricao }}</td>    
 									<td >{{ j.harbito.nome }}</td>
 									<td >{{ j.dataHora }} </td>
-									<td ng-show="j.status.id == 1"><a href="${pageContext.request.contextPath}/jogo/delete_confirm/${j.id}" onclick="showWindowPopup(this.href); return false;">Excluir</a></td>
+									<td ng-show="j.status.id == 1"><a href ng-click="jgFormCtrl.deleteJogo(j)">excluir</a></td>
 								</tr>
 							</tbody>								
 						</table>       				

@@ -122,21 +122,21 @@ public class HomeController {
 			this.posicaoService.save(at);	
 		}
 		// eventos do jogo
-		Evento gol = this.eventoService.get(Evento.class, 1);
+		Evento gol = this.eventoService.getByDescricao("Gol");
 		if(gol == null) {
 			gol = new Evento();
 			gol.setDescricao("Gol");
 			gol.setImgName("gol.png");
 			this.eventoService.save(gol);
 		}
-		Evento ca = this.eventoService.get(Evento.class, 2);
+		Evento ca = this.eventoService.getByDescricao("Cartão Amarelo");
 		if(ca == null) {
 			ca = new Evento();
 			ca.setDescricao("Cartão Amarelo");
 			ca.setImgName("cartao-amarelo.png");
 			this.eventoService.save(ca);
 		}
-		Evento cv = this.eventoService.get(Evento.class, 3);
+		Evento cv = this.eventoService.getByDescricao("Cartão Vermelho");
 		if(cv == null) {
 			cv = new Evento();
 			cv.setDescricao("Cartão Vermelho");

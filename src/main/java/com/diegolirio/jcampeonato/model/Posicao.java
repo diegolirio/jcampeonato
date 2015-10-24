@@ -1,5 +1,6 @@
 package com.diegolirio.jcampeonato.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ public class Posicao extends Model {
 	
 	private String descricao;
 	
+	@Column(unique=true)
 	private String sigla;
 	
 	private String imgName;

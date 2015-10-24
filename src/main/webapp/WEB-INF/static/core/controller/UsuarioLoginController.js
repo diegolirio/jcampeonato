@@ -2,7 +2,8 @@
  * 
  */
 
-app.controller('UsuarioLoginController', ['$window', 'UsuarioService', function($window, UsuarioService) {
+app.controller('UsuarioLoginController', ['$scope', '$window', 'UsuarioService', 
+                                          function($scope, $window, UsuarioService) {
 
 	var self = this;
 	
@@ -17,6 +18,7 @@ app.controller('UsuarioLoginController', ['$window', 'UsuarioService', function(
 	UsuarioService.getSession().then(function(resp) {
 		self.isLoggedIn = true;
 		self.usuarioLogado = resp.data;
+		$scope.usuarioLogado = self.usuarioLogado;
 	}, function(error) {
 		console.log(error.data); 
 	});

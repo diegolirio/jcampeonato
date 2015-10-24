@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.ClassificacaoDao;
 import com.diegolirio.jcampeonato.dao.ClassificacaoHistDao;
@@ -20,6 +21,7 @@ import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
 import com.diegolirio.jcampeonato.model.Status;
 
+@Service("finalizaJogoFaseGrupoMata")
 public class FinalizaJogoFaseGrupoMata implements FinalizaJogo {
 
 	@Autowired @Qualifier("classificacaoDao")
@@ -34,7 +36,7 @@ public class FinalizaJogoFaseGrupoMata implements FinalizaJogo {
 	@Autowired @Qualifier("jogoDao")
 	private JogoDao jogoDao;
 
-	
+	@Autowired @Qualifier("classificacaoHistDao")
 	private ClassificacaoHistDao classificacaoHistDao;
 
 	@Override
@@ -55,6 +57,7 @@ public class FinalizaJogoFaseGrupoMata implements FinalizaJogo {
 		else if (jogo.getResultadoA() < jogo.getResultadoB())
 			vencedor = 'B';
 		System.out.println("JOGO=" + jogo);
+		System.out.println("classificacaoDao="+this.classificacaoDao);
 		List<Classificacao> classificacoes = this.classificacaoDao.getClassificacoesByGrupo(jogo.getGrupo());
 		for (Classificacao classTime : classificacoes) {
 			// calcula classificacao time A

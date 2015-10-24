@@ -29,30 +29,30 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="${pageContext.request.contextPath}">
-                                <i class="fa fa-trophy"></i> <span>Campeonatos</span> <small class="badge pull-right bg-green">novo</small>
+                                <i class="fa fa-trophy"></i> <span>Campeonatos {{ edicao.descricao }}</span> <small class="badge pull-right bg-green">novo</small>
                             </a>
                         </li>
-                        <li>
+                        <li ng-hide="edicao == null">
                             <a href="pages/widgets.html">
                                 <i class="fa fa-table"></i> <span>Classificação</span>
                             </a>
                         </li>
-                        <li>
+                        <li ng-hide="edicao == null">
                             <a href="pages/widgets.html">
                                 <i class="fa fa-globe"></i> <span>Artilharia</span>
                             </a>
                         </li>
-                        <li>
+                        <li ng-hide="edicao == null">
                             <a href="pages/widgets.html">
                                 <i class="fa fa-star-o"></i> <span>Times</span>
                             </a>
                         </li>
-                        <li>
+                        <li ng-hide="edicao == null">
                             <a href="pages/widgets.html">
                                 <i class="fa fa-group"></i> <span>Jogadores</span>
                             </a>
                         </li>
-                        <li>
+                        <li ng-hide="edicao == null">
                             <a href="pages/widgets.html">
                                 <i class="fa fa-bar-chart-o"></i> <span>Graficos</span>
                             </a>

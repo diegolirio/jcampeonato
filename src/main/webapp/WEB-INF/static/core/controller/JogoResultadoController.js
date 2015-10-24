@@ -1,8 +1,10 @@
 /**
  *  JogoResultadoController controller view/jogo/resultado
  */
-app.controller('JogoResultadoController', ['$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
-                                           function($routeParams, $window, JogoService, EscalacaoService, EventoService) {
+app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
+                                           'UsuarioPerfilCampeonatoService',
+                                          function($scope, $routeParams, $window, JogoService, EscalacaoService, EventoService,
+                                        	UsuarioPerfilCampeonatoService) {
                                            
 	var self = this;
 	
@@ -15,6 +17,17 @@ app.controller('JogoResultadoController', ['$routeParams', '$window', 'JogoServi
 			EscalacaoService.getByJogo(jogoResp.data).then(function(resp) {
 				self.escalacao = resp.data;
 			});
+			return jogoResp;
+		}).then(function(jogoResp) {
+			// busca usuarioPerfilCampeonato encadeado com edicao
+ 			if($scope.usuarioLogado != null) {
+ 				var campeonato = jogoResp.data.grupo.edicao.campeonato;
+				UsuarioPerfilCampeonatoService.getByUsuarioAndCampeonato($scope.usuarioLogado, campeonato).then(function(resp) {
+					self.usuarioPerfilCampeonato = resp.data;
+				}, function(error) {
+					alert('Erro ao busca perfil: ' + error.data);
+				});
+ 			}
 		});
 		
 	};

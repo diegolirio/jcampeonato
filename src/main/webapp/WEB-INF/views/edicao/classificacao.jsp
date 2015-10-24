@@ -91,7 +91,7 @@
 						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
 						        						</small>
 						        							<!-- ng show se usuario ta logado e usuario eh admin e jogo != finalizado -->
-												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="true"> edita jogo
+												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
 												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
 												   			</a>    
 						        						

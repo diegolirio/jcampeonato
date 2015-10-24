@@ -109,6 +109,24 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 		});
 	};	
 	
+	/**
+	 * exclui jogo pendente
+	 */
+	self.deleteJogo = function(jogo) {
+		if(jogo.status.id != 1) {
+			alert('Jogo não encontra-se pendente');
+			return;
+		} 
+		
+		JogoService.deleteJogo(jogo).then(function(resp) {
+			var index = self.jogos.indexOf(jogo);
+			self.jogos.splice(index,1);
+		}, function(error) {
+			alert(error.data);
+		});
+		
+			
+	};
 	
 	self.init();
 	

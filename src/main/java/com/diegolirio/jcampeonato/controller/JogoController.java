@@ -100,6 +100,17 @@ public class JogoController {
 	}
 	
 	/**
+	 * delete jogo
+	 * @param id
+	 * @return HttpStatus
+	 */
+	@RequestMapping(value="/{id}/delete", method=RequestMethod.POST, produces="application/json")
+	public ResponseEntity<String> delete(@PathVariable("id") long id) {
+		this.jogoService.delete(Jogo.class, id);
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+	
+	/**
 	 * finaliza o Jogo e calcula classificacao e artilharia
 	 * @param id
 	 * @return jogo JSON

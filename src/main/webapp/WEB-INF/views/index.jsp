@@ -67,6 +67,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/PosicaoService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/EscalacaoService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/EventoService.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioPerfilCampeonatoService.js"></script>
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
