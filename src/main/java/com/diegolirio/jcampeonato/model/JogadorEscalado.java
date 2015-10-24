@@ -3,6 +3,7 @@ package com.diegolirio.jcampeonato.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -26,8 +27,7 @@ public class JogadorEscalado extends Model {
 	@ManyToOne
 	private Time time;
 
-	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Evento> eventos;
 
 	public long getId() {

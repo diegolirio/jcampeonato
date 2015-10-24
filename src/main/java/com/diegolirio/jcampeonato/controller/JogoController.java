@@ -37,18 +37,11 @@ public class JogoController {
 	public String novo() {
 		return "jogo/form";
 	}
-	
-//	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-//	public ModelAndView pageJogo(@PathVariable("id") long id) {
-//		ModelAndView mv = new ModelAndView("_base2");
-//		mv.addObject("content_import", "jogo-page-system");
-//		Jogo jogo = this.jogoDao.get(Jogo.class, id);
-//		mv.addObject("jogo", jogo);
-//		mv.addObject("escalacao", this.escalacaoDao.get(jogo));
-//		mv.addObject("edicao", jogo.getGrupo().getEdicao());
-//		return mv ;
-//	}	
-	
+
+	/**
+	 * pagina resulta/placar do jogo e escalacao
+	 * @return
+	 */
 	@RequestMapping(value="/resultado")
 	public String pageResultado() {
 		return "jogo/resultado";
@@ -107,4 +100,20 @@ public class JogoController {
 		}
 	}
 	
+	/**
+	 * finaliza o Jogo e calcula classificacao e artilharia
+	 * @param id
+	 * @return jogo JSON
+	 */
+	@RequestMapping(value="/{id}/finalizar", method=RequestMethod.POST, produces="application/json")
+	public ResponseEntity<String> finalizar(@PathVariable("id") long id) {
+		try {
+			Jogo jogo = this.jogoService.get(Jogo.class, id);
+			this.jogoService.finalizar(jogo);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogo ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

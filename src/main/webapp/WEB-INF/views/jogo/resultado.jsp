@@ -18,20 +18,34 @@
 			             
 					<!-- Placar Responsive -->
 					<h1 class="page-header col-lg-12 col-md-12 col-sm-12 visible-lg visible-md visible-sm"> 
-						<span class="text-center col-md-4"><a href="#/time/{{ jgResultCtrl.jogo.timeA.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeA.nome }}</a></span>
+						<span class="text-center col-md-4">
+							<a href="#/time/{{ jgResultCtrl.jogo.timeA.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeA.nome }}</a>
+						</span>
 						<span class="text-center text-danger col-md-1" id="id_rA" >{{ jgResultCtrl.jogo.resultadoA }}</span>
 						<span class="text-center text-muted col-md-1">X</span>
 						<span class="text-center text-danger col-md-1" id="id_rB">{{ jgResultCtrl.jogo.resultadoB }}</span>
-						<span class="text-center col-md-4"><a href="#/time/{{ jgResultCtrl.jogo.timeB.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeB.nome }}</a></span>
+						<span class="text-center col-md-4">
+							<a href="#/time/{{ jgResultCtrl.jogo.timeB.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeB.nome }}</a>
+						</span>
 					</h1>		
 					<div class="page-header col-xs-12 visible-xs text-center">
 						<table class="table">
 							<tr>
-								<td><h3 class="text-center col-md-4"><a href="#/time/{{ jgResultCtrl.jogo.timeA.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeA.nome }}</a></h3></td>
-								<td><h3 class="text-center text-danger col-md-1" >{{ jgResultCtrl.jogo.resultadoA }}</h3></td>
+								<td>
+									<h3 class="text-center col-md-4">
+										<a href="#/time/{{ jgResultCtrl.jogo.timeA.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeA.nome }}</a>
+									</h3>
+								</td>
+								<td>
+									<h3 class="text-center text-danger col-md-1" >{{ jgResultCtrl.jogo.resultadoA }}</h3>
+								</td>
 							</tr>
 							<tr>
-								<td><h3 class="text-center col-md-4"><a href="#/time/{{ jgResultCtrl.jogo.timeB.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeB.nome }}</a></h3></td>
+								<td>
+									<h3 class="text-center col-md-4">
+										<a href="#/time/{{ jgResultCtrl.jogo.timeB.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeB.nome }}</a>
+									</h3>
+								</td>
 								<td><h3 class="text-center text-danger col-md-1" id="id_rB">{{ jgResultCtrl.jogo.resultadoB }}</h3></td>
 							</tr>
 						</table>		
@@ -45,7 +59,7 @@
 							</a>
 						</p> 
 						<p class="text-primary">  
-							<img src="${pageContext.request.contextPath}/static/quartashow/img/{{jgResultCtrl.jogo.status.imgName}}" /> {{jgResultCtrl.jogo.status.descricao}}
+							<img src="${pageContext.request.contextPath}/static/core/img/{{jgResultCtrl.jogo.status.imgName}}" /> {{jgResultCtrl.jogo.status.descricao}}
 						</p>
 						<p>Rodada: {{jgResultCtrl.jogo.rodada}}</p>		
 						<p>Local: {{jgResultCtrl.jogo.local.descricao}} / Harbito: {{jgResultCtrl.jogo.harbito.nome}}</p>  
@@ -69,7 +83,7 @@
 							</div>
 						</div>
 						<br/><br/>
-						<div class="row">						
+						<div ng-show="jgResultCtrl.jogo.status.id != 1" class="row">						
 				            <div class="panel panel-primary">
 								<div class="panel-heading">
 			                    	<h3 class="panel-title"><i class="fa fa-fw fa-table"></i> Escalação </h3>
@@ -77,9 +91,9 @@
 			                	
 			                	<div class="panel-body">
 									<p>
-										<img src="${pageContext.request.contextPath}/static/quartashow/img/gol.png" height="12"/> <small class="text-muted">Gol</small> &bull;
-										<img src="${pageContext.request.contextPath}/static/quartashow/img/cartao-amarelo.png" height="12"/> <small class="text-muted">C. Amarelo</small> &bull;
-										<img src="${pageContext.request.contextPath}/static/quartashow/img/cartao-vermelho.png" height="12"/> <small class="text-muted">C. Vermelho</small>
+										<img src="${pageContext.request.contextPath}/static/core/img/gol.png" height="12"/> <small class="text-muted">Gol</small> &bull;
+										<img src="${pageContext.request.contextPath}/static/core/img/cartao-amarelo.png" height="12"/> <small class="text-muted">C. Amarelo</small> &bull;
+										<img src="${pageContext.request.contextPath}/static/core/img/cartao-vermelho.png" height="12"/> <small class="text-muted">C. Vermelho</small>
 									</p>		                	
 		                	
 		                	
@@ -101,21 +115,21 @@
 													</td>
 													<td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 													<td class="jogador{{je.id}}"> 
-														 <img src="${pageContext.request.contextPath}/static/quartashow/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
+														 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
 														 <a href="${pageContext.request.contextPath}/jogador/{{je.jogador.id}}/edicao/{{jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
 													</td>
 													<td> 
-														<img ng-repeat="ce in jgResultCtrl.eventos | filter: je.id" src="${pageContext.request.contextPath}/static/quartashow/img/{{ce.evento.imgName}}" alt="{{ce.evento.descricao}}" />
-														<a ng-show="jgResultCtrl.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
-															<img src="${pageContext.request.contextPath}/static/quartashow/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
+														<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
+														<a ng-show="je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
+															<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 														</a>
 													</td>
 												</tr>
 											</tbody>								
 										</table>	        
-	<!-- 									<a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeA.id}}" class="btn btn-outline btn-warning btn-xs btn-block"> -->
-	<!-- 										adicionar jogador para {{jgResult.jogo.timeA.nome}} -->
-	<!-- 									</a> -->
+										<a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeA.id}}" class="btn btn-outline btn-warning btn-xs btn-block">
+											adicionar jogador para {{jgResult.jogo.timeA.nome}}
+										</a>
 			                    	</div>
 
 									<div class="table-responsive col-lg-6 col-md-6">
@@ -132,14 +146,14 @@
 												    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}"> <span class="text-danger">excluir</span></a></td>
 												    <td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 													<td class="jogador{{je.id}}"> 
-														 <img src="${pageContext.request.contextPath}/static/quartashow/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
+														 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
 														 <a href="#/jogador/{{je.jogador.id}}/edicao/{{jgResultCtrl.jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
 													</td>
 													<td> 
-														<img ng-repeat="ce in jgResultCtrl.eventos | filter: je.id" src="${pageContext.request.contextPath}/static/quartashow/img/{{ce.evento.imgName}}" alt="{{ce.evento.descricao}}" />
-														<div ng-show="je.eventos > 0 && jgResultCtrl.jogo.status.id == 2 && true}}">
+														<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
+														<div ng-show="je.eventos > 0 && jgResultCtrl.jogo.status.id == 2 && true">
 															<a href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
-																<img src="${pageContext.request.contextPath}/static/quartashow/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
+																<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 															</a>
 														</idv>															
 													</td>													
@@ -159,7 +173,7 @@
 			    	
 			
 					<div ng-show="jgResultCtrl.jogo.status.id == 2 && true"> 
-						<a href="#/jogo/finalizar/{{jgResultCtrl.jogo.id}}" class="btn btn-outline btn-success btn-lg btn-block">Finalizar Jogo</a>
+						<a href ng-click="jgResultCtrl.finalizar(jgResultCtrl.jogo)" class="btn btn-outline btn-success btn-lg btn-block">Finalizar Jogo</a>
 					</div>					    	
 			    	
              </section>

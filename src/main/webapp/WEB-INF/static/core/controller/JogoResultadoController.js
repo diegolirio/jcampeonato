@@ -1,8 +1,8 @@
 /**
  *  JogoResultadoController controller view/jogo/resultado
  */
-app.controller('JogoResultadoController', ['$routeParams', '$window', 'JogoService', 'EscalacaoService',
-                                           function($routeParams, $window, JogoService, EscalacaoService) {
+app.controller('JogoResultadoController', ['$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
+                                           function($routeParams, $window, JogoService, EscalacaoService, EventoService) {
                                            
 	var self = this;
 	
@@ -14,7 +14,6 @@ app.controller('JogoResultadoController', ['$routeParams', '$window', 'JogoServi
 		}).then(function(jogoResp) {
 			EscalacaoService.getByJogo(jogoResp.data).then(function(resp) {
 				self.escalacao = resp.data;
-				console.log(self.escalacao); 
 			});
 		});
 		
@@ -28,6 +27,15 @@ app.controller('JogoResultadoController', ['$routeParams', '$window', 'JogoServi
 			$window.location.reload();
 		}, function(error) {
 			alert(error.data);
+		});
+	};
+	
+	/**
+	 * finalizar Jogo
+	 */
+	self.finalizar = function(jogo) {
+		JogoService.finalizar(jogo).then(function(resp) {
+			
 		});
 	};
 	

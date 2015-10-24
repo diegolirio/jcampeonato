@@ -29,6 +29,13 @@ app.factory('JogoService', ['$http', function($http) {
 		return $http.post(serverURL('/save'), jogo);
 	};
 	
+	/**
+	 * finalizar Jogo
+	 */
+	var _finalizar = function(jogo) {
+		$http.post(serverURL('/'+jogo.id+'/finalizar/'));
+	};
+	
 	return {
 		
 		getListaPorEdicao : _getListaPorEdicao,

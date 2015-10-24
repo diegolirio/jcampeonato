@@ -3,15 +3,18 @@ package com.diegolirio.jcampeonato.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Evento;
 import com.diegolirio.jcampeonato.model.Perfil;
 import com.diegolirio.jcampeonato.model.Posicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
+import com.diegolirio.jcampeonato.service.EventoService;
 import com.diegolirio.jcampeonato.service.PerfilService;
 import com.diegolirio.jcampeonato.service.PosicaoService;
 import com.diegolirio.jcampeonato.service.StatusService;
@@ -41,6 +44,9 @@ public class HomeController {
 
 	@Autowired
 	private PosicaoService posicaoService;
+
+	@Autowired @Qualifier("eventoService")
+	private EventoService eventoService;
 
 	
 	@RequestMapping(value="/criar_base")
@@ -85,17 +91,17 @@ public class HomeController {
 		
 		Status pendente = this.statusService.get(Status.class, 1l);
 		if(pendente == null) {
-			pendente = new Status("Pendente");
+			pendente = new Status("Pendente", "interrogacao.png");
 			this.statusService.save(pendente);
 		}
 		Status andamento = this.statusService.get(Status.class, 2l);
 		if(andamento == null) {
-			andamento = new Status("Andamento");
+			andamento = new Status("Andamento", "bola_32.png");
 			this.statusService.save(andamento);
 		}
 		Status finalizado = this.statusService.get(Status.class, 3l);
 		if(finalizado == null) {
-			finalizado = new Status("Finalizado");
+			finalizado = new Status("Finalizado", "apito_24.png");
 			this.statusService.save(finalizado);
 		}		
 		// posicao
@@ -114,6 +120,28 @@ public class HomeController {
 			at.setSigla("AT");
 			at.setImgName("chuteira_32.png");
 			this.posicaoService.save(at);	
+		}
+		// eventos do jogo
+		Evento gol = this.eventoService.get(Evento.class, 1);
+		if(gol == null) {
+			gol = new Evento();
+			gol.setDescricao("Gol");
+			gol.setImgName("gol.png");
+			this.eventoService.save(gol);
+		}
+		Evento ca = this.eventoService.get(Evento.class, 2);
+		if(ca == null) {
+			ca = new Evento();
+			ca.setDescricao("Cartão Amarelo");
+			ca.setImgName("cartao-amarelo.png");
+			this.eventoService.save(ca);
+		}
+		Evento cv = this.eventoService.get(Evento.class, 3);
+		if(cv == null) {
+			cv = new Evento();
+			cv.setDescricao("Cartão Vermelho");
+			cv.setImgName("cartao-vermelho.png");
+			this.eventoService.save(cv);
 		}
 		return "redirect:/";
 	}

@@ -14,6 +14,14 @@ public class JogoService extends AbstractGenericService<Jogo> {
 		return this.getList(Jogo.class);
 	}
 
+	/**
+	 * finalizar jogo e calc
+	 * @param jogo
+	 */
+	public void finalizar(Jogo jogo) {
+		
+	}
+
 	
 	
 }

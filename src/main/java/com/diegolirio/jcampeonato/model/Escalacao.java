@@ -21,6 +21,12 @@ public class Escalacao extends Model {
 	@OneToMany(mappedBy="escalacao", fetch=FetchType.EAGER)
 	private List<JogadorEscalado> jogadoresEscalados; 
 
+	public Escalacao(){}
+	
+	public Escalacao(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}

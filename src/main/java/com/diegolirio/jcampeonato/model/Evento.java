@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
-public class Evento {
+public class Evento extends Model {
 
 	@Id @GeneratedValue
 	private long id;
@@ -19,6 +21,7 @@ public class Evento {
 	
 	private String imgName;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="eventos")
 	private List<JogadorEscalado> jogadoresEscalados;
 	
