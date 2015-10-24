@@ -118,7 +118,7 @@
 						        			<tfoot>
 						        				<tr>
 						        					<td colspan="3">
-						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/quartashow/img/${j.status.imgName}"/> ( {{ jogo.status.descricao }} )</span></small>
+						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/core/img/{{jogo.status.imgName}}"/> ( {{ jogo.status.descricao }} )</span></small>
 													</td>
 													<td colspan="2">
 														<small>{{ jogo.local.descricao }}</small>

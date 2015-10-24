@@ -33,7 +33,7 @@ app.factory('JogoService', ['$http', function($http) {
 	 * finalizar Jogo
 	 */
 	var _finalizar = function(jogo) {
-		$http.post(serverURL('/'+jogo.id+'/finalizar/'));
+		return $http.post(serverURL('/'+jogo.id+'/finalizar/'));
 	};
 	
 	return {
@@ -42,8 +42,10 @@ app.factory('JogoService', ['$http', function($http) {
 		
 		get : _get,
 		
-		save : _save
+		save : _save,
 		
+		finalizar : _finalizar
+ 		
 	};
 	
 }]);

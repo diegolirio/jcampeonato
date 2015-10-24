@@ -28,7 +28,6 @@ public class JogoController {
 	 * Pages
 	 */
 	
-	
 	/**
 	 * Retorna Form Jogo
 	 * @return String
@@ -60,7 +59,7 @@ public class JogoController {
 	@RequestMapping(value="/get/lista/por/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getListaPorEdicao(@PathVariable("edicaoId") long edicaoId) {
 		try {
-			List<Jogo> jogos = this.jogoService.getListaPorEdicao(new Edicao(edicaoId));
+			List<Jogo> jogos = this.jogoService.getListByEdicao(new Edicao(edicaoId));
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogos), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();

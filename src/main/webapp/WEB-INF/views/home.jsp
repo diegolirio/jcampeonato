@@ -20,10 +20,14 @@
 		                            <div class="row">
 		                                <div class="col-xs-3">
 											<!-- <i class="fa fa-comments fa-5x"></i> -->
-											<img alt="{{ e.id }}" src="${pageContext.request.contextPath}">
+											<img alt="{{ e.id }}" src="${pageContext.request.contextPath}/static/core/img/trofeu_100.png">
 		                                </div>
 		                                <div class="col-xs-9 text-right">
-		                                    <div class="huge"><a href="#/edicao/{{ e.id }}/classificacao">{{ e.campeonato.descricao }} <br/><span class="text-info">{{ e.descricao }}</span></a></div>
+		                                    <div class="huge">
+		                                    	<a href="#/edicao/{{ e.id }}/classificacao">
+		                                    		{{ e.campeonato.descricao }} <br/><span class="text-info">{{ e.descricao }}</span>
+		                                    	</a>
+		                                    </div>
 		                                    <div>{{ e.status.descricao }}</div>
 		                                </div>
 		                            </div>
