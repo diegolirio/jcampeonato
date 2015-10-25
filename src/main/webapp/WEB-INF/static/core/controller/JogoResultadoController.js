@@ -48,7 +48,9 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 	 */
 	self.finalizar = function(jogo) {
 		JogoService.finalizar(jogo).then(function(resp) {
-			
+			$window.location.reload();
+		}, function(error) {
+			alert(error.data);
 		});
 	};
 	

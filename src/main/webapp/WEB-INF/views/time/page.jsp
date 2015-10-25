@@ -18,7 +18,7 @@
 			
 				<h1 class="page-header">
 					{{ timePageCtrl.time.nome }} 
-		    		<a ng-show="true" href="#/time/{{ timePageCtrl.time.id }}">
+		    		<a ng-show="usuarioLoginCtrl.isLoggedIn && timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/time/{{ timePageCtrl.time.id }}">
 		   				<span class="glyphicon glyphicon-pencil text-muted"></span>
 		   			</a>
 				</h1>			
@@ -79,8 +79,8 @@
 											</td>
 											<td></td> 
 										</tr>
-										<h3 ng-show="timePageCtrl.jogadores.length == 0 && true">
-											Não há jogadores para este time <a href="#/time/{{timePageCtrl.time.id}}">Cadastre agora</a>
+										<h3 ng-show="timePageCtrl.jogadores.length == 0" >
+											Não há jogadores para este time <a ng-show="usuarioLoginCtrl.isLoggedIn && timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/time/{{timePageCtrl.time.id}}">Cadastre agora</a>
 										</h3>
 									</tbody>
 								</table>

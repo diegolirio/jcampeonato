@@ -34,7 +34,7 @@ public class Jogador extends Model {
 	@ManyToOne
 	private Campeonato campeonato;
 	
-	private String uriFoto = "/jchampionship/static/quartashow/img/jogadores/jogador_no_photo.png";
+	private String uriFoto = "/jcampeonato/static/core/img/jogador_no_photo.png";
 
 	public Jogador() {}
 	

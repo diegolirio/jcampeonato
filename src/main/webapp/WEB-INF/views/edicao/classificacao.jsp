@@ -90,7 +90,6 @@
 						        						<small> 
 						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
 						        						</small>
-						        							<!-- ng show se usuario ta logado e usuario eh admin e jogo != finalizado -->
 												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
 												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
 												   			</a>    
@@ -133,14 +132,9 @@
 					                    	
 					<!-- Fim JOGOS -->
 					
+						<br/><br/> 
 					
-					
-					
-					<br/><br/> 
-					
-<%-- 					<jsp:include page="jogo-list.jsp"></jsp:include> --%>
-<%-- 				    <c:if test="${not empty usuario && not empty admin && admin}"> --%>
-						 <div class="row">
+						 <div class="row" ng-show="usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
 							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<br/>
 								<a href="${pageContext.request.contextPath}/edicao/system/${edicao.id}/jogos" class="btn btn-block btn-outline btn-success" >
@@ -155,7 +149,6 @@
 							</div>
 							<br/><br/>
 						</div>
-<!-- 				    </c:if>  	 -->
             
              </section>
 	
