@@ -28,6 +28,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		// time
 		.when('/time/:timeId/edicao/:edicaoId', { templateUrl: SERVER_APP + '/time/page'})
 		.when('/time/:id', 						{ templateUrl: SERVER_APP + '/time/form'})
+		// evento
+		.when('/evento/add/:eventoId/jogo/:jogoId', { templateUrl: SERVER_APP + '/evento/add/jogo'})
 		;
 	
 	

@@ -7,6 +7,8 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
                                         	UsuarioPerfilCampeonatoService) {
                                            
 	var self = this;
+
+	self.GOL = 1;
 	
 	var init = function() {
 		// busca jogo por id
@@ -52,6 +54,11 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 		}, function(error) {
 			alert(error.data);
 		});
+	};
+	
+	self.showWindowAddEvento = function(jogo, eventoId) {
+		var url = SERVER_APP + "/simple/#/evento/add/"+eventoId+"/jogo/"+jogo.id;
+		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
 	};
 	
 	init();

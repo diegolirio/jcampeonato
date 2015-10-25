@@ -164,6 +164,16 @@ public class HomeController {
 		logger.info("Page index....");
 		return "index";
 	}
+
+	/**
+	 * Base simple ngview
+	 */
+	@RequestMapping(value = "/simple", method = RequestMethod.GET)
+	public String indexSimple() {
+		logger.info("Page index....");
+		return "simple/index_simple";
+	}
+	
 	
 	/**
 	 * Pagina Home

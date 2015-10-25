@@ -31,20 +31,13 @@
         <![endif]-->
     </head>
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
-    
-		<jsp:include page="_menu.jsp"></jsp:include>
-		
+    	
         <div class="wrapper row-offcanvas row-offcanvas-left">
-        
-            <!-- Left side column. contains the logo and sidebar -->
-			<jsp:include page="_menu_left.jsp"></jsp:include>
-			 
+ 
 			<!-- Right side column. Contains the navbar and content of the page -->
 			<div ng-view></div>
 			 
         </div><!-- ./wrapper -->
-
-        <!-- add new calendar event modal -->
 
 	
 		<!-- ########################## AngularJS ########################################################################### -->
@@ -70,18 +63,6 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioPerfilCampeonatoService.js"></script>
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogoResultadoController.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 
-		<script src="${pageContext.request.contextPath}/static/core/controller/TimeFormController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 
