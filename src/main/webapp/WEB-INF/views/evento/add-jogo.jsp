@@ -1,6 +1,9 @@
 
 <div ng-controller="EscalacaoAddEventoController as escalacaoAddEventoCtrl">
 
+
+	{{ escalacaoAddEventoCtrl.titulo }}
+
 	<form ng-submit="escalacaoAddEventoCtrl.addEvento(evento)">
 
 		<h1>Adicionar {{ escalacaoAddEventoCtrl.evento.descricao }}</h1>

@@ -15,15 +15,18 @@ app.factory('EventoService',['$http', function($http) {
 	};
 	
 	/**
-	 * pega evento por id
+	 * pega evento por id 
 	 */
 	var _get = function(id) {
+		console.log(id); 
 		return $http.get(_serverURL('/get/'+id));
 	};
 	
 	return {
 		
-		getListByEscalacao : _getListByEscalacao
+		getListByEscalacao : _getListByEscalacao,
+		
+		get : _get
 		
 	};
 	

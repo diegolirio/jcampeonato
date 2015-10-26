@@ -129,17 +129,17 @@ public class HomeController {
 			gol.setImgName("gol.png");
 			this.eventoService.save(gol);
 		}
-		Evento ca = this.eventoService.getByDescricao("Cartão Amarelo");
+		Evento ca = this.eventoService.getByDescricao("Cartï¿½o Amarelo");
 		if(ca == null) {
 			ca = new Evento();
-			ca.setDescricao("Cartão Amarelo");
+			ca.setDescricao("Cartï¿½o Amarelo");
 			ca.setImgName("cartao-amarelo.png");
 			this.eventoService.save(ca);
 		}
-		Evento cv = this.eventoService.getByDescricao("Cartão Vermelho");
+		Evento cv = this.eventoService.getByDescricao("Cartï¿½o Vermelho");
 		if(cv == null) {
 			cv = new Evento();
-			cv.setDescricao("Cartão Vermelho");
+			cv.setDescricao("Cartï¿½o Vermelho");
 			cv.setImgName("cartao-vermelho.png");
 			this.eventoService.save(cv);
 		}
@@ -171,7 +171,7 @@ public class HomeController {
 	@RequestMapping(value = "/simple", method = RequestMethod.GET)
 	public String indexSimple() {
 		logger.info("Page index....");
-		return "simple/index_simple";
+		return "index_simple";
 	}
 	
 	
