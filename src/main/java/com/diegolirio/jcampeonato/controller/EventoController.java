@@ -26,11 +26,7 @@ public class EventoController {
 	/*
 	 * Pages
 	 */
-	
-	@RequestMapping(value="/add/jogo")
-	public String eventoAddJogo() {
-		return "evento/add-jogo";
-	}
+
 
 	/*
 	 * RestFull

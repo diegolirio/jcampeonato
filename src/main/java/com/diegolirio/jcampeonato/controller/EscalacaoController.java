@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Escalacao;
+import com.diegolirio.jcampeonato.model.Evento;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.Jogo;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.service.EscalacaoService;
+import com.diegolirio.jcampeonato.service.EventoService;
 import com.diegolirio.jcampeonato.service.JogadorEscaladoService;
 import com.diegolirio.jcampeonato.service.JogadorService;
 import com.diegolirio.jcampeonato.service.JogoService;
@@ -39,6 +41,39 @@ public class EscalacaoController {
 	@Autowired @Qualifier("jogadorEscaladoService")
 	private JogadorEscaladoService jogadorEscaladoService;
 
+	@Autowired @Qualifier("eventoService")
+	private EventoService eventoService;
+
+	/*
+	 * Pages
+	 */
+	
+	
+	@RequestMapping(value="/add/evento")
+	public String eventoAddJogo() {
+		return "escalacao/add-evento";
+	}
+	
+	/*
+	 * RestFull
+	 */
+	
+	/**
+	 * pega escalacao por id
+	 * @param id
+	 * @return escalacao JSON
+	 */
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> get(@PathVariable("id") long id) {
+		try {
+			Escalacao escalacao = this.escalacaoService.get(Escalacao.class, id);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(escalacao), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	/**
 	 * Cria escalacao por jogo
 	 * @param jogoId
@@ -121,6 +156,33 @@ public class EscalacaoController {
 		}
 	}
 	
+	/**
+	 * Add 
+	 * @param eventoId
+	 * @param jogadorEscaladoId
+	 * @return
+	 */
+	@RequestMapping(value="/add/evento/{eventoId}/to/jogadorescalado/{jogadorEscaladoId}", method=RequestMethod.POST)
+	public ResponseEntity<String> addEventoJogadorEscalado(@PathVariable("eventoId") long eventoId, @PathVariable("jogadorEscaladoId") long jogadorEscaladoId) {
+		JogadorEscalado jogadorEscalado = this.jogadorEscaladoService.get(JogadorEscalado.class, jogadorEscaladoId);
+		Evento evento = this.eventoService.get(Evento.class, eventoId);
+		
+		jogadorEscalado.getEventos().add(evento);
+		this.jogadorEscaladoService.save(jogadorEscalado);
+		
+		Jogo jogo = this.jogoService.get(Jogo.class, jogadorEscalado.getEscalacao().getJogo().getId());
+		if(evento.getId() == 1) { // GOL
+			if(jogadorEscalado.getTime().getId() == jogo.getTimeA().getId()) {
+				jogo.setResultadoA(jogo.getResultadoA()+1);
+			} else if(jogadorEscalado.getTime().getId() == jogo.getTimeB().getId()) {
+				jogo.setResultadoB(jogo.getResultadoB()+1);
+			}
+		}
+		this.jogoService.save(jogo);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(URI.create("/jogo/system/"+jogadorEscalado.getEscalacao().getJogo().getId()));
+		return new ResponseEntity<String>(headers , HttpStatus.CREATED);
+	}	
 	
 	
 }

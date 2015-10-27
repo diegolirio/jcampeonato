@@ -56,8 +56,8 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 		});
 	};
 	
-	self.showWindowAddEvento = function(jogo, eventoId) {
-		var url = SERVER_APP + "/simple/#/evento/add/"+eventoId+"/jogo/"+jogo.id;
+	self.showWindowAddEvento = function(escalacao, eventoId) {
+		var url = SERVER_APP + "/simple/#/escalacao/"+escalacao.id+"/add/evento/"+eventoId;
 		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
 	};
 	

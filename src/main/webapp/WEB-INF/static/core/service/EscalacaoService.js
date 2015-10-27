@@ -22,11 +22,30 @@ app.factory('EscalacaoService',['$http', function($http) {
 		return $http.get(_serverURL('/get/by/jogo/'+jogo.id));
 	};
 	
+	/**
+	 * Pega escalacao por id
+	 */
+	var _get = function(id) {
+		return $http.get(_serverURL('/get/'+id));
+	};
+	
+	/**
+	 * TODO: analisar se move para JogadorEscaladoService
+	 * Add evento para jogador escalado
+	 */
+	var _addEventoToJogadorEscalado = function(evento, jogadorEscalado) {
+		return $http.post(_serverURL('/add/evento/'+evento.id+'/to/jogadorescalado/'+jogadorEscalado.id));
+	}
+	
 	return {
 	
 		createByJogo : _createByJogo,
 		
-		getByJogo : _getByJogo
+		getByJogo : _getByJogo,
+		
+		get : _get,
+		
+		addEventoToJogadorEscalado : _addEventoToJogadorEscalado
 		
 	};
 	
