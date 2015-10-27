@@ -50,12 +50,5 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 
-        <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <!-- jQuery UI 1.10.3 -->
-        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
-        <!-- Bootstrap -->
-        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/bootstrap.min.js" type="text/javascript"></script>
-
     </body>
 </html>

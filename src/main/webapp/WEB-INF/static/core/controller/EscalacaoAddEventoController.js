@@ -1,8 +1,8 @@
 /**
  * 
  */
-app.controller('EscalacaoAddEventoController', ['$routeParams', 'EventoService', 'JogoService',
-                                                function($routeParams, EventoService, JogoService) {
+app.controller('EscalacaoAddEventoController', ['$routeParams', 'EventoService', 'JogoService', 'JogadorService',
+                                                function($routeParams, EventoService, JogoService, JogadorService) {
 	
 	var self = this;
 	
@@ -18,13 +18,25 @@ app.controller('EscalacaoAddEventoController', ['$routeParams', 'EventoService',
 		// busca jogo por id
 		JogoService.get($routeParams.jogoId).then(function(resp) {
 			self.jogo = resp.data;
+			return resp;
 		}).then(function(jogoResp) {
-//			JogadorService.getListByTime(jogoResp.data.timeA).then(function(resp) {
-//				self.jogadores.push()
-//			});
+			JogadorService.getListByTime(jogoResp.data.timeA).then(function(resp) {
+				self.jogadoresA = resp.data;
+			});
+			JogadorService.getListByTime(jogoResp.data.timeB).then(function(resp) {
+				self.jogadoresB = resp.data;
+			});			
 		}, function(error) {
 			alert(error.data);
 		});
+	};
+	
+	/**
+	 * addEvento
+	 */
+	self.addEvento = function(jogador) {
+		console.log(jogador);
+		console.log(self.evento);
 	};
 	
 	init(); 

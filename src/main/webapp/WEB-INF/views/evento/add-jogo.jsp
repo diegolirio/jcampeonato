@@ -2,15 +2,18 @@
 <div ng-controller="EscalacaoAddEventoController as escalacaoAddEventoCtrl">
 
 
-	{{ escalacaoAddEventoCtrl.titulo }}
+	<form ng-submit="escalacaoAddEventoCtrl.addEvento(escalacaoAddEventoCtrl.jogador)">
 
-	<form ng-submit="escalacaoAddEventoCtrl.addEvento(evento)">
-
-		<h1>Adicionar {{ escalacaoAddEventoCtrl.evento.descricao }}</h1>
+		<h1>Adicionar {{ escalacaoAddEventoCtrl.evento.descricao }} para {{ escalacaoAddEventoCtrl.jogador.nome }}</h1>
 		
-		<div class="form-group col-lg-4">
-			<label>Jogador</label>
-			<select class="form-control" ng-model="escalacaoAddEventoCtrl.jogadores" ng-options="j.nome for j in escalacaoAddEventoCtrl.jogadores"></select>
+		<div class="form-group col-lg-4 col-md-6">
+			<label>Jogadores {{ escalacaoAddEventoCtrl.jogo.timeA.nome }}</label>
+			<select class="form-control" ng-model="escalacaoAddEventoCtrl.jogador" ng-options="j.nome for j in escalacaoAddEventoCtrl.jogadoresA"></select>
+		</div>						
+	 
+		<div class="form-group col-lg-4 col-md-6">
+			<label>Jogadores {{ escalacaoAddEventoCtrl.jogo.timeB.nome }}</label>
+			<select class="form-control" ng-model="escalacaoAddEventoCtrl.jogador" ng-options="j.nome for j in escalacaoAddEventoCtrl.jogadoresB"></select>
 		</div>						
 	 
 		<br/>
