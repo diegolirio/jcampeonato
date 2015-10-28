@@ -106,7 +106,7 @@
 											<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeA.id == je.time.id" class="{{jgResultCtrl.jogo.resultadoA > jgResultCtrl.jogo.resultadoB ? 'success' : 'danger'}}" >
 												<td>
 													<a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}" > 
-														<span class="text-danger">excluir</span>
+														<span class="text-danger" title="excluir jogador da escalação">excluir</span>
 													</a>
 												</td>
 												<td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
@@ -139,7 +139,7 @@
 										</thead>								
 										<tbody id="id_tbody">     
 											<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeB.id == je.time.id" class="{{jgResult.jogo.resultadoA < jogo.resultadoB ? 'success' : 'danger'}}" >
-											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}"> <span class="text-danger">excluir</span></a></td>
+											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}"> <span class="text-danger" title="excluir jogador da escalação">excluir</span></a></td>
 											    <td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
 													 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>

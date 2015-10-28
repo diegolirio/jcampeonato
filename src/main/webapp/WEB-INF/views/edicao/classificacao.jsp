@@ -90,7 +90,7 @@
 						        						<small> 
 						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
 						        						</small>
-												    		<a href="#/jogo/system/form/{{ jogo.id }}" ng-show="usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
+												    		<a href="#/jogo/{{jogo.id}}/novo/edicao/{{edicaoCLassCtrl.edicao.id}}" ng-show="jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
 												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
 												   			</a>    
 						        						
