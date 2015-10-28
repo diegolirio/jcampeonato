@@ -93,7 +93,7 @@
                      </div>
                   </div><!-- /.box -->		
 				                  
-				  <div ng-show="jgFormCtrl.jogo == null" class="col-lg-12">
+				  <div ng-hide="jgFormCtrl.modoEdicao == true" class="col-lg-12">
 						<table class="table table-striped table-hover well">
 							<thead class="text-center">
 								<tr class="text-danger">
