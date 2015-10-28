@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class ClassificacaoHist {
+public class ClassificacaoHist extends Model  {
 
 	@Id @GeneratedValue
 	private long id;

@@ -43,6 +43,13 @@ app.factory('JogoService', ['$http', function($http) {
 		return $http.post(serverURL('/'+jogo.id+'/finalizar/'));
 	};
 	
+	/**
+	 * return status
+	 */
+	var _returnStatus = function(jogo) {
+		return $http.post(serverURL('/'+jogo.id+'/return/status'));
+	}
+	
 	return {
 		
 		getListaPorEdicao : _getListaPorEdicao,
@@ -53,7 +60,9 @@ app.factory('JogoService', ['$http', function($http) {
 		
 		deleteJogo : _deleteJogo,
 		
-		finalizar : _finalizar
+		finalizar : _finalizar,
+		
+		returnStatus : _returnStatus
  		
 	};
 	

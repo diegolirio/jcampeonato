@@ -54,7 +54,7 @@
 
 					<div class="text-muted">
 						<span ng-show="jgResultCtrl.jogo.status.id != 1 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1">
-							<a href="#/jogo/{{jgResultCtrl.jogo.id}}/retornStatus" class="btn btn-default btn-danger btn-outline">
+							<a href ng-click="jgResultCtrl.returnStatus(jgResultCtrl.jogo)" class="btn btn-default btn-danger btn-outline">
 								<span class="glyphicon glyphicon-arrow-left"> Voltar p/ {{jgResultCtrl.jogo.status.id == 2 ? 'Pendente' : 'Em andamento'}}</span>
 							</a>
 						</span> 
@@ -65,8 +65,8 @@
 
 					<div ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1">
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.GOL)" class="btn btn-outline btn-info">Adicionar Gol</a>
-						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/2" class="btn btn-outline btn-warning">Cartão Amarelo</a>
-						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-danger" onclick="showWindowPopup(this.href, 600, 800); return false;">Cartão Vermelho</a>
+						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.CARTAO_AMARELO)" class="btn btn-outline btn-warning">Cartão Amarelo</a>
+						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.CARTAO_VERMELHO)" class="btn btn-outline btn-danger" onclick="showWindowPopup(this.href, 600, 800); return false;">Cartão Vermelho</a>
 						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-primary" onclick="showWindowPopup(this.href, 600, 800); return false;">Falta</a>
 						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-info" onclick="showWindowPopup(this.href, 600, 800); return false;"><b class="text-danger">Gol Contra</b></a>
 					</div>

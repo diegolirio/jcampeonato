@@ -13,8 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Classificacao;
+import com.diegolirio.jcampeonato.model.ClassificacaoHist;
 import com.diegolirio.jcampeonato.model.Edicao;
+import com.diegolirio.jcampeonato.model.Escalacao;
+import com.diegolirio.jcampeonato.model.Evento;
+import com.diegolirio.jcampeonato.model.JogadorEscalado;
+import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
+import com.diegolirio.jcampeonato.model.Status;
+import com.diegolirio.jcampeonato.service.ClassificacaoHistService;
+import com.diegolirio.jcampeonato.service.ClassificacaoService;
+import com.diegolirio.jcampeonato.service.EscalacaoService;
+import com.diegolirio.jcampeonato.service.JogadorEscaladoService;
+import com.diegolirio.jcampeonato.service.JogadorInfoEdicaoService;
 import com.diegolirio.jcampeonato.service.JogoService;
 
 @Controller
@@ -23,6 +35,21 @@ public class JogoController {
 
 	@Autowired @Qualifier("jogoService")
 	private JogoService jogoService;
+	
+	@Autowired
+	private EscalacaoService escalacaoService;
+
+	@Autowired
+	private JogadorInfoEdicaoService jogadorInfoEdicaoService;
+
+	@Autowired
+	private ClassificacaoHistService classificacaoHistService;
+
+	@Autowired
+	private ClassificacaoService classificacaoService;
+
+	@Autowired
+	private JogadorEscaladoService jogadorEscaladoService;
 
 	/*
 	 * Pages
@@ -126,4 +153,136 @@ public class JogoController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	/**
+	 * Retorna Jogo de Finalizado para em andamento e retorna os calculos (classificacao, 
+	 *   jogadorInfoEdicao) e delete o historico da rodada caso o ultimo historico seje o mesmo
+	 *   sendo calculado
+	 * @param id
+	 * @return JSON
+	 */
+	@RequestMapping(value="/{id}/return/status", method=RequestMethod.POST, produces="application/json")
+	public ResponseEntity<String> returnStatusJogo(@PathVariable("id") long id) {
+		try {
+			Jogo jogo = this.jogoService.get(Jogo.class, id);
+			if(jogo.getStatus().getId() == 1)  // finalizado
+				throw new RuntimeException("Jogo encontra-se com Status " + jogo.getStatus().getDescricao());
+			
+			if (jogo.getStatus().getId() == 3) {
+				this.retornaCalculoJogadorInfoEdicao(jogo);
+				this.retornaCalculaClassificacao(jogo);
+				this.jogoService.ordenaClassificacao(jogo); 
+				jogo.setStatus(new Status(2)); // seta jogo p/ status em andamento...
+				this.jogoService.save(jogo);
+			}
+			else if(jogo.getStatus().getId() == 2) {
+				Escalacao escalacao = this.escalacaoService.getByJogo(jogo);
+				List<JogadorEscalado> jogadoresEscalados = escalacao.getJogadoresEscalados();
+				// verifica se tem evento cadastrado
+				for (JogadorEscalado jogadorEscalado : jogadoresEscalados) {
+					if(jogadorEscalado.getEventos().size() > 0) {
+						throw new RuntimeException("Para voltar jogo para Status Pendente, deve excluir todos os eventos(gols, cartoes) do jogo.");
+					}
+				}
+				// exclui jogador escalado
+				for (JogadorEscalado jogadorEscalado : jogadoresEscalados) {
+					this.jogadorEscaladoService.delete(JogadorEscalado.class, jogadorEscalado.getId());
+				}
+				// exclui escalacao
+				this.escalacaoService.delete(Escalacao.class, escalacao.getId());
+				// set jogo status pendente
+				jogo.setStatus(new Status(1l)); 
+				jogo.setResultadoA(0);
+				jogo.setResultadoB(0); 
+				this.jogoService.save(jogo);
+			}
+			return new ResponseEntity<String>(HttpStatus.OK);
+				
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	private void retornaCalculoJogadorInfoEdicao(Jogo jogo) {
+		Escalacao escalacao = this.escalacaoService.getByJogo(jogo);
+		List<JogadorInfoEdicao> jogadoresInfoEdicao = this.jogadorInfoEdicaoService.getByEdicao(jogo.getGrupo().getEdicao());
+		for (JogadorEscalado je : escalacao.getJogadoresEscalados()) {
+			for(JogadorInfoEdicao jie : jogadoresInfoEdicao) {
+				if(je.getJogador().getId() == jie.getJogador().getId()) {
+					jie.setJogos(jie.getJogos()-1);
+					for (Evento evento : je.getEventos()) {
+
+						if(evento.getId() == 1) // 1 = Gol
+							jie.setGols(jie.getGols()-1);
+						else
+						if(evento.getId() == 2) // 2 = Cartao Amarelo
+							jie.setCartaoAmarelo(jie.getCartaoAmarelo()-1);
+						else 
+						if (evento.getId() == 3) // 3 = Cartao Vermelho
+							jie.setCartaoVermelho(jie.getCartaoVermelho()-1);
+					}
+					this.jogadorInfoEdicaoService.save(jie);
+				}
+			}
+		}
+	}
+
+	private List<Classificacao> retornaCalculaClassificacao(Jogo jogo) {
+		// pega a ultima rodada guardada no historico da classificacao
+		int rodadaLastHist = this.classificacaoHistService.getNumberHistLastRodada(jogo.getGrupo());
+		// se o ultimo hist da clasificacao for a mesma rodada do jogo cancelado, delete o historico... 
+		if(rodadaLastHist == jogo.getRodada()) {
+			List<ClassificacaoHist> histLastRodada = classificacaoHistService.getHistListByRodada(jogo.getRodada(), jogo.getGrupo());
+			for (ClassificacaoHist hist : histLastRodada) {
+				this.classificacaoHistService.delete(ClassificacaoHist.class, hist.getId());
+			}			
+		}
+		
+		char vencedor = 'E';
+		if(jogo.getResultadoA() > jogo.getResultadoB()) 
+			vencedor = 'A';
+		else if (jogo.getResultadoA() < jogo.getResultadoB())
+			vencedor = 'B';
+		
+		List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(jogo.getGrupo());
+		
+		// Retorna o calculo gerado da clasificacao
+		for (Classificacao classTime : classificacoes) {
+			// calcula classificacao time A
+			if(classTime.getTime().getId() == jogo.getTimeA().getId()) {
+				classTime.setJogos(classTime.getJogos()-1);
+				classTime.setGolsPro(classTime.getGolsPro()-jogo.getResultadoA());
+				classTime.setGolsContra(classTime.getGolsContra()-jogo.getResultadoB());
+				if(vencedor == 'A') {
+					classTime.setVitorias(classTime.getVitorias()-1);
+					classTime.setPontos(classTime.getPontos()-3);
+				} 
+				else if (vencedor == 'E') {
+					classTime.setEmpates(classTime.getEmpates()-1);
+					classTime.setPontos(classTime.getPontos()-1);
+				} else if(vencedor == 'B') {
+					classTime.setDerrotas(classTime.getDerrotas()-1);
+				}
+				this.classificacaoService.save(classTime);
+			} // Calcula classificacao Time B 
+			else if(classTime.getTime().getId() == jogo.getTimeB().getId()) {
+				classTime.setJogos(classTime.getJogos()-1);
+				classTime.setGolsPro(classTime.getGolsPro()-jogo.getResultadoB());
+				classTime.setGolsContra(classTime.getGolsContra()-jogo.getResultadoA()); 
+				if(vencedor == 'A') {
+					classTime.setDerrotas(classTime.getDerrotas()-1);
+				} else if(vencedor == 'E') {
+					classTime.setEmpates(classTime.getEmpates()-1);
+					classTime.setPontos(classTime.getPontos()-1);					
+				} else if(vencedor == 'B') {
+					classTime.setVitorias(classTime.getVitorias()-1);
+					classTime.setPontos(classTime.getPontos()-3);
+				}
+				this.classificacaoService.save(classTime);
+			}
+		}
+		return classificacoes;
+	}
+
 }

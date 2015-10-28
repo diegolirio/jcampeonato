@@ -1,5 +1,7 @@
 package com.diegolirio.jcampeonato.dao;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
@@ -40,6 +42,14 @@ public class ClassificacaoHistDao extends AbstractGenericDao<ClassificacaoHist> 
 			return null;
 		}
 	
+	}
+
+	public List<ClassificacaoHist> getHistListByRodada(int rodada, Grupo grupo) {
+		String jpql = "Select h from ClassificacaoHist h where h.rodada = :rodada and h.grupo.id = :grupoId";
+		TypedQuery<ClassificacaoHist> query = super.manager.createQuery(jpql, ClassificacaoHist.class);
+		query.setParameter("rodada", rodada);
+		query.setParameter("grupoId", grupo.getId());
+		return query.getResultList();
 	}	
 
 	

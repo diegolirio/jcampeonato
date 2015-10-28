@@ -9,6 +9,8 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 	var self = this;
 
 	self.GOL = 1;
+	self.CARTAO_AMARELO = 2;
+	self.CARTAO_VERMELHO = 3;
 	
 	var init = function() {
 		// busca jogo por id
@@ -59,6 +61,14 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 	self.showWindowAddEvento = function(escalacao, eventoId) {
 		var url = SERVER_APP + "/simple/#/escalacao/"+escalacao.id+"/add/evento/"+eventoId;
 		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
+	};
+	
+	self.returnStatus = function(jogo) {
+		JogoService.returnStatus(jogo).then(function(resp) {
+			$window.location.reload();
+		}, function(error) {
+			alert(error.data);
+		});
 	};
 	
 	init();
