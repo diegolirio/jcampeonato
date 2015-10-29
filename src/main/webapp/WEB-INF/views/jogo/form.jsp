@@ -85,7 +85,7 @@
 
 							<div class="pull-right">
             	                <input type="submit" class="btn btn-success btn-sm" value="Salvar" >
-                               	<a ng-show="jgFormCtrl.jogos.length > 0 && jgFormCtrl.edicao.id == 1" href="#/edicao/{{jgFormCtrl.edicao.id}}/confirma/conclusao" class="btn btn-info btn-sm">Proximo</a>
+                               	<a ng-show="jgFormCtrl.modoEdicao != true && jgFormCtrl.jogos.length > 0 && jgFormCtrl.edicao.id == 1" href="#/edicao/{{jgFormCtrl.edicao.id}}/confirma/conclusao" class="btn btn-info btn-sm">Proximo</a>
                             </div>							
 							
 							

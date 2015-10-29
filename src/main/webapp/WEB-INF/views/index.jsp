@@ -83,6 +83,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimeFormController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- jQuery 2.0.2 -->

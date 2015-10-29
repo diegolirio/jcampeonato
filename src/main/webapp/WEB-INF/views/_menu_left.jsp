@@ -29,11 +29,11 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="${pageContext.request.contextPath}">
-                                <i class="fa fa-trophy"></i> <span>Campeonatos {{ edicao.descricao }}</span> <small class="badge pull-right bg-green">novo</small>
+                                <i class="fa fa-trophy"></i> <span>Campeonatos </span> <small class="badge pull-right bg-green">novo</small>
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="pages/widgets.html">
+                            <a href="#/jogadorinfo/artilharia/edicao/{{edicao.id}}">
                                 <i class="fa fa-table"></i> <span>Classificação</span>
                             </a>
                         </li>

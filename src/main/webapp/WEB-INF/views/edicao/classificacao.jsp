@@ -137,7 +137,7 @@
 						 <div class="row" ng-show="usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
 							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<br/>
-								<a href="${pageContext.request.contextPath}/edicao/system/${edicao.id}/jogos" class="btn btn-block btn-outline btn-success" >
+								<a href="#/jogo/novo/edicao/{{ edicaoCLassCtrl.edicao.id }}/true" class="btn btn-block btn-outline btn-success" >
 									Cadastrar Novo jogo
 								</a>
 							</div>

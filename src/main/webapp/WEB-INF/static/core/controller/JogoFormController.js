@@ -91,6 +91,7 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 		}
 		else {
 			
+			self.modoEdicao = $routeParams.modoEdicao == "true";
 			// para cadastro Novo
 			
 			// Pega a edicao por id (pathParams)

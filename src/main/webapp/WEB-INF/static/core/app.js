@@ -24,6 +24,7 @@ app.config(['$routeProvider', function($routeProvider) {
 		.when('/classificacao/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/classificacao/novo'})
 		// Jogo
 		.when('/jogo/novo/edicao/:edicaoId',         { templateUrl: SERVER_APP + '/jogo/novo'})
+		.when('/jogo/novo/edicao/:edicaoId/:modoEdicao',         { templateUrl: SERVER_APP + '/jogo/novo'})
 		.when('/jogo/:id/novo/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogo/novo' })
 		.when('/jogo/:id/resultado',  		 		 { templateUrl: SERVER_APP + '/jogo/resultado'})
 		// time
@@ -31,6 +32,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		.when('/time/:id', 						{ templateUrl: SERVER_APP + '/time/form'})
 		// Escalacao
 		.when('/escalacao/:escalacaoId/add/evento/:eventoId', { templateUrl: SERVER_APP + '/escalacao/add/evento'})
+		// JogadorInfo
+		.when('/jogadorinfo/artilharia/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogadorinfo/artilharia' })
 		;
 	
 	
