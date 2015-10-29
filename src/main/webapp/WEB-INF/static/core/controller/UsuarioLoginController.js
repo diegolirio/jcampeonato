@@ -35,7 +35,7 @@ app.controller('UsuarioLoginController', ['$scope', '$window', '$routeParams', '
 			else
 				$location.path('/');
 		}, function(error) {
-			alert(JSON.stringify(error));
+			alert(error.data);
 		}); 
 			
 	};

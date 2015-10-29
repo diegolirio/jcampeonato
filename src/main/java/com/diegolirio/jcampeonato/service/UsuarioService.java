@@ -16,5 +16,9 @@ public class UsuarioService extends AbstractGenericService<Usuario> {
 		return this.usuarioDao.existeUsuarioEmail(email);
 	}
 
+	public Usuario getByEmail(String email) {
+		return this.usuarioDao.getByEmail(email);
+	}
+
 	
 }

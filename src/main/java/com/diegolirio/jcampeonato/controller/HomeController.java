@@ -56,6 +56,7 @@ public class HomeController {
 		Usuario usuario = new Usuario();
 		usuario.setEmail("diegolirio.dl@gmail.com");
 		usuario.setNome("Diego Lirio");
+		usuario.setSenha("198586");
 		if(usuarioService.existeUsuarioEmail(usuario.getEmail()) == false)
 			usuarioService.save(usuario);
 		

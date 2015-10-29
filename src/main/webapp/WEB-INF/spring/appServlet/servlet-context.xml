@@ -34,16 +34,47 @@
 	<context:component-scan base-package="com.diegolirio.jcampeonato.service" />
 	<context:component-scan base-package="com.diegolirio.jcampeonato.dao" />
 	 
-	<beans:bean id="dataSourceMysqlJPA" class="org.apache.commons.dbcp.BasicDataSource">
-		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mysql://localhost:3306/jcampeonato" />
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="root" />
-	</beans:bean>
+<!-- 	<beans:bean id="dataSourceMysqlJPA" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<beans:property name="url" value="jdbc:mysql://localhost:3306/jcampeonato" /> -->
+<!-- 		<beans:property name="username" value="root" /> -->
+<!-- 		<beans:property name="password" value="root" /> -->
+<!-- 	</beans:bean> -->
+
+	<beans:bean class="java.lang.String" id="dbHost">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'localhost' : systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] }"/>
+	</beans:bean>	
+	<beans:bean class="java.lang.String" id="dbPort">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_PORT'] == null ? '3306' : systemEnvironment['OPENSHIFT_MYSQL_DB_PORT'] }"/>
+	</beans:bean>	
+	<beans:bean class="java.lang.String" id="dbUser">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'root' : 'admin2aNjnhQ' }"/>
+	</beans:bean>	
+	<beans:bean class="java.lang.String" id="dbPass">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'root' : 'GwTRIFbQ9r81' }"/>
+	</beans:bean>	
+	<beans:bean class="java.lang.String" id="dbName">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'jcampeonato' : 'campeonato' }"/>
+	</beans:bean>		
+	<beans:bean class="java.lang.String" id="database">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'mysql' : 'mysql' }"/>
+	</beans:bean>		
+	<beans:bean class="java.lang.String" id="dbDrive">
+    	<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'com.mysql.jdbc.Driver' : 'com.mysql.jdbc.Driver' }"/>
+	</beans:bean>		
+	
+ 	<!-- ********** Configuration Datasource Connection *********************************** --> 
+	<beans:bean id="dataSourceDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="#{@dbDrive}" />
+        <beans:property name="url" value="jdbc:#{@database}://#{@dbHost}:#{@dbPort}/#{@dbName}" />
+        <beans:property name="username" value="#{@dbUser}" /> 
+        <beans:property name="password" value="#{@dbPass}" /> 
+    </beans:bean>
+
 
 	<beans:bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<beans:property name="dataSource" ref="dataSourceMysqlJPA" />
+		<beans:property name="dataSource" ref="dataSourceDB" />
 		<beans:property name="jpaVendorAdapter">
 			<beans:bean
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />

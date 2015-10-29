@@ -1,5 +1,6 @@
 package com.diegolirio.jcampeonato.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ public class Usuario extends Model {
 	
 	private String nome;
 	
+	@Column(unique=true)
 	private String email;
 
 	private String senha;

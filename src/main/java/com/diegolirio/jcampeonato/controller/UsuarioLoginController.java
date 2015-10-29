@@ -3,6 +3,7 @@ package com.diegolirio.jcampeonato.controller;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Usuario;
+import com.diegolirio.jcampeonato.service.UsuarioService;
 
 @Controller
 @RequestMapping("/usuario/login")
 public class UsuarioLoginController {
 	
+	@Autowired
+	private UsuarioService usuarioService;
+
 	/*
 	 * pages
 	 */
@@ -35,10 +40,7 @@ public class UsuarioLoginController {
 	public ResponseEntity<String> efetuarLogin(@RequestBody Usuario usuario, HttpSession session) {
 		try {
 			if(usuario != null && "diegolirio.dl@gmail.com".equals(usuario.getEmail())) {
-				usuario = new Usuario();
-				usuario.setId(1); 
-				usuario.setEmail("diegolirio.dl@gmail.com");
-				usuario.setNome("Diego Lirio");
+				usuario = this.usuarioService.getByEmail(usuario.getEmail());
 				session.setAttribute("usuarioLogado", usuario);
 				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);
 			} 

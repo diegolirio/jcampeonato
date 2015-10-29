@@ -6,7 +6,7 @@
 	<artifactId>jcampeonato</artifactId>
 	<name>jcampeonato</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<properties>
 		<java-version>1.7</java-version>
 		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
@@ -142,6 +142,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
 		</dependency>		
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
+		
 		
 		<!-- Hibernate -->
 		<dependency>
@@ -197,6 +203,7 @@
 			
 	</dependencies>
 	<build>
+		<finalName>jcampeonato</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
