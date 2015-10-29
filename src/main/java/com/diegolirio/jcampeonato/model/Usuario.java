@@ -14,6 +14,8 @@ public class Usuario extends Model {
 	
 	private String email;
 
+	private String senha;
+
 	public Usuario() {}
 
 	public Usuario(long id) {
@@ -43,6 +45,15 @@ public class Usuario extends Model {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 	
 	
 	

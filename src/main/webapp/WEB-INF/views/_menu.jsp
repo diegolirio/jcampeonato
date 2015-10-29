@@ -21,7 +21,7 @@
                     <ul class="nav navbar-nav">
 						
 <%-- 						<li><a href="${pageContext.request.contextPath}/usuario/login?next=${requestScope['javax.servlet.forward.request_uri']}"><i class="fa fa-sign-in"></i> Login</a></li>						 --%>
-						<li ng-hide="usuarioLoginCtrl.isLoggedIn"><a href ng-click="usuarioLoginCtrl.login()"><i class="fa fa-sign-in"></i> Login</a></li>						 
+						<li ng-hide="usuarioLoginCtrl.isLoggedIn"><a href="#/login" ><i class="fa fa-sign-in"></i> Login</a></li>						 
 						
                         <!-- User Account: style can be found in dropdown.less -->
                         <li ng-show="usuarioLoginCtrl.isLoggedIn" class="dropdown user user-menu">

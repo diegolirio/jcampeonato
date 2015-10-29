@@ -2,8 +2,8 @@
  * 
  */
 
-app.controller('UsuarioLoginController', ['$scope', '$window', 'UsuarioService', 
-                                          function($scope, $window, UsuarioService) {
+app.controller('UsuarioLoginController', ['$scope', '$window', '$routeParams', '$location', 'UsuarioService', 
+                                          function($scope, $window, $routeParams, $location, UsuarioService) {
 
 	var self = this;
 	
@@ -23,12 +23,17 @@ app.controller('UsuarioLoginController', ['$scope', '$window', 'UsuarioService',
 		console.log(error.data); 
 	});
 	
-	self.login = function() {
-		var usuario = {"id":1, "nome": "Diego Lirio", "email": "diegolirio.dl@gmail.com"};
+	/**
+	 * efetua login
+	 */
+	self.login = function(usuario) {
 		UsuarioService.login(usuario).then(function(resp) {
 			self.isLoggedIn = true;
 			self.usuarioLogado = resp.data;
-			$window.location.reload();
+			if($routeParams.nextPage != null && $routeParams.nextPage != undefined && $routeParams.nextPage != '')
+				$location.path($routeParams.nextPage);
+			else
+				$location.path('/');
 		}, function(error) {
 			alert(JSON.stringify(error));
 		}); 

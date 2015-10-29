@@ -15,6 +15,15 @@ import com.diegolirio.jcampeonato.model.Usuario;
 @Controller
 @RequestMapping("/usuario/login")
 public class UsuarioLoginController {
+	
+	/*
+	 * pages
+	 */
+	
+	@RequestMapping(value="/")
+	public String pageLogin() {
+		return "_login";
+	}
 
 	/**
 	 * Efetuar Login
@@ -22,17 +31,18 @@ public class UsuarioLoginController {
 	 * @param session
 	 * @return Response (JSON)
 	 */
-	@RequestMapping(value="/efetuar", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@RequestMapping(value="/efetuar", method=RequestMethod.POST, consumes="application/json", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> efetuarLogin(@RequestBody Usuario usuario, HttpSession session) {
 		try {
-			if(usuario== null) {
+			if(usuario != null && "diegolirio.dl@gmail.com".equals(usuario.getEmail())) {
 				usuario = new Usuario();
-				usuario.setId(1);
+				usuario.setId(1); 
 				usuario.setEmail("diegolirio.dl@gmail.com");
 				usuario.setNome("Diego Lirio");
-			}
-			session.setAttribute("usuarioLogado", usuario);
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);
+				session.setAttribute("usuarioLogado", usuario);
+				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);
+			} 
+			else return new ResponseEntity<String>("Usuario ou senha invalidos", HttpStatus.UNAUTHORIZED);
 		} catch(Exception e ) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -56,7 +66,7 @@ public class UsuarioLoginController {
 		}
 	}	
 	
-	/*
+	/**
 	 * Sair da sessao
 	 */
 	@RequestMapping(value="/logout", method=RequestMethod.GET, produces="application/json")

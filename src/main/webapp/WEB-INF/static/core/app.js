@@ -9,7 +9,8 @@ var SERVER_APP = '/jcampeonato';
 app.config(['$routeProvider', function($routeProvider) {
 	
 	$routeProvider
-		.when('/', { templateUrl: SERVER_APP + '/home'})
+		.when('/',      { templateUrl: SERVER_APP + '/home'})
+		.when('/login', { templateUrl: SERVER_APP + '/usuario/login/'})
 		// Campeonato
 		.when('/campeonato/novo', { templateUrl: SERVER_APP + '/campeonato/novo'})	 
 		// Edicao
@@ -33,7 +34,7 @@ app.config(['$routeProvider', function($routeProvider) {
 		// Escalacao
 		.when('/escalacao/:escalacaoId/add/evento/:eventoId', { templateUrl: SERVER_APP + '/escalacao/add/evento'})
 		// JogadorInfo
-		.when('/jogadorinfo/artilharia/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogadorinfo/artilharia' })
+		.when('/jogadorinfo/artilharia/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogadorinfoedicao/artilharia' })
 		;
 	
 	
