@@ -2,9 +2,9 @@
  *  JogoResultadoController controller view/jogo/resultado
  */
 app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
-                                           'UsuarioPerfilCampeonatoService',
+                                           'UsuarioPerfilCampeonatoService', 'JogadorEscaladoService',
                                           function($scope, $routeParams, $window, JogoService, EscalacaoService, EventoService,
-                                        	UsuarioPerfilCampeonatoService) {
+                                        	UsuarioPerfilCampeonatoService, JogadorEscaladoService) {
                                            
 	var self = this;
 
@@ -63,8 +63,22 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
 	};
 	
+	/**
+	 * Retorna o Status do jogo, se estiver 3->2, 2->1 e 1 bloqueia
+	 */
 	self.returnStatus = function(jogo) {
 		JogoService.returnStatus(jogo).then(function(resp) {
+			$window.location.reload();
+		}, function(error) {
+			alert(error.data);
+		});
+	};
+	
+	/**
+	 * Exclui jogador da escalação, somente da escalação
+	 */
+	self.excluirJogadorEscalcao = function(jogadorEscalado) {
+		JogadorEscaladoService.deleteJogadorEscalado(jogadorEscalado.id).then(function(resp) {
 			$window.location.reload();
 		}, function(error) {
 			alert(error.data);

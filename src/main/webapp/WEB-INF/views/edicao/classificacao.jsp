@@ -54,7 +54,7 @@
 												<tbody id="id_tbody">
 														<tr class="" ng-repeat="class in edicaoCLassCtrl.classificacoes | filter: grupo.id">
 															<td title="Colocacao" class="text-info text-center"><b>{{class.colocacao}}º</b></td>
-															<td ><a href="#/time/{{c.time.id}}/edicao/{{edicao.id}}">{{class.time.nome}}</a></td>
+															<td ><a href="#/time/{{class.time.id}}/edicao/{{edicao.id}}">{{class.time.nome}}</a></td>
 															<td class="text-center"><b>{{class.pontos}}</b></td>
 															<td class="text-center">{{class.jogos}}</td>
 															<td class="text-center">{{class.vitorias}}</td>

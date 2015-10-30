@@ -105,7 +105,7 @@
 										<tbody id="id_tbody">
 											<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeA.id == je.time.id" class="{{jgResultCtrl.jogo.resultadoA > jgResultCtrl.jogo.resultadoB ? 'success' : 'danger'}}" >
 												<td>
-													<a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}" > 
+													<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href ng-click="jgResultCtrl.excluirJogadorEscalcao(je)" > 
 														<span class="text-danger" title="excluir jogador da escalação">excluir</span>
 													</a>
 												</td>
@@ -116,7 +116,7 @@
 												</td>
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
-													<a ng-show="je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
+													<a ng-show="je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
 														<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 													</a>
 												</td>
@@ -139,7 +139,7 @@
 										</thead>								
 										<tbody id="id_tbody">     
 											<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeB.id == je.time.id" class="{{jgResult.jogo.resultadoA < jogo.resultadoB ? 'success' : 'danger'}}" >
-											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && true" href="#/escalacao/jogadorEscalado/delete/{{je.id}}"> <span class="text-danger" title="excluir jogador da escalação">excluir</span></a></td>
+											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href ng-click="jgResultCtrl.excluirJogadorEscalcao(je)"> <span class="text-danger" title="excluir jogador da escalação">excluir</span></a></td>
 											    <td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
 													 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
@@ -147,7 +147,7 @@
 												</td>
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
-													<div ng-show="je.eventos > 0 && jgResultCtrl.jogo.status.id == 2 && true">
+													<div ng-show="usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 && je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2">
 														<a href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
 															<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 														</a>

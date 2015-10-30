@@ -57,7 +57,7 @@ public class EdicaoController {
 	 * @param idStatus
 	 * @return
 	 */
-	@RequestMapping(value="/get/list/por/status/{idStatus}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/list/por/status/{idStatus}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> getListPorStatus(@PathVariable("idStatus") long idStatus) {
 		try {
 			List<Edicao> edicoes = this.edicaoService.getListPorStatus(new Status(idStatus));
@@ -73,7 +73,7 @@ public class EdicaoController {
 	 * @param id
 	 * @return JSON
 	 */
-	@RequestMapping(value="/get/por/id/{id}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/por/id/{id}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> getPorId(@PathVariable("id") long id) {
 		try {
 			Edicao edicao = this.edicaoService.get(Edicao.class, id);
@@ -89,7 +89,7 @@ public class EdicaoController {
 	 * @param edicao
 	 * @return JSON
 	 */
-	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json")
+	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> save(@RequestBody Edicao edicao) {
 		try {
 			this.edicaoService.save(edicao);

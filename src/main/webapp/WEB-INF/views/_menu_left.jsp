@@ -33,30 +33,30 @@
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="#/jogadorinfo/artilharia/edicao/{{edicao.id}}">
+                            <a href="#/edicao/{{edicao.id}}/classificacao">
                                 <i class="fa fa-table"></i> <span>Classificação</span>
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="pages/widgets.html">
+                            <a href="#/jogadorinfo/artilharia/edicao/{{edicao.id}}">
                                 <i class="fa fa-globe"></i> <span>Artilharia</span>
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="pages/widgets.html">
+                            <a href >
                                 <i class="fa fa-star-o"></i> <span>Times</span>
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="pages/widgets.html">
+                            <a href >
                                 <i class="fa fa-group"></i> <span>Jogadores</span>
                             </a>
                         </li>
-                        <li ng-hide="edicao == null">
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-bar-chart-o"></i> <span>Graficos</span>
-                            </a>
-                        </li>
+<!--                         <li ng-hide="edicao == null"> -->
+<!--                             <a href > -->
+<!--                                 <i class="fa fa-bar-chart-o"></i> <span>Graficos</span> -->
+<!--                             </a> -->
+<!--                         </li> -->
                     </ul>
                 </section>
                 <!-- /.sidebar -->

@@ -63,7 +63,7 @@ public class EscalacaoController {
 	 * @param id
 	 * @return escalacao JSON
 	 */
-	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> get(@PathVariable("id") long id) {
 		try {
 			Escalacao escalacao = this.escalacaoService.get(Escalacao.class, id);
@@ -79,7 +79,7 @@ public class EscalacaoController {
 	 * @param jogoId
 	 * @return
 	 */
-	@RequestMapping(value="/create/by/jogo/{jogoId}", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/create/by/jogo/{jogoId}", method=RequestMethod.POST, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> addEscalacao(@PathVariable("jogoId") long jogoId) {
 		try {
 			// TODO: refatorar
@@ -145,7 +145,7 @@ public class EscalacaoController {
 	 * @param jogoId
 	 * @return escalacao JSON
 	 */
-	@RequestMapping(value="/get/by/jogo/{jogoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/by/jogo/{jogoId}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> getByJogo(@PathVariable("jogoId") long jogoId) {
 		try {
 			Escalacao escalacao = this.escalacaoService.getByJogo(new Jogo(jogoId));

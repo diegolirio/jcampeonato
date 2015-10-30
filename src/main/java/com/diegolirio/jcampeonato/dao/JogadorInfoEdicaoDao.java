@@ -38,7 +38,7 @@ public class JogadorInfoEdicaoDao extends AbstractGenericDao<JogadorInfoEdicao> 
 	 * @return lista de jogadorInfoEdicao
 	 */
 	public List<JogadorInfoEdicao> getByEdicao(Edicao edicao) {
-		String jpql = "from JogadorInfoEdicao jie where jie.edicao = :edicao";
+		String jpql = "from JogadorInfoEdicao jie where jie.edicao = :edicao order by jie.gols desc";
 		TypedQuery<JogadorInfoEdicao> query = super.manager.createQuery(jpql, JogadorInfoEdicao.class);
 		query.setParameter("edicao", edicao);
 		return query.getResultList();

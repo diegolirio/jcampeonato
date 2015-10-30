@@ -37,7 +37,7 @@ public class EventoController {
 	 * @param escalacaoId
 	 * @return lista de evento JSON
 	 */
-	@RequestMapping(value="/get/by/escalacao/{escalacaoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/by/escalacao/{escalacaoId}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> getByEscalacao(@PathVariable("escalacaoId") long escalacaoId) {
 		try {
 			List<Evento> eventos = null;
@@ -53,7 +53,7 @@ public class EventoController {
 	 * @param id
 	 * @return evento JSON
 	 */
-	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
 	public ResponseEntity<String> get(@PathVariable("id") long id) {
 		try {
 			Evento evento = this.eventoService.get(Evento.class, id);
