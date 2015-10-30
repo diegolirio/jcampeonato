@@ -90,7 +90,8 @@
 						        						<small> 
 						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
 						        						</small>
-												    		<a href="#/jogo/{{jogo.id}}/novo/edicao/{{edicaoCLassCtrl.edicao.id}}" ng-show="jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
+												    		<a href="#/jogo/{{jogo.id}}/novo/edicao/{{edicaoCLassCtrl.edicao.id}}" 
+												    		   ng-show="jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && (edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1 || edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
 												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
 												   			</a>    
 						        						
@@ -134,7 +135,7 @@
 					
 						<br/><br/> 
 					
-						 <div class="row" ng-show="usuarioLoginCtrl.isLoggedIn && edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1">
+						 <div class="row" ng-show="usuarioLoginCtrl.isLoggedIn && (edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1 || edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
 							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<br/>
 								<a href="#/jogo/novo/edicao/{{ edicaoCLassCtrl.edicao.id }}/true" class="btn btn-block btn-outline btn-success" >

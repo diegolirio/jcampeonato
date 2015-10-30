@@ -1,9 +1,9 @@
 /**
  *  JogoResultadoController controller view/jogo/resultado
  */
-app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
+app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams', '$window', '$location', 'JogoService', 'EscalacaoService', 'EventoService',
                                            'UsuarioPerfilCampeonatoService', 'JogadorEscaladoService',
-                                          function($rootScope, $scope, $routeParams, $window, JogoService, EscalacaoService, EventoService,
+                                          function($rootScope, $scope, $routeParams, $window, $location, JogoService, EscalacaoService, EventoService,
                                         	UsuarioPerfilCampeonatoService, JogadorEscaladoService) {
                                            
 	var self = this;
@@ -53,14 +53,25 @@ app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams
 	 */
 	self.finalizar = function(jogo) {
 		JogoService.finalizar(jogo).then(function(resp) {
-			$window.location.reload();
+			$location.path('/edicao/'+self.jogo.grupo.edicao.id+'/classificacao');
 		}, function(error) {
 			alert(error.data);
 		});
 	};
 	
+	/**
+	 * Modal Add evento
+	 */
 	self.showWindowAddEvento = function(escalacao, eventoId) {
 		var url = SERVER_APP + "/simple/#/escalacao/"+escalacao.id+"/add/evento/"+eventoId;
+		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
+	};
+
+	/**
+	 * Modal
+	 */
+	self.showWindowRemoveEvento = function(jogadorEscalado) {
+		var url = SERVER_APP + "/simple/#/jogadorescalado/"+jogadorEscalado.id+"/remove/eventos";
 		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
 	};
 	

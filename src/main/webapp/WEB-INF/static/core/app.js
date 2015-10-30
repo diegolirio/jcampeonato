@@ -35,6 +35,8 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		.when('/escalacao/:escalacaoId/add/evento/:eventoId', { templateUrl: SERVER_APP + '/escalacao/add/evento'})
 		// JogadorInfo
 		.when('/jogadorinfo/artilharia/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogadorinfoedicao/artilharia' })
+		// JogadorEscalado
+		.when('/jogadorescalado/:jogadorEscaladoId/remove/eventos', { templateUrl: SERVER_APP + '/jogadorescalado/remove/eventos' })
 		;
 	
 	

@@ -32,6 +32,18 @@ public class UsuarioDao extends AbstractGenericDao<Usuario> {
 			return null;	
 		}
 		
+	}
+
+	public boolean login(Usuario usuario) {
+		try {
+			Usuario u = super.manager.createQuery("from Usuario u where u.email = :email and u.senha = :senha", Usuario.class)
+					 				 				 .setParameter("email", usuario.getEmail())
+					 				 				 .setParameter("senha", usuario.getSenha())
+					 				 				 .getSingleResult();
+			return u.getId() > 0;
+		} catch(NoResultException e) {
+			return false;
+		}
 	} 
 	
 }

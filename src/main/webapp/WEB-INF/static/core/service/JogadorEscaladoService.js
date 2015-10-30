@@ -8,6 +8,13 @@ app.factory('JogadorEscaladoService', ['$http', function($http) {
 	};
 	
 	/**
+	 * pega por id
+	 */
+	var _get = function(id) {
+		return $http.get(_serverURL('/get/'+id));
+	};
+	
+	/**
 	 * Exclui Jogador escalado
 	 */
 	var _deleteJogadorEscalado = function(id) {
@@ -15,6 +22,8 @@ app.factory('JogadorEscaladoService', ['$http', function($http) {
 	};
 	
 	return {
+		
+		get : _get, 
 		
 		deleteJogadorEscalado : _deleteJogadorEscalado
 		

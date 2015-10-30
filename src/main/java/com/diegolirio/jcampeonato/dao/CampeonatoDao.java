@@ -2,6 +2,8 @@ package com.diegolirio.jcampeonato.dao;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.diegolirio.jcampeonato.model.Campeonato;
@@ -17,6 +19,18 @@ public class CampeonatoDao extends AbstractGenericDao<Campeonato> {
 																.setParameter("idUsuario", usuario.getId())
 																.getResultList();
 		return list;
+	}
+
+	/**
+	 * pega lista de campeonato por usuario, onde o usuario contem perfil administrador.
+	 * @param usuario
+	 * @return lista de campeonato
+	 */
+	public List<Campeonato> getListByUsuarioAdm(Usuario usuario) {
+		String jpql = "Select c from Campeonato c JOIN c.usuariosPerfisCampeonatos upc where upc.perfil.id = 1 and upc.usuario.id = :usuarioId";
+		TypedQuery<Campeonato> query = super.manager.createQuery(jpql , Campeonato.class);
+		query.setParameter("usuarioId", usuario.getId());
+		return query.getResultList();
 	}
 
 	

@@ -14,15 +14,24 @@ app.factory('CampeonatoService', ['$http', function($http) {
 	/**
 	 * Busca campeonatos para o perfil desse usuario
 	 */
-	var _getListCampeonatoPorUsuario = function(idUsuario) {
-		return $http.get(serverURL('/get/list/por/usuario/'+idUsuario));
+	var _getListByUsuario = function(usuario) {
+		return $http.get(serverURL('/get/list/por/usuario/'+usuario.id));
+	};
+	
+	/**
+	 * Busca campeonatos para o perfil desse usuario
+	 */
+	var _getListByUsuarioAdm = function(usuario) {
+		return $http.get(serverURL('/get/list/by/usuario/adm/'+usuario.id));
 	};
 	
 	return {
 		
 		save : _save,
 		
-		getListCampeonatoPorUsuario : _getListCampeonatoPorUsuario
+		getListByUsuario : _getListByUsuario,
+		
+		getListByUsuarioAdm : _getListByUsuarioAdm
 		
 	};
 	

@@ -1,5 +1,6 @@
 package com.diegolirio.jcampeonato.controller;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,31 @@ public class JogadorEscaladoController {
 	@Autowired
 	private JogadorEscaladoService jogadorEscaladoService;
 
+	@RequestMapping(value="/remove/eventos")
+	public String eventoAddJogo() {
+		return "jogador-escalado/remove-eventos";
+	}
+	
+	/*
+	 * Rest FUll
+	 */
+
+	/**
+	 * pega jogador escalado por id
+	 * @param id
+	 * @return jogador escalado
+	 */
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public ResponseEntity<String> get(@PathVariable("id") long id) {
+		try {
+			JogadorEscalado jogadorEscalado = this.jogadorEscaladoService.get(JogadorEscalado.class, id);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadorEscalado), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}	
+	
 	/**
 	 * Exclui Jogador Escalado
 	 * @param id

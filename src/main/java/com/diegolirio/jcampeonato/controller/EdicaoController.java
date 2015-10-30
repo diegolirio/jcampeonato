@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Status;
+import com.diegolirio.jcampeonato.model.Usuario;
 import com.diegolirio.jcampeonato.service.EdicaoService;
 
 @Controller
@@ -61,6 +62,22 @@ public class EdicaoController {
 	public ResponseEntity<String> getListPorStatus(@PathVariable("idStatus") long idStatus) {
 		try {
 			List<Edicao> edicoes = this.edicaoService.getListPorStatus(new Status(idStatus));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicoes ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * pega lista de edicao por status e usuario administrador
+	 * @param idStatus
+	 * @return
+	 */
+	@RequestMapping(value="/get/list/by/status/{statusId}/and/usuario/adm/{usuarioAdmId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListByStatusAndusuarioAdm(@PathVariable("statusId") long statusId, @PathVariable("usuarioAdmId") long usuarioAdmId) {
+		try {
+			List<Edicao> edicoes = this.edicaoService.getListByStatusAndUsuarioAdm(new Status(statusId), new Usuario(usuarioAdmId));
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicoes ), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();

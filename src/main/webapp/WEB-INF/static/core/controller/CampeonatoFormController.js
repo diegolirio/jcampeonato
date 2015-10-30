@@ -1,7 +1,8 @@
 /**
  * CampeonatoFormController responsavel pela view campeonato/form.jsp
  */
-app.controller('CampeonatoFormController', ['CampeonatoService', '$window', function(CampeonatoService, $window) {
+app.controller('CampeonatoFormController', ['CampeonatoService', '$window', '$scope', 
+                                            function(CampeonatoService, $window, $scope) {
 	
 	var self = this;
 	
@@ -9,7 +10,7 @@ app.controller('CampeonatoFormController', ['CampeonatoService', '$window', func
 	 * Salvar Campeonato
 	 */
 	self.save = function(campeonato) {
-		var idUsuario = 1;
+		var idUsuario = $scope.usuarioLogado.id;
 		CampeonatoService.save(campeonato, idUsuario).then(function(resp) {
 			self.campeonato = resp.data.campeonato;
 			alert('Campeonato gravado com sucesso!');

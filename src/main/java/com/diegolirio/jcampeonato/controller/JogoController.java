@@ -1,5 +1,6 @@
 package com.diegolirio.jcampeonato.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -118,6 +119,12 @@ public class JogoController {
 	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> save(@RequestBody Jogo jogo) {
 		try {
+			// *************** BUG ******************
+			Calendar data = Calendar.getInstance();
+			data.setTime(jogo.getDataHora());
+			data.add(Calendar.DATE, 1);
+			jogo.setDataHora(data.getTime()); 
+			// **************************************
 			this.jogoService.save(jogo);
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogo), HttpStatus.OK);
 		} catch(Exception e) {

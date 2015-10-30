@@ -1,8 +1,8 @@
 /**
  * EdicaoFormController responsavel pela view edicao/form.jsp
  */
-app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService', 'EdicaoService', '$routeParams', '$location',
-                                        function(CampeonatoService, TipoEdicaoService, EdicaoService, $routeParams, $location) {
+app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService', 'EdicaoService', '$routeParams', '$location', '$scope',
+                                        function(CampeonatoService, TipoEdicaoService, EdicaoService, $routeParams, $location, $scope) {
 	
 	var self = this;
 	
@@ -11,7 +11,7 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 			self.edicao = resp.data;
 			// Seleciona o tipo
 			for(var i = 0; i <= self.tipos.length-1; i++) {
-				if(self.tipos[i].id == self.edicao.tipoEdicao.id) {
+				if(self.tipos[i].id == self.edicao.tipoEdicao.id) { 
 					self.edicao.tipoEdicao = self.tipos[i];
 					break;
 				}
@@ -32,9 +32,8 @@ app.controller('EdicaoFormController', ['CampeonatoService', 'TipoEdicaoService'
 	 * Inicializacao da Classe
 	 */
 	self.init = function() {
-		var usuarioTODO = 1;
-		
-		CampeonatoService.getListCampeonatoPorUsuario(usuarioTODO).then(function(resp) {
+		//CampeonatoService.getListCampeonatoPorUsuario(usuarioId).then(function(resp) {
+		CampeonatoService.getListByUsuarioAdm($scope.usuarioLogado).then(function(resp) {
 			self.campeonatos = resp.data;
 		}).then(function() {
 			TipoEdicaoService.getListTipo().then(function(resp) {

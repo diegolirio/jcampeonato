@@ -19,6 +19,10 @@ public class CampeonatoService extends AbstractGenericService<Campeonato> {
 		return this.campeonatoDao.getListPorUsuario(usuario);
 	}
 
+	public List<Campeonato> getListByUsuarioAdm(Usuario usuario) {
+		return this.campeonatoDao.getListByUsuarioAdm(usuario);
+	}
+
 	
 	
 }

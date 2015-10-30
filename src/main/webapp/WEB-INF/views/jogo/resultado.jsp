@@ -53,7 +53,7 @@
 					<!-- Fim Placar Responsive -->
 
 					<div class="text-muted">
-						<span ng-show="jgResultCtrl.jogo.status.id != 1 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1">
+						<span ng-show="jgResultCtrl.jogo.status.id != 1 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
 							<a href ng-click="jgResultCtrl.returnStatus(jgResultCtrl.jogo)" class="btn btn-default btn-danger btn-outline">
 								<span class="glyphicon glyphicon-arrow-left"> Voltar p/ {{jgResultCtrl.jogo.status.id == 2 ? 'Pendente' : 'Em andamento'}}</span>
 							</a>
@@ -63,7 +63,7 @@
 						| Data: {{jgResultCtrl.jogo.dataHora}}
 					</div>
 
-					<div ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1">
+					<div ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.GOL)" class="btn btn-outline btn-info">Adicionar Gol</a>
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.CARTAO_AMARELO)" class="btn btn-outline btn-warning">Cartão Amarelo</a>
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.CARTAO_VERMELHO)" class="btn btn-outline btn-danger" onclick="showWindowPopup(this.href, 600, 800); return false;">Cartão Vermelho</a>
@@ -71,9 +71,9 @@
 						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-info" onclick="showWindowPopup(this.href, 600, 800); return false;"><b class="text-danger">Gol Contra</b></a>
 					</div>
 			
-			    	<div ng-show="jgResultCtrl.jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" class="row">
+			    	<div ng-show="jgResultCtrl.jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
-							<a  href ng-click="jgResultCtrl.createEscalacaoByJogo(jgResultCtrl.jogo)" class="btn btn-outline btn-default btn-lg btn-block">
+							<a  href ng-click="jgResultCtrl.createEscalacaoByJogo(jgResultCtrl.jogo)" class="btn btn-outline btn-success btn-lg btn-block">
 								Adicionar informações da Partida
 							</a>
 						</div>
@@ -105,7 +105,8 @@
 										<tbody id="id_tbody">
 											<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeA.id == je.time.id" class="{{jgResultCtrl.jogo.resultadoA > jgResultCtrl.jogo.resultadoB ? 'success' : 'danger'}}" >
 												<td>
-													<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href ng-click="jgResultCtrl.excluirJogadorEscalcao(je)" > 
+													<a href ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" 
+													   ng-click="jgResultCtrl.excluirJogadorEscalcao(je)" > 
 														<span class="text-danger" title="excluir jogador da escalação">excluir</span>
 													</a>
 												</td>
@@ -116,15 +117,17 @@
 												</td>
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
-													<a ng-show="je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
+													<a ng-show="je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" 
+													   href ng-click="jgResultCtrl.showWindowRemoveEvento(je)"> 
 														<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 													</a>
 												</td>
 											</tr>
 										</tbody>								
 									</table>	        
-									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeA.id}}" class="btn btn-outline btn-warning btn-xs btn-block">
-										adicionar jogador para {{jgResult.jogo.timeA.nome}}
+									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" 
+										href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeA.id}}" class="btn btn-outline btn-warning btn-xs btn-block">
+											adicionar jogador para {{ jgResultCtrl.jogo.timeA.nome }}
 									</a>
 		                    	</div>
 
@@ -139,7 +142,7 @@
 										</thead>								
 										<tbody id="id_tbody">     
 											<tr ng-repeat="je in jgResultCtrl.escalacao.jogadoresEscalados" ng-show="jgResultCtrl.jogo.timeB.id == je.time.id" class="{{jgResult.jogo.resultadoA < jogo.resultadoB ? 'success' : 'danger'}}" >
-											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href ng-click="jgResultCtrl.excluirJogadorEscalcao(je)"> <span class="text-danger" title="excluir jogador da escalação">excluir</span></a></td>
+											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" href ng-click="jgResultCtrl.excluirJogadorEscalcao(je)"> <span class="text-danger" title="excluir jogador da escalação">excluir</span></a></td>
 											    <td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
 													 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
@@ -147,7 +150,7 @@
 												</td>
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
-													<div ng-show="usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 && je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2">
+													<div ng-show="usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2) && je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2">
 														<a href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
 															<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 														</a>
@@ -156,8 +159,8 @@
 											</tr>
 										</tbody>								
 									</table>
-									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeB.id}}" class="btn btn-outline btn-warning btn-xs btn-block" id="id_add_jogador_escalado_timeB" onclick="showWindowPopup(this.href, 400, 600); return false;">
-										adicionar jogador para {{jgResultCtrl.jogo.timeB.nome}}
+									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeB.id}}" class="btn btn-outline btn-warning btn-xs btn-block" id="id_add_jogador_escalado_timeB" onclick="showWindowPopup(this.href, 400, 600); return false;">
+										adicionar jogador para {{ jgResultCtrl.jogo.timeA.nome }}
 									</a>
 		                    	</div>
 
@@ -168,7 +171,7 @@
 		    	</div>
 		    	
 		
-				<div ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1"> 
+				<div ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)"> 
 					<a href ng-click="jgResultCtrl.finalizar(jgResultCtrl.jogo)" class="btn btn-outline btn-success btn-lg btn-block">Finalizar Jogo</a>
 				</div>					    	
 			    	

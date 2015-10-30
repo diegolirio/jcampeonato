@@ -11,13 +11,13 @@
                      <small>Edição {{jgFormCtrl.edicao.campeonato.descricao}} {{jgFormCtrl.edicao.descricao}}</small>
                  </h1>
                  
-				<div class="row"> 
+				<div class="row" ng-hide="jgFormCtrl.modoEdicao == true"> 
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
-							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Campeonato</a></li>
-							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Campeonato/Edicao</a></li>
-							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Grupos/Chaves</a></li>	
-							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href="/jchampionship">Times/nos Grupos</a></li>	
+							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href >Campeonato</a></li>
+							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href >Campeonato/Edicao</a></li>
+							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href >Grupos/Chaves</a></li>	
+							<li><i class="glyphicon glyphicon-ok text-success"></i> <a href >Times/nos Grupos</a></li>	
 							<li class="text-warning" style="font-size:30px;"><i class="glyphicon glyphicon-star"></i>Jogos X Jogos</li>	
 							<li><i class="fa fa-edit"></i> Confirmação</li>	
 						</ol>
@@ -84,6 +84,7 @@
 							<br/>
 
 							<div class="pull-right">
+                               	<a ng-show="jgFormCtrl.modoEdicao == true" href="#/edicao/{{jgFormCtrl.edicao.id}}/classificacao" class="btn btn-default btn-sm">Cancelar</a>
             	                <input type="submit" class="btn btn-success btn-sm" value="Salvar" >
                                	<a ng-show="jgFormCtrl.modoEdicao != true && jgFormCtrl.jogos.length > 0 && jgFormCtrl.edicao.id == 1" href="#/edicao/{{jgFormCtrl.edicao.id}}/confirma/conclusao" class="btn btn-info btn-sm">Proximo</a>
                             </div>							

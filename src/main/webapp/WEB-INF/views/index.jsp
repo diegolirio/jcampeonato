@@ -35,10 +35,10 @@
     </head>
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
     
-   		    <div id="spinner" class="spinner" style="display:none;"> 
-		         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
-		         <p>Aguarde...</p>
-		    </div>  	
+		<div id="spinner" class="spinner" style="display:none;"> 
+	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
+	         <p>Aguarde...</p>
+	    </div>  	
     
 		<jsp:include page="_menu.jsp"></jsp:include>
 		

@@ -4,7 +4,7 @@
             <form ng-submit="usuarioLoginCtrl.login(usuarioLoginCtrl.usuario)">
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email" ng-model="usuarioLoginCtrl.usuario.email"/>
+                        <input type="text" class="form-control" placeholder="Email" ng-model="usuarioLoginCtrl.usuario.email" name="email"/>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Senha" ng-model="usuarioLoginCtrl.usuario.senha"/>

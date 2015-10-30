@@ -30,10 +30,11 @@ app.controller('UsuarioLoginController', ['$scope', '$window', '$routeParams', '
 		UsuarioService.login(usuario).then(function(resp) {
 			self.isLoggedIn = true;
 			self.usuarioLogado = resp.data;
-			if($routeParams.nextPage != null && $routeParams.nextPage != undefined && $routeParams.nextPage != '')
-				$location.path($routeParams.nextPage);
-			else
-				$location.path('/');
+			//if($routeParams.nextPage != null && $routeParams.nextPage != undefined && $routeParams.nextPage != '')
+			//	$location.path($routeParams.nextPage);
+			//else
+			//	$location.path('/');
+			$window.location.href = SERVER_APP;
 		}, function(error) {
 			alert(error.data);
 		}); 
@@ -42,7 +43,7 @@ app.controller('UsuarioLoginController', ['$scope', '$window', '$routeParams', '
 	
 	self.logout = function() {
 		UsuarioService.logout().then(function() {
-			$window.location.reload();
+			$window.location.href = SERVER_APP;
 		}, function(error) {
 			alert(JSON.stringify(error));
 		});

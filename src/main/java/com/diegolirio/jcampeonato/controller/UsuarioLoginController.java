@@ -39,7 +39,8 @@ public class UsuarioLoginController {
 	@RequestMapping(value="/efetuar", method=RequestMethod.POST, consumes="application/json", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> efetuarLogin(@RequestBody Usuario usuario, HttpSession session) {
 		try {
-			if(usuario != null && "diegolirio.dl@gmail.com".equals(usuario.getEmail())) {
+			boolean login = this.usuarioService.login(usuario);
+			if(login == true) {
 				usuario = this.usuarioService.getByEmail(usuario.getEmail());
 				session.setAttribute("usuarioLogado", usuario);
 				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);

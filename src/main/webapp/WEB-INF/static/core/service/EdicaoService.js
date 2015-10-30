@@ -11,6 +11,13 @@ app.factory('EdicaoService', ['$http', function($http) {
 		return $http.get(serverURL('/get/list/por/status/'+idStatus));
 	};
 	
+	/**
+	 * pega lista de edicoes por status e usuarioAdministrador
+	 */
+	var _getListByStatusAndUsuarioAdm = function(statusId, usuarioAdm) {
+		return $http.get(serverURL('/get/list/by/status/'+statusId+'/and/usuario/adm/'+usuarioAdm.id));
+	};
+	
 	var _getPorId = function(id) {
 		return $http.get(serverURL('/get/por/id/'+id));
 	};
@@ -22,6 +29,8 @@ app.factory('EdicaoService', ['$http', function($http) {
 	return {
 		
 		getEdicoesPorStatus : _getEdicoesPorStatus,
+		
+		getListByStatusAndUsuarioAdm : _getListByStatusAndUsuarioAdm,
 		
 		get : _getPorId,
 		

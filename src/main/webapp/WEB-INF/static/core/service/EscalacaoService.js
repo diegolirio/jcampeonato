@@ -36,6 +36,14 @@ app.factory('EscalacaoService',['$http', function($http) {
 	var _addEventoToJogadorEscalado = function(evento, jogadorEscalado) {
 		return $http.post(_serverURL('/add/evento/'+evento.id+'/to/jogadorescalado/'+jogadorEscalado.id));
 	}
+
+	/**
+	 * TODO: analisar se move para JogadorEscaladoService
+	 * Remove evento do jogador escalado
+	 */
+	var _removeEventoFromJogadorEscalado = function(evento, jogadorEscalado) {
+		return $http.post(_serverURL('/remove/evento/'+evento.id+'/from/jogadorescalado/'+jogadorEscalado.id));
+	}
 	
 	return {
 	
@@ -45,7 +53,9 @@ app.factory('EscalacaoService',['$http', function($http) {
 		
 		get : _get,
 		
-		addEventoToJogadorEscalado : _addEventoToJogadorEscalado
+		addEventoToJogadorEscalado : _addEventoToJogadorEscalado,
+		
+		removeEventoFromJogadorEscalado : _removeEventoFromJogadorEscalado
 		
 	};
 	

@@ -15,14 +15,15 @@
         <![endif]-->
     </head>
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
+    
+		<div id="spinner" class="spinner" style="display:none;"> 
+	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
+	         <p>Aguarde...</p>
+	    </div>  	
+    
     	
-        <div class="wrapper row-offcanvas row-offcanvas-left">
- 
-			<!-- Right side column. Contains the navbar and content of the page -->
-			<div ng-view></div> 
-			 
-        </div><!-- ./wrapper -->
-
+   		<div ng-view></div> 
+		
 	
 		<!-- ########################## AngularJS ########################################################################### -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
@@ -45,10 +46,15 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/EscalacaoService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/EventoService.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioPerfilCampeonatoService.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/service/JogadorEscaladoService.js"></script>
 		<!--------- Controllers -------------> 
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorEscaladoRemoveEventoController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
+		
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>		
 
     </body>
 </html>

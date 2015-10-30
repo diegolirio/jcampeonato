@@ -157,7 +157,7 @@ public class EscalacaoController {
 	}
 	
 	/**
-	 * Add 
+	 * Add evento para jogadorEscalado
 	 * @param eventoId
 	 * @param jogadorEscaladoId
 	 * @return
@@ -183,6 +183,29 @@ public class EscalacaoController {
 		headers.setLocation(URI.create("/jogo/system/"+jogadorEscalado.getEscalacao().getJogo().getId()));
 		return new ResponseEntity<String>(headers , HttpStatus.CREATED);
 	}	
+	
+	/**
+	 * Remove evento do jogador escalado
+	 * @param jogadorEscaladoId
+	 * @param eventoId
+	 * @return HttpStatus
+	 */
+	@RequestMapping(value="/remove/evento{eventoId}/from/jogadorescalado/{jogadorEscaladoId}", method=RequestMethod.POST, produces="application/json")
+	public ResponseEntity<String> deleteEventosJogadorEscalado(@PathVariable("jogadorEscaladoId") long jogadorEscaladoId, @PathVariable("eventoId") long eventoId) {
+		Evento evento = this.eventoService.get(Evento.class, eventoId);
+		JogadorEscalado jogadorEscalado = this.jogadorEscaladoService.get(JogadorEscalado.class, jogadorEscaladoId);
+		if(evento.getId() == 1) { // GOL
+			Jogo jogo = jogadorEscalado.getEscalacao().getJogo();
+			if(jogadorEscalado.getTime().getId() == jogadorEscalado.getEscalacao().getJogo().getTimeA().getId()) 
+				jogo.setResultadoA(jogo.getResultadoA()-1);
+			else 
+				jogo.setResultadoB(jogo.getResultadoB()-1);
+			this.jogoService.save(jogo);
+		}
+		jogadorEscalado.getEventos().remove(evento);
+		this.jogadorEscaladoService.save(jogadorEscalado);
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}		
 	
 	
 }

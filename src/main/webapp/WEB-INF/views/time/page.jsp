@@ -18,7 +18,7 @@
 			
 				<h1 class="page-header">
 					{{ timePageCtrl.time.nome }} 
-		    		<a ng-show="usuarioLoginCtrl.isLoggedIn && timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/time/{{ timePageCtrl.time.id }}">
+		    		<a ng-show="usuarioLoginCtrl.isLoggedIn && (timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1 || timePageCtrl.usuarioPerfilCampeonato.perfil.id == 2)" href="#/time/{{ timePageCtrl.time.id }}">
 		   				<span class="glyphicon glyphicon-pencil text-muted"></span>
 		   			</a>
 				</h1>			
@@ -39,7 +39,7 @@
 											<br/>
 											<li>{{timePageCtrl.classificacao.golsPro}} Gols Pró</li>
 											<li>{{timePageCtrl.classificacao.golsContra}} Gols Contra</li>
-											<li>{{timePageCtrl.classificacao.golsPro - classificacao.golsContra}} Saldo de Gols</li>
+											<li>{{timePageCtrl.classificacao.golsPro - timePageCtrl.classificacao.golsContra}} Saldo de Gols</li>
 											<li>{{timePageCtrl.classificacao.pontos * 100 / ((timePageCtrl.classificacao.jogos == 0 ? 1 : timePageCtrl.classificacao.jogos) * 3) }} % de aproveitamento</li>							
 										</ul>
 									</div>
@@ -80,7 +80,11 @@
 											<td></td> 
 										</tr>
 										<h3 ng-show="timePageCtrl.jogadores.length == 0" >
-											Não há jogadores para este time <a ng-show="usuarioLoginCtrl.isLoggedIn && timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1" href="#/time/{{timePageCtrl.time.id}}">Cadastre agora</a>
+											Não há jogadores para este time 
+											<a ng-show="usuarioLoginCtrl.isLoggedIn && (timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1 || timePageCtrl.usuarioPerfilCampeonato.perfil.id == 2)" 
+												href="#/time/{{timePageCtrl.time.id}}">
+													Cadastre agora
+											</a>
 										</h3>
 									</tbody>
 								</table>

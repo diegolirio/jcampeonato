@@ -67,6 +67,18 @@ public class HomeController {
 			perfil = new Perfil(0, "Administrador");
 			this.perfilService.save(perfil);
 		}
+		// Perfil CRUD Jogo e Resultado dos Jogos
+		Perfil perfil2 = this.perfilService.get(Perfil.class, 2l);
+		if(perfil2 == null) {
+			perfil2 = new Perfil(0, "Cadastrar/Editar Partidas e alterar resultado dos Jogos.");
+			this.perfilService.save(perfil2);
+		}
+		// Perfil Altera somente resultado dos jogos.
+		Perfil perfil3 = this.perfilService.get(Perfil.class, 3l);
+		if(perfil3 == null) {
+			perfil3 = new Perfil(0, "Altera somente resultado dos jogos.");
+			this.perfilService.save(perfil3);
+		}
 		
 		// Tipo da Edicao...
 		TipoEdicao _grupoMataMata = this.tipoEdicaoService.get(TipoEdicao.class, 1l); //id=1
