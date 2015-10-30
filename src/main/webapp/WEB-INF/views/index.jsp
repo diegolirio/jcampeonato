@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html ng-app="app">
     <head>
         <meta charset="UTF-8">
@@ -23,6 +24,8 @@
         <!-- Theme style -->
         <link href="${pageContext.request.contextPath}/static/adminlte-master/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
+        <link href="${pageContext.request.contextPath}/static/core/css/spinner.css" rel="stylesheet" type="text/css" />
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -31,6 +34,11 @@
         <![endif]-->
     </head>
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
+    
+   		    <div id="spinner" class="spinner" style="display:none;"> 
+		         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
+		         <p>Aguarde...</p>
+		    </div>  	
     
 		<jsp:include page="_menu.jsp"></jsp:include>
 		
@@ -66,7 +74,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/JogadorService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/PosicaoService.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/service/EscalacaoService.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/service/EventoService.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/service/EventoService.js" charset="UTF-8"></script>
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioPerfilCampeonatoService.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/service/JogadorInfoEdicaoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/JogadorEscaladoService.js"></script>
@@ -74,9 +82,9 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js" charset="UTF-8"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js" charset="UTF-8"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    

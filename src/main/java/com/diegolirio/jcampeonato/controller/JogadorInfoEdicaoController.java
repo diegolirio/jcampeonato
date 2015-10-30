@@ -44,7 +44,7 @@ public class JogadorInfoEdicaoController {
 	 * @param edicaoId
 	 * @return lista jogadorInfoEdicao JSON
 	 */
-	@RequestMapping(value="/get/by/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/by/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> pageArtilharia(@PathVariable("edicaoId") long edicaoId) {
 		try {
 			Edicao edicao = this.edicaoService.get(Edicao.class, edicaoId);

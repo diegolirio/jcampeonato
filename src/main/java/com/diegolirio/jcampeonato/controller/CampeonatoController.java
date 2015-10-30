@@ -61,7 +61,7 @@ public class CampeonatoController {
 	 * @param campeonato
 	 * @return JSON
 	 */
-	@RequestMapping(value="/save/usuario/{idUsuario}", method=RequestMethod.POST, consumes="application/json; chartset=UTF-8", produces="application/json; chartset=UTF-8")
+	@RequestMapping(value="/save/usuario/{idUsuario}", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> save(@RequestBody Campeonato campeonato, @PathVariable("idUsuario") long idUsuario) {
 		try {
 			// grava campeonato
@@ -83,7 +83,7 @@ public class CampeonatoController {
 	}
 	
 	
-	@RequestMapping(value="/get/list/por/usuario/{idUsuario}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
+	@RequestMapping(value="/get/list/por/usuario/{idUsuario}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getListPorUsuario(@PathVariable("idUsuario") long idUsuario) {
 		try {
 			List<Campeonato> campeonatos = this.campeonatoService.getListPorUsuario(new Usuario(idUsuario));

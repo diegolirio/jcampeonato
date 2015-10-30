@@ -25,20 +25,22 @@
                         </div>
                     </form>
                     <!-- /.search form -->
+                    
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
+                    <!-- Mobile -->
+                    <ul class="sidebar-menu visible-sm visible-xs" >
                         <li class="active">
                             <a href="${pageContext.request.contextPath}">
                                 <i class="fa fa-trophy"></i> <span>Campeonatos </span> <small class="badge pull-right bg-green">novo</small>
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="#/edicao/{{edicao.id}}/classificacao">
+                            <a href="#/edicao/{{edicao.id}}/classificacao" onclick="$('#idBtnMenuShowHide').trigger('click');"> 
                                 <i class="fa fa-table"></i> <span>Classificação</span>
                             </a>
                         </li>
                         <li ng-hide="edicao == null">
-                            <a href="#/jogadorinfo/artilharia/edicao/{{edicao.id}}">
+                            <a href="#/jogadorinfo/artilharia/edicao/{{edicao.id}}" onclick="$('#idBtnMenuShowHide').trigger('click');">
                                 <i class="fa fa-globe"></i> <span>Artilharia</span>
                             </a>
                         </li>
@@ -58,6 +60,42 @@
 <!--                             </a> -->
 <!--                         </li> -->
                     </ul>
+                     
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <!-- Tela Grande -->
+                    <ul class="sidebar-menu visible-lg visible-md">  
+                        <li class="active">
+                            <a href="${pageContext.request.contextPath}">
+                                <i class="fa fa-trophy"></i> <span>Campeonatos </span> <small class="badge pull-right bg-green">novo</small>
+                            </a>
+                        </li>
+                        <li ng-hide="edicao == null">
+                           <a href="#/edicao/{{edicao.id}}/classificacao"> 
+                                <i class="fa fa-table"></i> <span>Classificação</span> 
+                            </a>
+                        </li>
+                        <li ng-hide="edicao == null">
+                            <a href="#/jogadorinfo/artilharia/edicao/{{edicao.id}}">
+                                <i class="fa fa-globe"></i> <span>Artilharia</span>
+                            </a> 
+                        </li>
+                        <li ng-hide="edicao == null">
+                            <a href >
+                                <i class="fa fa-star-o"></i> <span>Times</span>
+                            </a>
+                        </li>
+                        <li ng-hide="edicao == null">
+                            <a href >
+                                <i class="fa fa-group"></i> <span>Jogadores</span>
+                            </a>
+                        </li>
+<!--                         <li ng-hide="edicao == null"> -->
+<!--                             <a href > -->
+<!--                                 <i class="fa fa-bar-chart-o"></i> <span>Graficos</span> -->
+<!--                             </a> -->
+<!--                         </li> -->
+                    </ul>                    
+                    
                 </section>
                 <!-- /.sidebar -->
             </aside>

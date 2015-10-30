@@ -56,7 +56,7 @@ public class UsuarioLoginController {
 	 * @param session
 	 * @return restFull JSON usuario
 	 */
-	@RequestMapping(value="/session", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/session", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getSessionLogged(HttpSession session) {
 		try {
 			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
@@ -71,7 +71,7 @@ public class UsuarioLoginController {
 	/**
 	 * Sair da sessao
 	 */
-	@RequestMapping(value="/logout", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/logout", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> logout(HttpSession session) {
 		try {
 			session.invalidate();

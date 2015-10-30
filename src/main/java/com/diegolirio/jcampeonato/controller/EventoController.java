@@ -37,7 +37,7 @@ public class EventoController {
 	 * @param escalacaoId
 	 * @return lista de evento JSON
 	 */
-	@RequestMapping(value="/get/by/escalacao/{escalacaoId}", method=RequestMethod.GET, produces="application/json; chartset=UTF-8")
+	@RequestMapping(value="/get/by/escalacao/{escalacaoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getByEscalacao(@PathVariable("escalacaoId") long escalacaoId) {
 		try {
 			List<Evento> eventos = null;

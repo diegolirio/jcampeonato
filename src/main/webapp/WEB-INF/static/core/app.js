@@ -6,7 +6,7 @@ var app = angular.module('app', ['ngRoute']);
 
 var SERVER_APP = '/jcampeonato';
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
 	
 	$routeProvider
 		.when('/',      { templateUrl: SERVER_APP + '/home'})
@@ -40,4 +40,34 @@ app.config(['$routeProvider', function($routeProvider) {
 	
 		//.when('/login_post', { templateUrl: SERVER_APP + '/usuario/login?u=jsantos' } )		
 		//.when('/show', { templateUrl: SERVER_APP + '/home'});	 
+	
+	
+	/* ******************** Interceptor ******************** */
+	$httpProvider.responseInterceptors.push('HttpInterceptor');
+    /* ******************** Loading Gif ******************** */ 
+    var spinnerFunction = function (data) {
+            $('#spinner').show();
+            return data; 
+    };      
+    $httpProvider.defaults.transformRequest.push(spinnerFunction); 		
+	
+
 }]);  
+
+ 
+
+app.factory('HttpInterceptor',['$q', function($q) { 
+	/********************************************************************************************
+     * Tratamento do retorno do response(ajax)...
+	 ********************************************************************************************/	  	
+	return function (promise) { 
+		return promise.then(function (resp) {
+			$('#spinner').hide();  
+			return resp;
+		}, function (errorResp) {
+			$('#spinner').hide();
+			return $q.reject(errorResp);
+		});
+	};
+
+}]);

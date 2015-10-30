@@ -162,7 +162,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
-		logger.info("Page index....");
 		return "index";
 	}
 

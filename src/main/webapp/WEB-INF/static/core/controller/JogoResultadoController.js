@@ -1,9 +1,9 @@
 /**
  *  JogoResultadoController controller view/jogo/resultado
  */
-app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
+app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams', '$window', 'JogoService', 'EscalacaoService', 'EventoService',
                                            'UsuarioPerfilCampeonatoService', 'JogadorEscaladoService',
-                                          function($scope, $routeParams, $window, JogoService, EscalacaoService, EventoService,
+                                          function($rootScope, $scope, $routeParams, $window, JogoService, EscalacaoService, EventoService,
                                         	UsuarioPerfilCampeonatoService, JogadorEscaladoService) {
                                            
 	var self = this;
@@ -16,6 +16,7 @@ app.controller('JogoResultadoController', ['$scope', '$routeParams', '$window', 
 		// busca jogo por id
 		JogoService.get($routeParams.id).then(function(resp) {
 			self.jogo = resp.data;
+			$rootScope.edicao = self.jogo.grupo.edicao;
 			return resp;
 		}).then(function(jogoResp) {
 			EscalacaoService.getByJogo(jogoResp.data).then(function(resp) {

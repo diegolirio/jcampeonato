@@ -99,7 +99,7 @@ public class JogoController {
 	 * @param id
 	 * @return jogo JSON
 	 */
-	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> get(@PathVariable("id") long id) {
 		try {
 			Jogo jogo = this.jogoService.get(Jogo.class, id);
@@ -115,7 +115,7 @@ public class JogoController {
 	 * @param jogo
 	 * @return
 	 */
-	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> save(@RequestBody Jogo jogo) {
 		try {
 			this.jogoService.save(jogo);
@@ -131,7 +131,7 @@ public class JogoController {
 	 * @param id
 	 * @return HttpStatus
 	 */
-	@RequestMapping(value="/{id}/delete", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/{id}/delete", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> delete(@PathVariable("id") long id) {
 		this.jogoService.delete(Jogo.class, id);
 		return new ResponseEntity<String>(HttpStatus.OK);
@@ -142,7 +142,7 @@ public class JogoController {
 	 * @param id
 	 * @return jogo JSON
 	 */
-	@RequestMapping(value="/{id}/finalizar", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/{id}/finalizar", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> finalizar(@PathVariable("id") long id) {
 		try {
 			Jogo jogo = this.jogoService.get(Jogo.class, id);
@@ -161,7 +161,7 @@ public class JogoController {
 	 * @param id
 	 * @return JSON
 	 */
-	@RequestMapping(value="/{id}/return/status", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/{id}/return/status", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> returnStatusJogo(@PathVariable("id") long id) {
 		try {
 			Jogo jogo = this.jogoService.get(Jogo.class, id);

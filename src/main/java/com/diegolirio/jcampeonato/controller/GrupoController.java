@@ -37,7 +37,7 @@ public class GrupoController {
 	 * @param grupo
 	 * @return JSON
 	 */
-	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> save(@RequestBody Grupo grupo) {
 		try {
 			this.grupoService.save(grupo);
@@ -49,7 +49,7 @@ public class GrupoController {
 		}
 	}	
 	
-	@RequestMapping(value="/get/lista/por/edicao_", method=RequestMethod.GET, consumes="application/json", produces="application/json")
+	@RequestMapping(value="/get/lista/por/edicao_", method=RequestMethod.GET, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getListaPorEdicao(@RequestBody Edicao edicao) {
 		try {
 			List<Grupo> grupos = this.grupoService.getListaPorEdicao(edicao);
@@ -65,7 +65,7 @@ public class GrupoController {
 	 * @param edicaoId
 	 * @return
 	 */
-	@RequestMapping(value="/get/lista/por/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/lista/por/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getListaPorEdicao(@PathVariable("edicaoId") long edicaoId) {
 		try {
 			List<Grupo> grupos = this.grupoService.getListaPorEdicao(new Edicao(edicaoId));
@@ -81,7 +81,7 @@ public class GrupoController {
 	 * @param edicaoId
 	 * @return
 	 */
-	@RequestMapping(value="/get/lista/com/classificacao/por/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/lista/com/classificacao/por/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getGruposClassificacoesPorEdicao(@PathVariable("edicaoId") long edicaoId) {
 		try {
 			List<Grupo> grupos = this.grupoService.getListaPorEdicao(new Edicao(edicaoId));
@@ -103,7 +103,7 @@ public class GrupoController {
 	 * @param grupo
 	 * @return JSON
 	 */
-	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> delete(@PathVariable("id") long id) {
 		try {
 			this.grupoService.delete(Grupo.class, id);

@@ -31,7 +31,7 @@ public class UsuarioPerfilCampeonatoController {
 	 * @param campeonatoId
 	 * @return UsuarioPerfilCampeonato JSON
 	 */
-	@RequestMapping(value="/get/by/usuario/{usuarioId}/and/campeonato/{campeonatoId}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/get/by/usuario/{usuarioId}/and/campeonato/{campeonatoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getByUsuarioAndCampeonato(@PathVariable("usuarioId") long usuarioId, @PathVariable("campeonatoId") long campeonatoId) {
 		try {
 			UsuarioPerfilCampeonato usuarioPerfilCampeonato = 

@@ -9,6 +9,7 @@ app.controller('JogadorInfoArtilhariaController', ['$rootScope', '$routeParams',
 	var init = function() {
 		EdicaoService.get($routeParams.edicaoId).then(function(resp) {
 			self.edicao = resp.data;
+			$rootScope.edicao = self.edicao;
 			return resp;
 		}).then(function(edicaoResp) {
 			JogadorInfoEdicaoService.getByEdicao(edicaoResp.data).then(function(resp) {

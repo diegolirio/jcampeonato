@@ -23,7 +23,7 @@ public class JogadorEscaladoController {
 	 * @param id
 	 * @return HttpStatus
 	 */
-	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public ResponseEntity<String> deleteJogadorEscalado(@PathVariable("id") long id) {
 		try {
 			JogadorEscalado jogadorEscalado = this.jogadorEscaladoService.get(JogadorEscalado.class, id);
@@ -31,7 +31,7 @@ public class JogadorEscaladoController {
 				this.jogadorEscaladoService.delete(JogadorEscalado.class, id);
 				return new ResponseEntity<String>(HttpStatus.OK);
 			} else {
-				return new ResponseEntity<String>("Existem Gols ou Cartões adicionados a este Jogador, para retira-lo da escalação, retire primeiramente esses eventos!", HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<String>("Existem Gols ou Cartï¿½es adicionados a este Jogador, para retira-lo da escalaï¿½ï¿½o, retire primeiramente esses eventos!", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
