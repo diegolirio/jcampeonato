@@ -72,7 +72,7 @@ app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams
 	 */
 	self.showWindowRemoveEvento = function(jogadorEscalado) {
 		var url = SERVER_APP + "/simple/#/jogadorescalado/"+jogadorEscalado.id+"/remove/eventos";
-		window.open(url,'','height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');		
+		window.open(url,'','height=400, width=550, top=150, left=250, scrollbars=no, resizable=no');		
 	};
 	
 	/**
@@ -94,6 +94,21 @@ app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams
 			$window.location.reload();
 		}, function(error) {
 			alert(error.data);
+		});
+	};
+	
+	/**
+	 * Modal
+	 */
+	self.showWindowAddJogadorEscalacao = function(escalacao, time) {
+		var url = SERVER_APP + "/simple/#/jogadorescalado/save/by/escalacao/"+escalacao.id+"/time/"+time.id;
+		window.open(url,'','height=400, width=550, top=150, left=250, scrollbars=no, resizable=no');		
+	};
+	
+	
+	self.addJogadorEscalacao = function(escalacao, time) {
+		JogadorEscaladoService.save(escalacao, time).then(function(resp) {
+			
 		});
 	};
 	

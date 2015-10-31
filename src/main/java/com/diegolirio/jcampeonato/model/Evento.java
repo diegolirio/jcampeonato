@@ -63,6 +63,9 @@ public class Evento extends Model {
 		this.jogadoresEscalados = jogadoresEscalados;
 	}
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getId() == ((Evento)obj).getId();
+	}
 	
 }

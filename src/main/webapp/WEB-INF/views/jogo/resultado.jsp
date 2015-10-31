@@ -67,8 +67,8 @@
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.GOL)" class="btn btn-outline btn-info">Adicionar Gol</a>
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.CARTAO_AMARELO)" class="btn btn-outline btn-warning">Cartão Amarelo</a>
 						<a href ng-click="jgResultCtrl.showWindowAddEvento(jgResultCtrl.escalacao, jgResultCtrl.CARTAO_VERMELHO)" class="btn btn-outline btn-danger" onclick="showWindowPopup(this.href, 600, 800); return false;">Cartão Vermelho</a>
-						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-primary" onclick="showWindowPopup(this.href, 600, 800); return false;">Falta</a>
-						<a href="#/escalacao/system/{{jgResultCtrl.jogo.id}}/add/evento/3" class="btn btn-outline btn-info" onclick="showWindowPopup(this.href, 600, 800); return false;"><b class="text-danger">Gol Contra</b></a>
+						<a href class="btn btn-outline btn-primary" onclick="showWindowPopup(this.href, 600, 800); return false;">Falta</a>
+						<a href class="btn btn-outline btn-info" onclick="showWindowPopup(this.href, 600, 800); return false;"><b class="text-danger">Gol Contra</b></a>
 					</div>
 			
 			    	<div ng-show="jgResultCtrl.jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" class="row">
@@ -126,7 +126,7 @@
 										</tbody>								
 									</table>	        
 									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" 
-										href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeA.id}}" class="btn btn-outline btn-warning btn-xs btn-block">
+										href ng-click="jgResultCtrl.showWindowAddJogadorEscalacao(jgResultCtrl.escalacao, jgResultCtrl.jogo.timeA)" class="btn btn-outline btn-warning btn-xs btn-block">
 											adicionar jogador para {{ jgResultCtrl.jogo.timeA.nome }}
 									</a>
 		                    	</div>
@@ -151,7 +151,7 @@
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
 													<div ng-show="usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2) && je.eventos.length > 0 && jgResultCtrl.jogo.status.id == 2">
-														<a href="#/escalacao/jogadorEscalado/{{je.id}}/eventos/delete" > 
+														<a ng-click="jgResultCtrl.showWindowRemoveEvento(je)" > 
 															<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir Gol, Cartão amarelo ou Cartão vermelho" class="pull-right" />
 														</a>
 													</idv>															

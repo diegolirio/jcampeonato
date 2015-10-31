@@ -190,7 +190,7 @@ public class EscalacaoController {
 	 * @param eventoId
 	 * @return HttpStatus
 	 */
-	@RequestMapping(value="/remove/evento{eventoId}/from/jogadorescalado/{jogadorEscaladoId}", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/remove/evento/{eventoId}/from/jogadorescalado/{jogadorEscaladoId}", method=RequestMethod.POST, produces="application/json")
 	public ResponseEntity<String> deleteEventosJogadorEscalado(@PathVariable("jogadorEscaladoId") long jogadorEscaladoId, @PathVariable("eventoId") long eventoId) {
 		Evento evento = this.eventoService.get(Evento.class, eventoId);
 		JogadorEscalado jogadorEscalado = this.jogadorEscaladoService.get(JogadorEscalado.class, jogadorEscaladoId);
@@ -202,8 +202,9 @@ public class EscalacaoController {
 				jogo.setResultadoB(jogo.getResultadoB()-1);
 			this.jogoService.save(jogo);
 		}
-		jogadorEscalado.getEventos().remove(evento);
-		this.jogadorEscaladoService.save(jogadorEscalado);
+		if(jogadorEscalado.getEventos().remove(evento))
+			this.jogadorEscaladoService.save(jogadorEscalado);
+		else return new ResponseEntity<String>("Não foi possivel remover evento", HttpStatus.INTERNAL_SERVER_ERROR);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}		
 	

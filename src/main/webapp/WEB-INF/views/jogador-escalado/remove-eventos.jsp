@@ -2,25 +2,37 @@
 <div ng-controller="JogadorEscaladoRemoveEventoController as jogadorEscRmvEvController">
 
 
-		<h1>
-			Remover evento <span class="text-danger">{{ jogadorEscRmvEvController.jogadorEscalado.jogador.nome }}</span>  
+		<h3 class="text-center">
+			Remover evento <span class="text-danger">
+			<br/>
+			{{ jogadorEscRmvEvController.jogadorEscalado.jogador.nome }}</span>
 			<small> {{ jogadorEscRmvEvController.jogadorEscalado.time.nome }}</small>
-		</h1>
+		</h3>
 		
-		<table class="table">
+		<div class="table-responsive">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<td>Evento</td>
+					<td class="text-info">Evento</td>
 					<td></td>
 				</tr>					
 			</thead>
 			<tbody>
 				<tr ng-repeat="evento in jogadorEscRmvEvController.jogadorEscalado.eventos">
-					<td>{{evento.descricao}}</td>
-					<td></td>
+					<td>
+						<h5>
+							<img src="${pageContext.request.contextPath}/static/core/img/{{evento.imgName}}" alt="{{evento.descricao}}" />
+							{{evento.descricao}}
+						</h5>
+					</td>
+					<td>
+						<a href ng-click="jogadorEscRmvEvController.removeEvento(evento)">
+							<img src="${pageContext.request.contextPath}/static/core/img/lixeira.png" alt="Excluir" title="Excluir {{evento.descricao}}" />
+						</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		
-	</form>
+		</div>
+
 </div>
