@@ -63,7 +63,7 @@
 															<td class="text-center">{{class.golsPro}}</td>
 															<td class="text-center">{{class.golsContra}}</td>
 															<td class="text-center">{{class.golsPro - class.golsContra}}</td>										
-															<td class="text-center"><small>{{class.pontos * 100 / ((class.jogos == 0 ? 1 : class.jogos) * 3)}}</small></td>
+															<td class="text-center"><small>{{ (class.pontos * 100 / ((class.jogos == 0 ? 1 : class.jogos) * 3) | number:2) }}</small></td>
 														</tr>									
 												</tbody>								
 											</table>    
