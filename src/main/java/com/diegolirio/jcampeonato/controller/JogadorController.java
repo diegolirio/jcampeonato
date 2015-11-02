@@ -29,6 +29,22 @@ public class JogadorController {
 	/*
 	 * RestFull
 	 */
+
+	/**
+	 * pega jogador por id
+	 * @param id
+	 * @return jogador JSON
+	 */
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> get(@PathVariable("id") long id) {
+		try {
+			Jogador jogador = this.jogadorService.get(Jogador.class, id);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogador), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	/**
 	 * pega lista de jogadores por time

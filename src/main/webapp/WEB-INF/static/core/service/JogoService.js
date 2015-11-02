@@ -29,6 +29,13 @@ app.factory('JogoService', ['$http', function($http) {
 	};
 	
 	/**
+	 * pega lista de jogos em que jogador marcou gols
+	 */
+	var _getListJogadorWithGols = function(jogador) {
+		return $http.get(serverURL('/get/list/jogador/'+jogador.id+'/with/gols'));
+	};
+	
+	/**
 	 * Salvar Jogo
 	 */
 	var _save = function(jogo) {
@@ -64,6 +71,8 @@ app.factory('JogoService', ['$http', function($http) {
 		get : _get,
 		
 		getListByTime : _getListByTime,
+
+		getListJogadorWithGols : _getListJogadorWithGols,
 		
 		save : _save,
 		

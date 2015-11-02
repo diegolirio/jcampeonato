@@ -114,7 +114,7 @@
 												<td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
 													 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
-													 <a href="${pageContext.request.contextPath}/jogador/{{je.jogador.id}}/edicao/{{jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
+													 <a href="#/jogadorinfo/jogador/{{je.jogador.id}}/edicao/{{jgResultCtrl.jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
 												</td>
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />
@@ -147,7 +147,7 @@
 											    <td><img alt="foto" src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
 													 <img src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
-													 <a href="#/jogador/{{je.jogador.id}}/edicao/{{jgResultCtrl.jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
+													 <a href="#/jogadorinfo/jogador/{{je.jogador.id}}/edicao/{{jgResultCtrl.jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
 												</td>
 												<td> 
 													<img ng-repeat="e in je.eventos" src="${pageContext.request.contextPath}/static/core/img/{{e.imgName}}" alt="{{e.descricao}}" />

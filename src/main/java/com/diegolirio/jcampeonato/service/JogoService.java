@@ -17,6 +17,7 @@ import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Escalacao;
 import com.diegolirio.jcampeonato.model.Evento;
 import com.diegolirio.jcampeonato.model.Grupo;
+import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
@@ -247,6 +248,10 @@ public class JogoService extends AbstractGenericService<Jogo> {
 
 	public List<Jogo> getListByTime(Time time) {
 		return this.jogoDao.getListByTime(time);
+	}
+
+	public List<Jogo> getListJogadorWithGols(Jogador jogador) {
+		return this.jogoDao.getListJogadorWithGols(jogador);
 	}	
 
 	

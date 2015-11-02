@@ -35,6 +35,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		.when('/escalacao/:escalacaoId/add/evento/:eventoId', { templateUrl: SERVER_APP + '/escalacao/add/evento'})
 		// JogadorInfo
 		.when('/jogadorinfo/artilharia/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogadorinfoedicao/artilharia' })
+		.when('/jogadorinfo/jogador/:jogadorId/edicao/:edicaoId', { templateUrl: SERVER_APP + '/jogadorinfoedicao/page' })
 		// JogadorEscalado
 		.when('/jogadorescalado/:jogadorEscaladoId/remove/eventos',           { templateUrl: SERVER_APP + '/jogadorescalado/remove/eventos' })
 		.when('/jogadorescalado/save/by/escalacao/:escalacaoId/time/:timeId', { templateUrl: SERVER_APP + '/jogadorescalado/form/popup' })

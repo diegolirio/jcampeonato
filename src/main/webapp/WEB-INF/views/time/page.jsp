@@ -40,7 +40,7 @@
 											<li>{{timePageCtrl.classificacao.golsPro}} Gols Pró</li>
 											<li>{{timePageCtrl.classificacao.golsContra}} Gols Contra</li>
 											<li>{{timePageCtrl.classificacao.golsPro - timePageCtrl.classificacao.golsContra}} Saldo de Gols</li>
-											<li>{{timePageCtrl.classificacao.pontos * 100 / ((timePageCtrl.classificacao.jogos == 0 ? 1 : timePageCtrl.classificacao.jogos) * 3) }} % de aproveitamento</li>							
+											<li>{{ ( timePageCtrl.classificacao.pontos * 100 / ((timePageCtrl.classificacao.jogos == 0 ? 1 : timePageCtrl.classificacao.jogos) * 3) ) | number:2 }} % de aproveitamento</li>							
 										</ul>
 									</div>
 								</div>                           
@@ -73,9 +73,9 @@
 									<tbody>
 										<tr ng-repeat="jogador in timePageCtrl.jogadores | filter: time.id">
 											<td class="text-muted"><img alt="foto" src="{{jogador.uriFoto}}" class="img-responsive img-circle" height="30" width="30"/> </td>
-											<td><img src="${pageContext.request.contextPath}/static/quartashow/img/{{jogador.posicao.imgName}}" alt="{{jogador.posicao.descricao}}"/></td>
+											<td><img src="${pageContext.request.contextPath}/static/core/img/{{jogador.posicao.imgName}}" alt="{{jogador.posicao.descricao}}"/></td>
 											<td>
-												<h5><a href="${pageContext.request.contextPath}/jogador/{{jogador.id}}/edicao/{{ timePageCtrl.edicao != null ? timePageCtrl.edicao.id : 0}}"> {{ jogador.nome }} </a></h5>
+												<h5><a href="#/jogadorinfo/jogador/{{jogador.id}}/edicao/{{ timePageCtrl.edicao != null ? timePageCtrl.edicao.id : 0}}"> {{ jogador.nome }} </a></h5>
 											</td>
 											<td></td> 
 										</tr>

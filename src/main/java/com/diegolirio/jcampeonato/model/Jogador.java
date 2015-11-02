@@ -37,11 +37,16 @@ public class Jogador extends Model {
 	private String uriFoto = "/jcampeonato/static/core/img/jogador_no_photo.png";
 
 	public Jogador() {}
+
+	public Jogador(long id) {
+		this.id = id;
+	}
 	
 	public Jogador(long id, String nome) {
-		this.id = id;
+		this(id);
 		this.nome = nome;
 	}
+
 
 	public long getId() {
 		return id;

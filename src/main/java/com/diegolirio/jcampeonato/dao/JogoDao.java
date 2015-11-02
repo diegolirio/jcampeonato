@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.diegolirio.jcampeonato.model.Grupo;
+import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Jogo;
 import com.diegolirio.jcampeonato.model.Time;
 
@@ -30,6 +31,12 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 		return super.manager.createQuery("Select j from Jogo j where j.timeA.id = :timeAId or j.timeB.id = :timeBId", Jogo.class)
 				         	.setParameter("timeAId", time.getId())
 				         	.setParameter("timeBId", time.getId())
+				         	.getResultList();
+	}
+
+	public List<Jogo> getListJogadorWithGols(Jogador jogador) {
+		return super.manager.createQuery("Select distinct j from Escalacao e JOIN e.jogo j JOIN e.jogadoresEscalados je JOIN je.eventos ev where ev.id = 1 and je.jogador.id = :jogadorId", Jogo.class)
+				         	.setParameter("jogadorId", jogador.getId())
 				         	.getResultList();
 	}
 

@@ -11,6 +11,13 @@ app.factory('JogadorService', ['$http', function($http) {
 	};
 	
 	/**
+	 * pega jogador pelo id
+	 */
+	var _get = function(id) {
+		return $http.get(_serverURL('/get/'+id));
+	};
+	
+	/**
 	 * busca lista de jogadores por time
 	 */
 	var _getListByTime = function(time) {
@@ -40,6 +47,8 @@ app.factory('JogadorService', ['$http', function($http) {
 	};
 	
 	return {
+
+		get : _get, 
 		
 		getListByTime : _getListByTime,
 

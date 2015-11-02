@@ -44,4 +44,21 @@ public class JogadorInfoEdicaoDao extends AbstractGenericDao<JogadorInfoEdicao> 
 		return query.getResultList();
 	}
 
+	/**
+	 * pega jogadorInfoEdicao por edicao e jogador
+	 * @param edicao
+	 * @param jogador
+	 * @return
+	 */
+	public JogadorInfoEdicao getByEdicaoAndJogador(Edicao edicao, Jogador jogador) {
+		try {
+			return super.manager.createQuery("Select jie from JogadorInfoEdicao jie where jie.edicao = :edicao and jie.jogador = :jogador", JogadorInfoEdicao.class)
+					        	.setParameter("edicao", edicao)
+					        	.setParameter("jogador", jogador)
+					        	.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		}
+	}
+
 }

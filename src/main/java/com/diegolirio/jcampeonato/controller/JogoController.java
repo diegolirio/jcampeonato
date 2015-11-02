@@ -19,6 +19,7 @@ import com.diegolirio.jcampeonato.model.ClassificacaoHist;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Escalacao;
 import com.diegolirio.jcampeonato.model.Evento;
+import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
@@ -121,6 +122,22 @@ public class JogoController {
 	public ResponseEntity<String> getListByTime(@PathVariable("timeId") long timeId) {
 		try {
 			List<Jogo> jogos = this.jogoService.getListByTime(new Time(timeId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogos), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}	
+	
+	/**
+	 * pega lista de jogos em que jogador marcou gols
+	 * @param jogadorId
+	 * @return jogos JSON
+	 */
+	@RequestMapping(value="/get/list/jogador/{jogadorId}/with/gols", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListJogadorWithGols(@PathVariable("jogadorId") long jogadorId) {
+		try {
+			List<Jogo> jogos = this.jogoService.getListJogadorWithGols(new Jogador(jogadorId));
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogos), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
