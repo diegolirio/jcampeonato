@@ -1,4 +1,10 @@
 
+		<script>
+			$(function() {
+				$( ".datepicker" ).datepicker({ format: 'dd/mm/yyyy', language: 'pt-BR'});  
+			}); 
+		</script>
+
          <aside class="right-side" ng-controller="JogoFormController as jgFormCtrl">
              
              <jsp:include page="_harbito-modal-form.jsp"></jsp:include>
@@ -68,7 +74,7 @@
 
 							<div class="form-group col-lg-2">
 								<label>Data e Hora </label>
-								<input class="form-control datepicker" type="text" ng-model="jgFormCtrl.jogo.dataHora">
+								<input class="form-control datepicker" maxlength="10" placeholder="dd/mm/aaaa" type="text" ng-model="jgFormCtrl.jogo.dataHora">
 							</div>
 
 							<div class="form-group col-lg-5">
@@ -136,3 +142,4 @@
 		     </section>
 	
 		</aside>
+		

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Campeonato;
+import com.diegolirio.jcampeonato.model.Escalacao;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Time;
 import com.diegolirio.jcampeonato.service.JogadorService;
@@ -54,6 +55,22 @@ public class JogadorController {
 	public ResponseEntity<String> getListByCampeonato(@PathVariable("campeonatoId") long campeonatoId) {
 		try {
 			List<Jogador> jogadores = this.jogadorService.getListByCampeonato(new Campeonato(campeonatoId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadores), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * pega lista de jogadores nao escalados
+	 * @param timeId
+	 * @return lista de jogadores nao escalados
+	 */
+	@RequestMapping(value="/get/list/not/escalacao/{escalacaoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListNotEscalacao(@PathVariable("escalacaoId") long escalacaoId) {
+		try {
+			List<Jogador> jogadores = this.jogadorService.getListNotEscalacao(new Escalacao(escalacaoId));
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadores), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();

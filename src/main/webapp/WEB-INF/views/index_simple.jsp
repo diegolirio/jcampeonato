@@ -51,6 +51,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorEscaladoRemoveEventoController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorEscaladoFormPopupController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 		
         <!-- jQuery 2.0.2 -->

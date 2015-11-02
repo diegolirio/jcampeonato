@@ -18,6 +18,13 @@ app.factory('JogadorService', ['$http', function($http) {
 	};
 	
 	/**
+	 * pega lista de jogadores que nao estao escalados
+	 */
+	var _getListNotEscalacao = function(escalacao) {
+		return $http.get(_serverURL('/get/list/not/escalacao/'+escalacao.id));
+	};
+	
+	/**
 	 * busca lista de jogadores por campeonato
 	 * passando o campeonato no corpo da requisicao
 	 */
@@ -35,6 +42,8 @@ app.factory('JogadorService', ['$http', function($http) {
 	return {
 		
 		getListByTime : _getListByTime,
+
+		getListNotEscalacao : _getListNotEscalacao,
 		
 		getListByCampeonato : _getListByCampeonato, 
 		

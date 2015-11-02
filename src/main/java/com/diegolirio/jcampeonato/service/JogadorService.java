@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.JogadorDao;
 import com.diegolirio.jcampeonato.model.Campeonato;
+import com.diegolirio.jcampeonato.model.Escalacao;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Time;
 
@@ -23,6 +24,10 @@ public class JogadorService extends AbstractGenericService<Jogador> {
 
 	public List<Jogador> getListByCampeonato(Campeonato campeonato) {
 		return this.jogadorDao.getListByCampeonato(campeonato);
+	}
+
+	public List<Jogador> getListNotEscalacao(Escalacao escalacao) {
+		return this.jogadorDao.getListNotEscalacao(escalacao);
 	}
 
 }

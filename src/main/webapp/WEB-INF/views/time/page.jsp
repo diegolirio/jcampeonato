@@ -96,11 +96,64 @@
 					</div>
 				</div>
 				
-<!-- 				<div class="row"> -->
-<%-- 					<c:if test="${not empty edicao}"> --%>
-<%-- 						<jsp:include page="jogo-list.jsp"></jsp:include> --%>
-<!-- 					</c:if>	 -->
-<!-- 				</div>		 -->
+				<div class="row">
+					
+					
+						      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in timePageCtrl.jogos">   
+						      	
+						      		<div class="table-responsive">
+						      			<a href="#/jogo/{{jogo.id}}/resultado">
+						        		<table class="table well text-center">
+						        			<thead>
+						        				<tr>
+						        					<td colspan="5" class="text-muted">
+						        						<small> 
+						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
+						        						</small>
+												    		<a href="#/jogo/{{jogo.id}}/novo/edicao/{{timePageCtrl.edicao.id}}" 
+												    		   ng-show="jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && (timePageCtrl.usuarioPerfilCampeonato.perfil.id == 1 || timePageCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
+												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
+												   			</a>    
+						        						
+						        					</td>
+						        				</tr>
+						        			</thead>
+						        			<tbody >
+						        				<tr>
+						        					<td>
+						        						<h4 class="text-info">{{ jogo.timeA.nome }}</h4>
+						        					</td>
+						        					<td>
+					        							<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoA }}</h4>
+													</td>	
+													<td><h4 class="text-muted">X</h4></td>
+													<td>				
+								        				<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoB }}</h4>
+									        		</td>
+									        		<td>
+									        			<h4 class="text-info">{{ jogo.timeB.nome }}</h4>
+									        		</td>											        					
+						        				</tr>
+						        			</tbody>
+						        			<tfoot>
+						        				<tr>
+						        					<td colspan="3">
+						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/core/img/{{jogo.status.imgName}}"/> ( {{ jogo.status.descricao }} )</span></small>
+													</td>
+													<td colspan="2">
+														<small>{{ jogo.local.descricao }}</small>
+													</td>
+						        				</tr>
+						        		</table>
+						        	    </a>
+						            </div>   
+						      		
+						      		<br/>
+					      </div>        
+						
+					
+					
+				</div>		
 					
 	
 		     </section>

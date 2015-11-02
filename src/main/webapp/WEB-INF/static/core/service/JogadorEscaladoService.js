@@ -21,11 +21,20 @@ app.factory('JogadorEscaladoService', ['$http', function($http) {
 		return $http.post(_serverURL('/delete/'+id));
 	};
 	
+	/**
+	 * salvar jogador escalado
+	 */
+	var _save = function(jogadorEscalado) {
+		return $http.post(_serverURL('/save'), jogadorEscalado);
+	};
+	
 	return {
 		
 		get : _get, 
 		
-		deleteJogadorEscalado : _deleteJogadorEscalado
+		deleteJogadorEscalado : _deleteJogadorEscalado,
+		
+		save : _save
 		
 	};
 	

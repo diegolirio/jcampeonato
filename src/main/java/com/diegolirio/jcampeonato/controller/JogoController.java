@@ -23,6 +23,7 @@ import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
 import com.diegolirio.jcampeonato.model.Status;
+import com.diegolirio.jcampeonato.model.Time;
 import com.diegolirio.jcampeonato.service.ClassificacaoHistService;
 import com.diegolirio.jcampeonato.service.ClassificacaoService;
 import com.diegolirio.jcampeonato.service.EscalacaoService;
@@ -110,6 +111,22 @@ public class JogoController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	/**
+	 * pega lista de jogos por time
+	 * @param time
+	 * @return jogos JSON
+	 */
+	@RequestMapping(value="/get/list/by/time/{timeId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListByTime(@PathVariable("timeId") long timeId) {
+		try {
+			List<Jogo> jogos = this.jogoService.getListByTime(new Time(timeId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogos), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}	
 	
 	/**
 	 * Salva Jogo

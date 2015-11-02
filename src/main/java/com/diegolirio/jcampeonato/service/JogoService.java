@@ -21,6 +21,7 @@ import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
 import com.diegolirio.jcampeonato.model.Status;
+import com.diegolirio.jcampeonato.model.Time;
 
 @Service("jogoService")
 public class JogoService extends AbstractGenericService<Jogo> {
@@ -242,6 +243,10 @@ public class JogoService extends AbstractGenericService<Jogo> {
 			}
 		}
 		return true;
+	}
+
+	public List<Jogo> getListByTime(Time time) {
+		return this.jogoDao.getListByTime(time);
 	}	
 
 	

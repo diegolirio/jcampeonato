@@ -26,6 +26,11 @@
 
         <link href="${pageContext.request.contextPath}/static/core/css/spinner.css" rel="stylesheet" type="text/css" />
 
+ 		<!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+       
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -96,10 +101,6 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 
-        <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <!-- jQuery UI 1.10.3 -->
-        <script src="${pageContext.request.contextPath}/static/adminlte-master/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -130,11 +131,6 @@
         <!-- AdminLTE for demo purposes -->
         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/AdminLTE/demo.js" type="text/javascript"></script>
 
-		<script>
-			$(function() {
-				$( ".datepicker" ).datepicker({ format: 'dd/mm/yyyy', language: 'pt-BR'});  
-			}); 
-		</script>
 
     </body>
 </html>

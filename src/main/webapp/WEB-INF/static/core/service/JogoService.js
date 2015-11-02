@@ -20,6 +20,13 @@ app.factory('JogoService', ['$http', function($http) {
 	var _get = function(id) {
 		return $http.get(serverURL('/get/'+id)); 
 	};
+
+	/**
+	 * busca lista de jogos por time
+	 */
+	var _getListByTime = function(time) {
+		return $http.get(serverURL('/get/list/by/time/'+time.id));
+	};
 	
 	/**
 	 * Salvar Jogo
@@ -55,6 +62,8 @@ app.factory('JogoService', ['$http', function($http) {
 		getListaPorEdicao : _getListaPorEdicao,
 		
 		get : _get,
+		
+		getListByTime : _getListByTime,
 		
 		save : _save,
 		

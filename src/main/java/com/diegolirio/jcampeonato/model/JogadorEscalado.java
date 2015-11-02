@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
 public class JogadorEscalado extends Model {
@@ -17,7 +17,7 @@ public class JogadorEscalado extends Model {
 	@Id @GeneratedValue
 	private long id;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	private Escalacao escalacao;
 	

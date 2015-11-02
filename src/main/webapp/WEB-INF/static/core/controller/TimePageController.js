@@ -2,9 +2,9 @@
  * TimePageController ( view/time/page.jsp )
  */
 app.controller('TimePageController', ['$scope', '$routeParams', 'TimeService', 'EdicaoService', 'ClassificacaoService', 'JogadorService',
-                                      'UsuarioPerfilCampeonatoService',
+                                      'UsuarioPerfilCampeonatoService', 'JogoService',
                                       function($scope, $routeParams, TimeService, EdicaoService, ClassificacaoService, JogadorService,
-                                       UsuarioPerfilCampeonatoService) {
+                                       UsuarioPerfilCampeonatoService, JogoService) {
 	
 	var self = this;
 	
@@ -28,6 +28,13 @@ app.controller('TimePageController', ['$scope', '$routeParams', 'TimeService', '
 				// busca lista de jogadores por time
 				JogadorService.getListByTime(timeResp.data).then(function(resp) {
 					self.jogadores = resp.data;
+				});
+				return timeResp;
+			}).then(function(timeResp) {
+				JogoService.getListByTime(timeResp.data).then(function(resp) {
+					self.jogos = resp.data;
+				}, function(error) {
+					alert(error.data);
 				});
 				return timeResp;
 			}).then(function(timeResp) {

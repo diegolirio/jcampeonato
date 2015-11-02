@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.diegolirio.jcampeonato.model.Grupo;
 import com.diegolirio.jcampeonato.model.Jogo;
+import com.diegolirio.jcampeonato.model.Time;
 
 @Repository("jogoDao")
 public class JogoDao extends AbstractGenericDao<Jogo> {
@@ -18,6 +19,18 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 		query.setParameter("grupo", grupo);
 		query.setParameter("rodada", rodada);
 		return query.getResultList();
+	}
+
+	/**
+	 * pega lista de jogos por time
+	 * @param time
+	 * @return lista de jogos
+	 */
+	public List<Jogo> getListByTime(Time time) {
+		return super.manager.createQuery("Select j from Jogo j where j.timeA.id = :timeAId or j.timeB.id = :timeBId", Jogo.class)
+				         	.setParameter("timeAId", time.getId())
+				         	.setParameter("timeBId", time.getId())
+				         	.getResultList();
 	}
 
 }

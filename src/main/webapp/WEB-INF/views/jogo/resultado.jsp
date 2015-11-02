@@ -3,14 +3,15 @@
             
              <!-- Content Header (Page header) -->
              <section class="content-header">
-                 <h1>
-                     Edições 
-                     <small>Pendentes</small>
-                 </h1>
-                 <ol class="breadcrumb">
-                     <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
-                     <li class="active">{{ jgResultCtrl.edicao.campeonato.descricao }} {{ jgResultCtrl.edicao.descricao }}</li>
-                 </ol>
+                 
+				    <h1 class="page-header text-success visible-lg visible-md visible-sm">		
+						{{ jgResultCtrl.jogo.grupo.edicao.campeonato.descricao }} {{ jgResultCtrl.jogo.grupo.edicao.descricao }}
+					</h1>
+					
+					<h3 class="page-header text-success visible-xs">		
+						{{ jgResultCtrl.jogo.grupo.edicao.campeonato.descricao }} {{ jgResultCtrl.jogo.grupo.edicao.descricao }}		     	
+					</h3>	
+                 
              </section>
 
              <!-- Main content -->
@@ -159,8 +160,9 @@
 											</tr>
 										</tbody>								
 									</table>
-									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" href="#/escalacao/{{jgResultCtrl.escalacao.id}}/add/jogador/time/{{jgResultCtrl.jogo.timeB.id}}" class="btn btn-outline btn-warning btn-xs btn-block" id="id_add_jogador_escalado_timeB" onclick="showWindowPopup(this.href, 400, 600); return false;">
-										adicionar jogador para {{ jgResultCtrl.jogo.timeA.nome }}
+									<a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" href 
+									   class="btn btn-outline btn-warning btn-xs btn-block" ng-click="jgResultCtrl.showWindowAddJogadorEscalacao(jgResultCtrl.escalacao, jgResultCtrl.jogo.timeB)">
+										adicionar jogador para {{ jgResultCtrl.jogo.timeB.nome }}
 									</a>
 		                    	</div>
 

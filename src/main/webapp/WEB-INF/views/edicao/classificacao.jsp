@@ -1,18 +1,6 @@
 
          <aside class="right-side" ng-controller="EdicaoClassificacaoController as edicaoCLassCtrl">
             
-             <!-- Content Header (Page header) -->
-             <section class="content-header">
-                 <h1>
-                     Edições 
-                     <small>Pendentes</small>
-                 </h1>
-                 <ol class="breadcrumb">
-                     <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
-                     <li class="active">{{ edicaoCLassCtrl.edicao.campeonato.descricao }} {{ edicaoCLassCtrl.edicao.descricao }}</li>
-                 </ol>
-             </section>
-
              <!-- Main content -->
              <section class="content">
 
