@@ -1,7 +1,7 @@
 /**
- * JogadorInfoArtilhariaController
+ * JogadorInfoJogadoresController
  */
-app.controller('JogadorInfoArtilhariaController', ['$rootScope', '$routeParams', 'EdicaoService', 'JogadorInfoEdicaoService',
+app.controller('JogadorInfoJogadoresController', ['$rootScope', '$routeParams', 'EdicaoService', 'JogadorInfoEdicaoService',
                                                    function($rootScope, $routeParams, EdicaoService, JogadorInfoEdicaoService) {
 	
 	var self = this;
@@ -12,7 +12,7 @@ app.controller('JogadorInfoArtilhariaController', ['$rootScope', '$routeParams',
 			$rootScope.edicao = self.edicao;
 			return resp;
 		}).then(function(edicaoResp) {
-			JogadorInfoEdicaoService.getByEdicaoArtilharia(edicaoResp.data).then(function(resp) {
+			JogadorInfoEdicaoService.getByEdicao(edicaoResp.data).then(function(resp) {
 				self.jogadoresInfoEdicao = resp.data;
 			}, function(error) {
 				alert(error.data);

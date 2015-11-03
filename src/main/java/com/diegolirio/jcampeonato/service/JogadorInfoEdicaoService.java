@@ -24,4 +24,8 @@ public class JogadorInfoEdicaoService extends AbstractGenericService<JogadorInfo
 		return this.jogadorInfoEdicaoDao.getByEdicaoAndJogador(edicao, jogador);
 	}
 
+	public List<JogadorInfoEdicao> getByEdicaoArtilharia(Edicao edicao) {
+		return this.jogadorInfoEdicaoDao.getByEdicaoArtilharia(edicao);
+	}
+
 }

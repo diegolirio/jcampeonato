@@ -11,6 +11,10 @@ app.factory('JogadorInfoEdicaoService', ['$http', function($http) {
 		return $http.get(_serverURL('/get/by/edicao/'+edicao.id));
 	};
 	
+	var _getByEdicaoArtilharia = function(edicao) {
+		return $http.get(_serverURL('/get/by/edicao/'+edicao.id+'/artilharia'));
+	};
+	
 	var _getByEdicaoAndJogador = function(edicao, jogador) {
 		return $http.get(_serverURL('/get/by/edicao/'+edicao.id+'/jogador/'+jogador.id));
 	};
@@ -18,6 +22,8 @@ app.factory('JogadorInfoEdicaoService', ['$http', function($http) {
 	return {
 		
 		getByEdicao : _getByEdicao,
+		
+		getByEdicaoArtilharia : _getByEdicaoArtilharia,
 		
 		getByEdicaoAndJogador : _getByEdicaoAndJogador
 		

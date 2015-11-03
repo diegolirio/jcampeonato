@@ -49,11 +49,11 @@
 <!--                                 <i class="fa fa-star-o"></i> <span>Times</span> -->
 <!--                             </a> -->
 <!--                         </li> -->
-<!--                         <li ng-hide="edicao == null"> -->
-<!--                             <a href > -->
-<!--                                 <i class="fa fa-group"></i> <span>Jogadores</span> -->
-<!--                             </a> -->
-<!--                         </li> -->
+                        <li ng-hide="edicao == null">
+                            <a href="#/jogadorinfo/jogadores/edicao/{{edicao.id}}" >
+                                <i class="fa fa-group"></i> <span>Jogadores</span>
+                            </a>
+                        </li>
 <!--                         <li ng-hide="edicao == null"> -->
 <!--                             <a href > -->
 <!--                                 <i class="fa fa-bar-chart-o"></i> <span>Graficos</span> -->
@@ -84,11 +84,11 @@
 <!--                                 <i class="fa fa-star-o"></i> <span>Times</span> -->
 <!--                             </a> -->
 <!--                         </li> -->
-<!--                         <li ng-hide="edicao == null"> -->
-<!--                             <a href > -->
-<!--                                 <i class="fa fa-group"></i> <span>Jogadores</span> -->
-<!--                             </a> -->
-<!--                         </li> -->
+                        <li ng-hide="edicao == null">
+                            <a href="#/jogadorinfo/jogadores/edicao/{{edicao.id}}" >
+                                <i class="fa fa-group"></i> <span>Jogadores</span>
+                            </a>
+                        </li>
 <!--                         <li ng-hide="edicao == null"> -->
 <!--                             <a href > -->
 <!--                                 <i class="fa fa-bar-chart-o"></i> <span>Graficos</span> -->

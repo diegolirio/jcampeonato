@@ -40,6 +40,12 @@ public class JogadorInfoEdicaoController {
 		return "jogador-info/artilharia";
 	}
 
+	@RequestMapping(value="/jogadores")
+	public String pageJogadores() {
+		return "jogador-info/jogadores";
+	}
+	
+	
 	@RequestMapping(value="/page")
 	public String pageInfo() {
 		return "jogador-info/page";
@@ -66,6 +72,24 @@ public class JogadorInfoEdicaoController {
 		}
 	}
 
+	/**
+	 * pega lista de jogadorInfoEdicao (artilharia)
+	 * @param edicaoId
+	 * @return lista jogadorInfoEdicao JSON
+	 */
+	@RequestMapping(value="/get/by/edicao/{edicaoId}/artilharia", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListByEdicaoArtilharia(@PathVariable("edicaoId") long edicaoId) {
+		try {
+			Edicao edicao = this.edicaoService.get(Edicao.class, edicaoId);
+			List<JogadorInfoEdicao> jogadoresInfoEdicao = this.jogadorInfoEdicaoService.getByEdicaoArtilharia(edicao);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadoresInfoEdicao), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	
 	/**
 	 * pega jogadorInfoEdicao por edicao e jogador
 	 * @param edicaoId
