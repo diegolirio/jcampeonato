@@ -52,7 +52,7 @@
 
 							<div class="form-group col-lg-1">
 								<label><small>Rodada</small> </label> 
-								<input class="form-control" type="text" ng-model="jgFormCtrl.jogo.rodada">
+								<input class="form-control" type="number" ng-model="jgFormCtrl.jogo.rodada">
 							</div>
 
 							<div class="form-group col-lg-3">

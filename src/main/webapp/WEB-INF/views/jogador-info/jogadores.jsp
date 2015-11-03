@@ -43,7 +43,7 @@
 													<td><small>{{ jie.jogador.id }}</small></td>
 													<td>
 														<a href="#/jogadorinfo/jogador/{{ jie.jogador.id }}/edicao/{{ jie.edicao.id }}" title="{{jie.jogador.nome}}">
-															<img src="{{jie.jogador.uriFoto}}" class="img-circle" height="30" width="30"/> 
+															<img ng-src="{{jie.jogador.uriFoto}}" class="img-circle" height="30" width="30"/> 
 															{{ jie.jogador.nome }}
 														</a>
 													</td>

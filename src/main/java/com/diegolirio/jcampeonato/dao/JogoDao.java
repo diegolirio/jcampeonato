@@ -2,10 +2,12 @@ package com.diegolirio.jcampeonato.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Grupo;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.Jogo;
@@ -38,6 +40,23 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 		return super.manager.createQuery("Select distinct j from Escalacao e JOIN e.jogo j JOIN e.jogadoresEscalados je JOIN je.eventos ev where ev.id = 1 and je.jogador.id = :jogadorId", Jogo.class)
 				         	.setParameter("jogadorId", jogador.getId())
 				         	.getResultList();
+	}
+
+	/**
+	 * pega ultima rodada 
+	 * @param edicao
+	 * @return int (rodada)
+	 */
+	public int getLastRodadaByEdicao(Edicao edicao) {
+		try {
+			TypedQuery<Integer> query = super.manager.createQuery("select Max(j.rodada) from Jogo j where j.grupo.edicao.id = :edicaoId", Integer.class);
+			query.setParameter("edicaoId", edicao.getId());
+			return query.getSingleResult();
+		} catch(NoResultException e) {
+			return 1;
+		} catch (NullPointerException e) {
+			return 1;
+		}
 	}
 
 }

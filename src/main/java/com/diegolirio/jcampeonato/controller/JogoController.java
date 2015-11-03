@@ -146,6 +146,22 @@ public class JogoController {
 	}	
 	
 	/**
+	 * pega ultima rodada de jogos por edicao
+	 * @param edicaoId
+	 * @return rodada (int) JSON
+	 */
+	@RequestMapping(value="/get/last/rodada/by/edicao/{edicaoId}", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getLastRodadaByEdicao(@PathVariable("edicaoId") long edicaoId) {
+		try {
+			int ultimaRodada = this.jogoService.getLastRodadaByEdicao(new Edicao(edicaoId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(ultimaRodada ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	/**
 	 * Salva Jogo
 	 * @param jogo
 	 * @return

@@ -98,7 +98,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimeFormController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController-1.0.0.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoJogadoresController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoPageController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->

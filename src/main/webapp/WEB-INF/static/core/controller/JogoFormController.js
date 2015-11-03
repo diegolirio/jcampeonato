@@ -127,6 +127,14 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 					alert(error.data);
 				});			
 				return respEdicao;
+			}).then(function(edicaoResp) {
+				JogoService.getLastRodadaByEdicao(edicaoResp.data).then(function(resp) {
+					self.jogo = {}; 
+					self.jogo.rodada = resp.data;
+				}, function(error) {
+					alert(error.data);
+				});
+				return edicaoResp;
 			}).then(function(respEdicao) {
 				JogoService.getListaPorEdicao(respEdicao.data).then(function(resp) {
 					self.jogos = resp.data;
