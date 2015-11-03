@@ -45,7 +45,7 @@
 												<tr ng-repeat="jie in jogadorInfoArtilhariaCtrl.jogadoresInfoEdicao | filter: edicao.id" {{ $index == 0 ? "style='font-size:25px;'" : '' }} >  
 													<td>
 														<a href="#/jogadorinfo/jogador/{{ jie.jogador.id }}/edicao/{{ jie.edicao.id }}" title="{{jie.jogador.nome}}">
-															<img src="{{jie.jogador.uriFoto}}" class="img-circle" height="{{ $index == 0 ? 50 : 30 }}" width="{{ $index == 0 ? 50 : 30 }}"/> 
+															<img ng-src="{{jie.jogador.uriFoto}}" class="img-circle" height="{{ $index == 0 ? 50 : 30 }}" width="{{ $index == 0 ? 50 : 30 }}"/> 
 															{{ jie.jogador.nome }}
 														</a>
 													</td>
