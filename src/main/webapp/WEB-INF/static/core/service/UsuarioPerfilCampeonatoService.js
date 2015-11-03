@@ -1,5 +1,5 @@
 /**
- * 
+ * UsuarioPerfilCampeonatoService
  */
 app.factory('UsuarioPerfilCampeonatoService', ['$http', function($http) {
 	
@@ -14,8 +14,17 @@ app.factory('UsuarioPerfilCampeonatoService', ['$http', function($http) {
 		return $http.get(_serverURL('/get/by/usuario/'+usuario.id+'/and/campeonato/'+campeonato.id));
 	};
 	
+	/**
+	 * pega lista por usuario
+	 */
+	var _getListByUsuario = function(usuario) {
+		return $http.get(_serverURL('/get/list/by/usuario/'+usuario.id));
+	};
+	
 	return {
-		getByUsuarioAndCampeonato : _getByUsuarioAndCampeonato 
+		getByUsuarioAndCampeonato : _getByUsuarioAndCampeonato,
+		
+		getListByUsuario : _getListByUsuario
 	};
 	
 }]);

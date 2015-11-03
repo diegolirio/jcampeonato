@@ -34,5 +34,4 @@ public class CampeonatoDao extends AbstractGenericDao<Campeonato> {
 	}
 
 	
-	
 }

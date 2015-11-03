@@ -1,9 +1,15 @@
 package com.diegolirio.jcampeonato.model;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Usuario extends Model {
@@ -18,6 +24,10 @@ public class Usuario extends Model {
 
 	private String senha;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Calendar dataCadastro;	
+	
 	public Usuario() {}
 
 	public Usuario(long id) {
@@ -54,6 +64,14 @@ public class Usuario extends Model {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Calendar getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Calendar dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 	
 	

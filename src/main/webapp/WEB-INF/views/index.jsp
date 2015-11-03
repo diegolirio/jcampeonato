@@ -101,6 +101,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoJogadoresController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoPageController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoListController.js"></script>
 		<!-- ########################## End AngularJS ####################################################################### -->
 
         <!-- Bootstrap -->

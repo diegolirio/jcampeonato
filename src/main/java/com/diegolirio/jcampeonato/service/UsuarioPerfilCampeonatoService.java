@@ -1,5 +1,7 @@
 package com.diegolirio.jcampeonato.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,10 @@ public class UsuarioPerfilCampeonatoService extends AbstractGenericService<Usuar
 
 	public UsuarioPerfilCampeonato getByUsuarioAndCampeonato(Usuario usuario, Campeonato campeonato) {
 		return this.usuarioPerfilCampeonatoDao.getByUsuarioAndCampeonato(usuario, campeonato);
+	}
+
+	public List<Campeonato> getListByUsuario(Usuario usuario) {
+		return this.usuarioPerfilCampeonatoDao.getListByUsuario(usuario); 
 	}
 
 }

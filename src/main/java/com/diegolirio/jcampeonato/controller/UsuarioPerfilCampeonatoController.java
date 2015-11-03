@@ -1,5 +1,7 @@
 package com.diegolirio.jcampeonato.controller;
 
+import java.util.List;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,5 +44,21 @@ public class UsuarioPerfilCampeonatoController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	/**
+	 * pega lista de campeonatos por usuario
+	 * @param usuarioId
+	 * @return lista campeonato
+	 */
+	@RequestMapping(value="/get/list/by/usuario/adm/{usuarioId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListByUsuarioA(@PathVariable("usuarioId") long usuarioId) {
+		try {
+			List<Campeonato> campeonatos = this.usuarioPerfilCampeonatoService.getListByUsuario(new Usuario(usuarioId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(campeonatos ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}		
 	
 }

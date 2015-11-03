@@ -34,8 +34,8 @@
                                 <li class="user-header bg-light-blue">
                                     <img src="${pageContext.request.contextPath}/static/adminlte-master/img/avatar-215x215.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{usuarioLoginCtrl.usuarioLogado.nome}} - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        {{usuarioLoginCtrl.usuarioLogado.nome}}
+                                        <small>Membro desde {{usuarioLoginCtrl.usuarioLogado.dataCadastro.time}}</small> 
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -44,7 +44,7 @@
 <!--                                         <a href="#">Followers</a> -->
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Meus campeonatos</a>
+                                        <a href="#/campeonato/p/usuario/{{usuarioLoginCtrl.usuarioLogado.id}}">Meus campeonatos</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
 <!--                                         <a href="#">Friends</a> -->
@@ -53,7 +53,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                        <a href="#/usuario/{{usuarioLoginCtrl.usuarioLogado.id}}" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href ng-click="usuarioLoginCtrl.logout()" class="btn btn-default btn-flat">Sair</a>

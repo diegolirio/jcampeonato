@@ -51,6 +51,11 @@ public class CampeonatoController {
 		return "campeonato/form";
 	}
 	
+	@RequestMapping(value="/lista", method=RequestMethod.GET)
+	public String pageList() {
+		return "campeonato/list";
+	}
+	
 	
 	/*
 	 * Rest Full
