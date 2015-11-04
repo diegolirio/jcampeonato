@@ -91,7 +91,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController-1.0.1.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoResultadoController.js"></script>

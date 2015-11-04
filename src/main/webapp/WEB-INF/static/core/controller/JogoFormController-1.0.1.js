@@ -163,6 +163,27 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			jogo.resultadoB = 0;
 		} 
 		
+		if(jogo.grupo == undefined) {
+			alert('Selecione o Grupo');
+			return;
+		}
+		if(jogo.harbito == undefined) {
+			alert('Selecione o Harbito');
+			return;
+		}
+		if(jogo.local == undefined) {
+			alert('Selecione o Local');
+			return;
+		}
+		if(jogo.timeA == undefined) {
+			alert('Selecione o Time A');
+			return;
+		}
+		if(jogo.timeB == undefined) {
+			alert('Selecione o Time B');
+			return;
+		}
+		
 		var dataArray = jogo.dataHora.split('/');
 		jogo.dataHora = dataArray[2]+"-"+dataArray[1]+"-"+dataArray[0];
 		
@@ -213,7 +234,9 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 		
 		JogoService.deleteJogo(jogo).then(function(resp) {
 			var index = self.jogos.indexOf(jogo);
-			self.jogos.splice(index,1);
+			self.jogos.splice(index,1); 
+			if(self.modoEdicao == true)
+				$location.path( '/edicao/'+self.edicao.id+'/classificacao' );
 		}, function(error) {
 			alert(error.data);
 		});
