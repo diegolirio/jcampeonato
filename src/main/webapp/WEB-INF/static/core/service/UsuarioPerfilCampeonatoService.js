@@ -4,7 +4,7 @@
 app.factory('UsuarioPerfilCampeonatoService', ['$http', function($http) {
 	
 	var _serverURL = function(url) {
-		return SERVER_APP + '/usuarioPerfilCampeonato' + url;
+		return SERVER_APP + '/usuarioperfilcampeonato' + url;
 	};
 	
 	/**

@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Campeonato;
-import com.diegolirio.jcampeonato.model.Perfil;
 import com.diegolirio.jcampeonato.model.Usuario;
-import com.diegolirio.jcampeonato.model.UsuarioPerfilCampeonato;
 import com.diegolirio.jcampeonato.service.CampeonatoService;
 import com.diegolirio.jcampeonato.service.UsuarioPerfilCampeonatoService;
 import com.diegolirio.jcampeonato.service.UsuarioService;
@@ -46,7 +44,7 @@ public class CampeonatoController {
 	 * Pages
 	 */
 	
-	@RequestMapping(value="/novo", method=RequestMethod.GET)
+	@RequestMapping(value="/form", method=RequestMethod.GET)
 	public String pageForm() {
 		return "campeonato/form";
 	}
@@ -62,6 +60,22 @@ public class CampeonatoController {
 	 */
 	
 	/**
+	 * pega o campeonato pelo id
+	 * @param id
+	 * @return campeonato
+	 */
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public ResponseEntity<String> get(@PathVariable("id") long id) {
+		try {
+			Campeonato campeonato = this.campeonatoService.get(Campeonato.class, id);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(campeonato ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	/**
 	 * Salvar Campeonato
 	 * @param campeonato
 	 * @return JSON
@@ -70,17 +84,8 @@ public class CampeonatoController {
 	public ResponseEntity<String> save(@RequestBody Campeonato campeonato, @PathVariable("idUsuario") long idUsuario) {
 		try {
 			// grava campeonato
-			this.campeonatoService.save(campeonato);
-			// busca usuario
-			Usuario usuario = this.usuarioService.get(Usuario.class, idUsuario);
-			// criar o perfil como adm
-			UsuarioPerfilCampeonato usuPerfilCamp = new UsuarioPerfilCampeonato();			
-			usuPerfilCamp.setCampeonato(campeonato);
-			usuPerfilCamp.setUsuario(usuario);
-			usuPerfilCamp.setPerfil(new Perfil(1l, "Administrador"));
-			this.usuarioPerfilCampeonatoService.save(usuPerfilCamp);
-			
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuPerfilCamp), HttpStatus.CREATED);
+			this.campeonatoService.save(campeonato, idUsuario);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(campeonato), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

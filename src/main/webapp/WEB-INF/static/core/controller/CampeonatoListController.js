@@ -1,8 +1,8 @@
 /**
  * CampeonatoListController manipula -> view/campeonato/list.jsp
  */
-app.controller('CampeonatoListController', ['$routeParams', 'UsuarioPerfilCampeonato',
-                                            function($routeParams, UsuarioPerfilCampeonato) {
+app.controller('CampeonatoListController', ['$scope', '$routeParams', 'UsuarioPerfilCampeonatoService',
+                                            function($scope, $routeParams, UsuarioPerfilCampeonatoService) {
 	
 	var self = this;
 	 

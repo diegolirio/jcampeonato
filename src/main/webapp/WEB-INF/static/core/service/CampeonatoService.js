@@ -7,6 +7,13 @@ app.factory('CampeonatoService', ['$http', function($http) {
 		return SERVER_APP + '/campeonato' + url;
 	};
 	
+	/**
+	 * pega campeonato pelo id
+	 */
+	var _get = function(id) {
+		return $http.get(serverURL('/get/'+id));
+	};
+	
 	var _save = function(campeonato, isUsuario) {
 		return $http.post(SERVER_APP + '/campeonato/save/usuario/'+isUsuario, campeonato);
 	};
@@ -26,6 +33,8 @@ app.factory('CampeonatoService', ['$http', function($http) {
 	};
 	
 	return {
+		
+		get : _get,
 		
 		save : _save,
 		

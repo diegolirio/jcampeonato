@@ -12,8 +12,9 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		.when('/',      { templateUrl: SERVER_APP + '/home'})
 		.when('/login', { templateUrl: SERVER_APP + '/usuario/login/'})
 		// Campeonato
-		.when('/campeonato/novo',                 { templateUrl: SERVER_APP + '/campeonato/novo'})	 
+		.when('/campeonato/novo',                 { templateUrl: SERVER_APP + '/campeonato/form'})	 
 		.when('/campeonato/p/usuario/:usuarioId', { templateUrl: SERVER_APP + '/campeonato/lista'})
+		.when('/campeonato/:id/editar', 		  { templateUrl: SERVER_APP + '/campeonato/form'})
 		// Edicao
 		.when('/edicao/pendentes', { templateUrl: SERVER_APP + '/edicao/list'})		 
 		.when('/edicao/novo',      { templateUrl: SERVER_APP + '/edicao/novo'}) 

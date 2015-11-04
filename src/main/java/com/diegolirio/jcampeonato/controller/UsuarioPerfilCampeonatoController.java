@@ -17,7 +17,7 @@ import com.diegolirio.jcampeonato.model.UsuarioPerfilCampeonato;
 import com.diegolirio.jcampeonato.service.UsuarioPerfilCampeonatoService;
 
 @Controller
-@RequestMapping("usuarioPerfilCampeonato")
+@RequestMapping("usuarioperfilcampeonato")
 public class UsuarioPerfilCampeonatoController {
 
 	@Autowired
@@ -50,11 +50,11 @@ public class UsuarioPerfilCampeonatoController {
 	 * @param usuarioId
 	 * @return lista campeonato
 	 */
-	@RequestMapping(value="/get/list/by/usuario/adm/{usuarioId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	@RequestMapping(value="/get/list/by/usuario/{usuarioId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<String> getListByUsuarioA(@PathVariable("usuarioId") long usuarioId) {
 		try {
-			List<Campeonato> campeonatos = this.usuarioPerfilCampeonatoService.getListByUsuario(new Usuario(usuarioId));
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(campeonatos ), HttpStatus.OK);
+			List<UsuarioPerfilCampeonato> usuariosPerfisCampeonatos = this.usuarioPerfilCampeonatoService.getListByUsuario(new Usuario(usuarioId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuariosPerfisCampeonatos ), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -31,9 +31,9 @@ public class UsuarioPerfilCampeonatoDao extends AbstractGenericDao<UsuarioPerfil
 	 * @param usuario
 	 * @return lista de campeonato
 	 */
-	public List<Campeonato> getListByUsuario(Usuario usuario) {
+	public List<UsuarioPerfilCampeonato> getListByUsuario(Usuario usuario) {
 		String jpql = "Select upc from UsuarioPerfilCampeonato upc where upc.usuario.id = :usuarioId";
-		TypedQuery<Campeonato> query = super.manager.createQuery(jpql , Campeonato.class);
+		TypedQuery<UsuarioPerfilCampeonato> query = super.manager.createQuery(jpql , UsuarioPerfilCampeonato.class);
 		query.setParameter("usuarioId", usuario.getId());
 		return query.getResultList();
 	}
