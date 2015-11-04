@@ -21,6 +21,8 @@ public class Jogador extends Model {
 	
 	@NotNull @Size(min=2, max=40)
 	private String nome;
+
+	private String apelido;
 	
 	@JsonBackReference
 	@ManyToMany(mappedBy="jogadores")
@@ -47,6 +49,13 @@ public class Jogador extends Model {
 		this.nome = nome;
 	}
 
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
 
 	public long getId() {
 		return id;

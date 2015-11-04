@@ -30,6 +30,11 @@ public class JogadorController {
 	 * RestFull
 	 */
 
+	@RequestMapping(value="/form")
+	public String pageForm() {
+		return "jogador/form";
+	}
+	
 	/**
 	 * pega jogador por id
 	 * @param id
