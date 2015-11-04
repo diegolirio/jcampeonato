@@ -68,7 +68,7 @@
 												<tbody id="id_tbody">
 													<tr ng-repeat="jogador in  timeFormCtrl.time.jogadores"> 
 														<td title="{{jogador.posicao.descricao}}">
-															<img src="${pageContext.request.contextPath}/static/quartashow/img/{{jogador.posicao.imgName }}"/></td> 
+															<img ng-src="${pageContext.request.contextPath}/static/quartashow/img/{{jogador.posicao.imgName }}"/></td> 
 														<td>{{jogador.nome}}</td>
 														<td>
 															<a href ng-click="timeFormCtrl.removeJogadorTime(timeFormCtrl.time, jogador)" class="btn btn-default">

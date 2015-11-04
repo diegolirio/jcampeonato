@@ -91,14 +91,14 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController-1.0.1.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoResultadoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimeFormController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/EscalacaoAddEventoController.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoArtilhariaController-1.0.0.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoJogadoresController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogadorInfoPageController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoListController.js"></script>

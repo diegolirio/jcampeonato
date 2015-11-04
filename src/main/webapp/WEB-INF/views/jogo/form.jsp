@@ -52,46 +52,47 @@
 
 							<div class="form-group col-lg-1">
 								<label><small>Rodada</small> </label> 
-								<input class="form-control" type="text" ng-model="jgFormCtrl.jogo.rodada">
+								<input class="form-control" type="number" ng-model="jgFormCtrl.jogo.rodada" min="1" required="required">
 							</div>
 
 							<div class="form-group col-lg-3">
 								<label>Grupo </label> 
-								<select class="form-control" ng-model="jgFormCtrl.jogo.grupo" ng-options="g.descricao for g in jgFormCtrl.grupos"></select> 
+								<select class="form-control" ng-model="jgFormCtrl.jogo.grupo" ng-options="g.descricao for g in jgFormCtrl.grupos" required="required"></select> 
 							</div>
 
 							<div class="form-group col-lg-3">
 								<label>Harbito </label> 
 								<a href  data-toggle="modal" data-target="#id-harbito-modal-form"><i class="glyphicon glyphicon-plus"></i></a> 
-								<select class="form-control" ng-model="jgFormCtrl.jogo.harbito" ng-options="h.nome for h in jgFormCtrl.harbitos"></select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.harbito" ng-options="h.nome for h in jgFormCtrl.harbitos" required="required"></select>
 							</div>						
 			
 							<div class="form-group col-lg-3">
 								<label>Local </label> 
 								<a href  data-toggle="modal" data-target="#id-local-modal-form"><i class="glyphicon glyphicon-plus"></i></a>
-								<select class="form-control" ng-model="jgFormCtrl.jogo.local" ng-options="l.descricao for l in jgFormCtrl.locais"></select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.local" ng-options="l.descricao for l in jgFormCtrl.locais" required="required"></select>
 							</div>						
 
 							<div class="form-group col-lg-2">
 								<label>Data e Hora </label>
-								<input class="form-control datepicker" maxlength="10" placeholder="dd/mm/aaaa" type="text" ng-model="jgFormCtrl.jogo.dataHora">
+								<input class="form-control datepicker" maxlength="10" placeholder="dd/mm/aaaa" type="text" ng-model="jgFormCtrl.jogo.dataHora" required="required">
 							</div>
 
 							<div class="form-group col-lg-5">
 								<label>Time A </label> <span id="id_message_timea"></span>
-								<select class="form-control" ng-model="jgFormCtrl.jogo.timeA" ng-options="t.nome for t in jgFormCtrl.times"></select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.timeA" ng-options="t.nome for t in jgFormCtrl.times" required="required"></select>
 							</div>						
 							<div class="form-group col-lg-2 text-center text-muted"><h1>X</h1></div>
 							<div class="form-group col-lg-5">
 								<label>Time B </label> <span id="id_message_timeb"></span> 
-								<select class="form-control" ng-model="jgFormCtrl.jogo.timeB" ng-options="t.nome for t in jgFormCtrl.times"></select>
+								<select class="form-control" ng-model="jgFormCtrl.jogo.timeB" ng-options="t.nome for t in jgFormCtrl.times" required="required"></select>
 							</div>																														
 			
 							<br/>
 
 							<div class="pull-right">
+								<input type="submit" class="btn btn-success btn-sm" value="Salvar" >
                                	<a ng-show="jgFormCtrl.modoEdicao == true" href="#/edicao/{{jgFormCtrl.edicao.id}}/classificacao" class="btn btn-default btn-sm">Cancelar</a>
-            	                <input type="submit" class="btn btn-success btn-sm" value="Salvar" >
+                               	<a ng-show="jgFormCtrl.modoEdicao == true" href ng-click="jgFormCtrl.deleteJogo(jgFormCtrl.jogo)" class="btn btn-danger btn-sm">Excluir</a>
                                	<a ng-show="jgFormCtrl.modoEdicao != true && jgFormCtrl.jogos.length > 0 && jgFormCtrl.edicao.id == 1" href="#/edicao/{{jgFormCtrl.edicao.id}}/confirma/conclusao" class="btn btn-info btn-sm">Proximo</a>
                             </div>							
 							

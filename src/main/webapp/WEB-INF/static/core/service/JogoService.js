@@ -36,6 +36,13 @@ app.factory('JogoService', ['$http', function($http) {
 	};
 	
 	/**
+	 * pega ultima rodada dos jogos por edicao (return response int)
+	 */
+	var _getLastRodadaByEdicao = function(edicao) {
+		return $http.get(serverURL('/get/last/rodada/by/edicao/'+edicao.id));
+	};
+	
+	/**
 	 * Salvar Jogo
 	 */
 	var _save = function(jogo) {
@@ -73,6 +80,8 @@ app.factory('JogoService', ['$http', function($http) {
 		getListByTime : _getListByTime,
 
 		getListJogadorWithGols : _getListJogadorWithGols,
+
+		getLastRodadaByEdicao : _getLastRodadaByEdicao,
 		
 		save : _save,
 		

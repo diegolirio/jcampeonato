@@ -72,8 +72,8 @@
 									</thead>
 									<tbody>
 										<tr ng-repeat="jogador in timePageCtrl.jogadores | filter: time.id">
-											<td class="text-muted"><img alt="foto" src="{{jogador.uriFoto}}" class="img-responsive img-circle" height="30" width="30"/> </td>
-											<td><img src="${pageContext.request.contextPath}/static/core/img/{{jogador.posicao.imgName}}" alt="{{jogador.posicao.descricao}}"/></td>
+											<td class="text-muted"><img alt="foto" ng-src="{{jogador.uriFoto}}" class="img-responsive img-circle" height="30" width="30"/> </td>
+											<td><img ng-src="${pageContext.request.contextPath}/static/core/img/{{jogador.posicao.imgName}}" alt="{{jogador.posicao.descricao}}"/></td>
 											<td>
 												<h5><a href="#/jogadorinfo/jogador/{{jogador.id}}/edicao/{{ timePageCtrl.edicao != null ? timePageCtrl.edicao.id : 0}}"> {{ jogador.nome }} </a></h5>
 											</td>
@@ -138,7 +138,7 @@
 						        			<tfoot>
 						        				<tr>
 						        					<td colspan="3">
-						        						<small><span class=""><img src="${pageContext.request.contextPath}/static/core/img/{{jogo.status.imgName}}"/> ( {{ jogo.status.descricao }} )</span></small>
+						        						<small><span class=""><img ng-src="${pageContext.request.contextPath}/static/core/img/{{jogo.status.imgName}}"/> ( {{ jogo.status.descricao }} )</span></small>
 													</td>
 													<td colspan="2">
 														<small>{{ jogo.local.descricao }}</small>

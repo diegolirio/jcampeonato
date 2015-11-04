@@ -127,6 +127,14 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 					alert(error.data);
 				});			
 				return respEdicao;
+			}).then(function(edicaoResp) {
+				JogoService.getLastRodadaByEdicao(edicaoResp.data).then(function(resp) {
+					self.jogo = {}; 
+					self.jogo.rodada = resp.data;
+				}, function(error) {
+					alert(error.data);
+				});
+				return edicaoResp;
 			}).then(function(respEdicao) {
 				JogoService.getListaPorEdicao(respEdicao.data).then(function(resp) {
 					self.jogos = resp.data;
@@ -154,6 +162,27 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			jogo.resultadoA = 0;
 			jogo.resultadoB = 0;
 		} 
+		
+		if(jogo.grupo == undefined) {
+			alert('Selecione o Grupo');
+			return;
+		}
+		if(jogo.harbito == undefined) {
+			alert('Selecione o Harbito');
+			return;
+		}
+		if(jogo.local == undefined) {
+			alert('Selecione o Local');
+			return;
+		}
+		if(jogo.timeA == undefined) {
+			alert('Selecione o Time A');
+			return;
+		}
+		if(jogo.timeB == undefined) {
+			alert('Selecione o Time B');
+			return;
+		}
 		
 		var dataArray = jogo.dataHora.split('/');
 		jogo.dataHora = dataArray[2]+"-"+dataArray[1]+"-"+dataArray[0];
@@ -205,7 +234,9 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 		
 		JogoService.deleteJogo(jogo).then(function(resp) {
 			var index = self.jogos.indexOf(jogo);
-			self.jogos.splice(index,1);
+			self.jogos.splice(index,1); 
+			if(self.modoEdicao == true)
+				$location.path( '/edicao/'+self.edicao.id+'/classificacao' );
 		}, function(error) {
 			alert(error.data);
 		});

@@ -26,7 +26,7 @@
 						<table class="table">
 							<tbody>
 								<tr>
-									<td><img src="{{ jogadorInfoPgCtrl.jogador.uriFoto }}" class="img-circle" height="100"></td>
+									<td><img ng-src="{{ jogadorInfoPgCtrl.jogador.uriFoto }}" class="img-circle" height="100"></td>
 									<td><h1 class="page-header text-primary">{{ jogadorInfoPgCtrl.jogador.nome }} <small>...</small></h1></td>
 									<td><h1><small class="text-success">R$ 0,00</small></h1></td>
 									<td></td>
@@ -36,7 +36,7 @@
 					</div>
 					
 					<div class="visible-xs text-center">
-						<p><img src="{{ jogadorInfoPgCtrl.jogador.uriFoto }}" class="img-circle" height="100"></p>
+						<p><img ng-src="{{ jogadorInfoPgCtrl.jogador.uriFoto }}" class="img-circle" height="100"></p>
 						<h2 class="page-header text-primary">{{ jogadorInfoPgCtrl.jogador.nome }} </h2>
 						<p><small>...</small></p>
 						<h3><small class="text-success">R$ 0,00</small></h3>
