@@ -6,6 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.Usuario;
@@ -35,6 +36,17 @@ public class EdicaoDao extends AbstractGenericDao<Edicao> {
 		query.setParameter("statusId", status.getId());
 		query.setParameter("usuarioId", usuario.getId());
 		return query.getResultList();
+	}
+
+	/**
+	 * pega lista de edicoes por Campeonato
+	 * @param campeonato
+	 * @return lista de edicao
+	 */
+	public List<Edicao> getListByCampeonato(Campeonato campeonato) {
+		return super.manager.createQuery("from Edicao e where e.campeonato = :campeonato", Edicao.class)
+				        	.setParameter("campeonato", campeonato)
+				        	.getResultList();
 	}
 
 

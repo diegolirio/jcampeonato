@@ -19,8 +19,10 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		.when('/edicao/pendentes', { templateUrl: SERVER_APP + '/edicao/list'})		 
 		.when('/edicao/novo',      { templateUrl: SERVER_APP + '/edicao/novo'}) 
 		.when('/edicao/novo/:id',  { templateUrl: SERVER_APP + '/edicao/novo'})
+		.when('/edicao/editar/:id/:modoEdicao',  { templateUrl: SERVER_APP + '/edicao/novo'})
 		.when('/edicao/:id/confirma/conclusao',  { templateUrl: SERVER_APP + '/edicao/confirma/conclusao'})
 		.when('/edicao/:id/classificacao',       { templateUrl: SERVER_APP + '/edicao/classificacao'})
+		.when('/edicao/lista/por/campeonato/:campeonatoId', { templateUrl: SERVER_APP + '/edicao/list'})
 		// Grupo
 		.when('/grupo/novo/edicao/:edicaoId',  { templateUrl: SERVER_APP + '/grupo/novo'})
 		// Classificacao
@@ -44,6 +46,8 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		.when('/jogadorescalado/save/by/escalacao/:escalacaoId/time/:timeId', { templateUrl: SERVER_APP + '/jogadorescalado/form/popup' })
 		// Jogador
 		.when('/jogador/:id', { templateUrl: SERVER_APP + '/jogador/form' })
+		// Usuario
+		.when('/usuario/:id', { templateUrl: SERVER_APP + '/usuario/form' })
 		;
 	
 	

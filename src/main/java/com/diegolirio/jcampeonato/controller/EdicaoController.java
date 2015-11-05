@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.Usuario;
@@ -95,6 +96,22 @@ public class EdicaoController {
 		try {
 			Edicao edicao = this.edicaoService.get(Edicao.class, id);
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicao ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * Pega lista de Edicao por Campeonato
+	 * @param campeonatoId
+	 * @return lista de edicao JSON
+	 */
+	@RequestMapping(value="/get/list/by/campeonato/{campeonatoId}", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getByCampeonato(@PathVariable("campeonatoId") long campeonatoId) {
+		try {
+			List<Edicao> edicoes = this.edicaoService.getListByCampeonato(new Campeonato(campeonatoId));
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicoes ), HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

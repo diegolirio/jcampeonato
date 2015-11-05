@@ -7,12 +7,14 @@ app.controller('CampeonatoFormController', ['CampeonatoService', '$location', '$
 	var self = this;
 	
 	var init = function() {
-		CampeonatoService.get($routeParams.id).then(function(resp) {
-			self.campeonato = resp.data;
-			self.modoEdicao = true;
-		}, function(error) {
-			alert(error.data);
-		});
+		if($routeParams.id > 0) {
+			CampeonatoService.get($routeParams.id).then(function(resp) {
+				self.campeonato = resp.data;
+				self.modoEdicao = true;
+			}, function(error) {
+				alert(error.data);
+			});
+		}
 	};
 	
 	/**

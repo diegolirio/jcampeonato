@@ -34,7 +34,10 @@
                                             <td>{{e.campeonato.descricao}}</td>
                                             <td>{{e.descricao}}</td>
                                             <td>{{e.tipoEdicao.descricao}}</td>
-                                            <td><a href="#/edicao/novo/{{e.id}}">Concluir</a></td>
+                                            <td>
+                                            	<a ng-show="edicaoListCtrl.campeonato == null" href="#/edicao/novo/{{e.id}}">Concluir</a>
+                                            	<a ng-show="edicaoListCtrl.campeonato != null && false" href="#/edicao/editar/{{e.id}}/true">Editar</a>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div><!-- /.box-body -->

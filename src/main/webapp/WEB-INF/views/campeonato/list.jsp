@@ -31,7 +31,7 @@
 								<tr ng-repeat="upc in campListCtrl.usuarioPerfisCampeonatos">
 									<td>{{upc.campeonato.id}}</td>
 									<td>{{upc.campeonato.descricao}}</td>
-									<td><a href="#/edicaao/lista/por/campeonato/{{upc.campeonato.id}}">Ver edições</a></td>
+									<td><a href="#/edicao/lista/por/campeonato/{{upc.campeonato.id}}">Ver edições</a></td>
 									<td><a ng-show="upc.perfil.id == 1" href="#/campeonato/{{upc.campeonato.id}}/editar">Editar</a></td>
 								</tr>
 							</tbody>

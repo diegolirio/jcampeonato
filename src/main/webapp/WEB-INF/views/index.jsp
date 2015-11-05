@@ -44,7 +44,7 @@
 	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
 	         <p>Aguarde...</p>
 	    </div>  	
-    
+     
 		<jsp:include page="_menu.jsp"></jsp:include>
 		
         <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -69,7 +69,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
-		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.0.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>
@@ -88,7 +88,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js" charset="UTF-8"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController.js" charset="UTF-8"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController-1.0.1.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController-1.0.1.js"></script>

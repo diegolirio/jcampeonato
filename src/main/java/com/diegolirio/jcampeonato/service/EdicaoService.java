@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.EdicaoDao;
+import com.diegolirio.jcampeonato.model.Campeonato;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.Usuario;
@@ -29,6 +30,10 @@ public class EdicaoService extends AbstractGenericService<Edicao> {
 
 	public List<Edicao> getListByStatusAndUsuarioAdm(Status status, Usuario usuario) {
 		return this.edicaoDao.getListByStatusAndUsuarioAdm(status, usuario);
+	}
+
+	public List<Edicao> getListByCampeonato(Campeonato campeonato) {
+		return this.edicaoDao.getListByCampeonato(campeonato);
 	}
 	
 	

@@ -17,22 +17,15 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService; 
 	
-//	@RequestMapping(value="/login", method=RequestMethod.GET)
-//	public ModelAndView pageLogin() {
-//		ModelAndView mv = new ModelAndView("_login");
-//		return mv;
-//	}
-	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public ModelAndView pageRegister() {
 		ModelAndView mv = new ModelAndView("_register");
 		return mv;
 	}	
 	
-//	@RequestMapping(value="/login", method=RequestMethod.POST)
-//	public ModelAndView pageEfetuarLogin(Usuario usuario, BindingResult result, HttpSession session) {
-//		ModelAndView mv = new ModelAndView("_login");
-//		return mv;
-//	}	
+	@RequestMapping(value="/form")
+	public String form() {
+		return "usuario/form";
+	}
 	
 }
