@@ -113,7 +113,7 @@
 												</td>
 												<td><img alt="foto" ng-src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
-													 <img ng-src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
+													 <img ng-src="${pageContext.request.contextPath}/static/core/img/{{je.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
 													 <a href="#/jogadorinfo/jogador/{{je.jogador.id}}/edicao/{{jgResultCtrl.jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
 												</td>
 												<td> 
@@ -146,7 +146,7 @@
 											    <td><a ng-show="jgResultCtrl.jogo.status.id == 2 && usuarioLoginCtrl.isLoggedIn && (jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 1 || jgResultCtrl.usuarioPerfilCampeonato.perfil.id == 2)" href ng-click="jgResultCtrl.excluirJogadorEscalcao(je)"> <span class="text-danger" title="excluir jogador da escalação">excluir</span></a></td>
 											    <td><img alt="foto" ng-src="{{je.jogador.uriFoto}}" title="{{je.jogador.nome}}" class="img-responsive img-circle" height="30" width="30"/></td>
 												<td class="jogador{{je.id}}"> 
-													 <img ng-src="${pageContext.request.contextPath}/static/core/img/{{je.jogador.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
+													 <img ng-src="${pageContext.request.contextPath}/static/core/img/{{je.posicao.imgName}}" alt="{{je.jogador.posicao.descricao}}"/>
 													 <a href="#/jogadorinfo/jogador/{{je.jogador.id}}/edicao/{{jgResultCtrl.jogo.grupo.edicao.id}}">{{je.jogador.nome}}</a>
 												</td>
 												<td> 

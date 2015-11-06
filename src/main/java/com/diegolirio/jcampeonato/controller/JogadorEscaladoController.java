@@ -106,7 +106,7 @@ public class JogadorEscaladoController {
 	public ResponseEntity<String> save(@RequestBody JogadorEscalado jogadorEscalado) {
 		try {
 			if(jogadorEscalado.getEscalacao() == null) throw new RuntimeException("Escalacao obrigatória");
-			System.out.println(jogadorEscalado);
+			jogadorEscalado.setPosicao(jogadorEscalado.getJogador().getPosicao());
 			this.jogadorEscaladoService.save(jogadorEscalado);
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogadorEscalado), HttpStatus.CREATED);
 		} catch(Exception e) {

@@ -36,6 +36,16 @@
                                 </div>
                             </div><!-- /.box-body -->                            
                         </div>
+                        <div class="row">
+						    <div class="box-body">
+								<div class="form-group col-lg-12">
+									<label>Posição </label>
+									<select ng-model="jogadorFormCtrl.jogador.posicao" ng-options="p.descricao for p in jogadorFormCtrl.posicoes" class="form-control"></select>
+								</div>
+						    </div><!-- /.box-body -->                            
+                        </div>
+                        
+                        
                         
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Salvar</button>

@@ -26,6 +26,9 @@ public class JogadorEscalado extends Model {
 	
 	@ManyToOne
 	private Time time;
+	
+	@ManyToOne
+	private Posicao posicao;
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Evento> eventos;
@@ -62,6 +65,14 @@ public class JogadorEscalado extends Model {
 		this.time = time;
 	}
 	
+	public Posicao getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Posicao posicao) {
+		this.posicao = posicao;
+	}
+
 	public List<Evento> getEventos() {
 		return eventos;
 	}

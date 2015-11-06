@@ -114,6 +114,7 @@ public class EscalacaoController {
 				jeA.setEscalacao(escalacao);			
 				jeA.setTime(jogo.getTimeA());
 				jeA.setJogador(j);
+				jeA.setPosicao(j.getPosicao());
 				this.jogadorEscaladoService.save(jeA); 
 			}
 	
@@ -123,6 +124,7 @@ public class EscalacaoController {
 				jeB.setEscalacao(escalacao);			
 				jeB.setTime(jogo.getTimeB());
 				jeB.setJogador(j);
+				jeB.setPosicao(j.getPosicao());
 				this.jogadorEscaladoService.save(jeB);
 			}		
 			
