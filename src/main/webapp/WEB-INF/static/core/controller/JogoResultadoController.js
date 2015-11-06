@@ -33,7 +33,16 @@ app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams
 					alert('Erro ao busca perfil: ' + error.data);
 				});
  			}
+ 			return jogoResp;
 		});
+//		.then(function(jogoResp) {
+//			JogoService.getNext(jogoResp.data).then(function(resp) {
+//				self.nextJogo = resp.data;
+//				console.log(resp);
+//			}, function(error) {
+//				alert(error.data);
+//			});
+//		});
 		
 	};
 	
@@ -109,6 +118,18 @@ app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams
 	self.addJogadorEscalacao = function(escalacao, time) {
 		JogadorEscaladoService.save(escalacao, time).then(function(resp) {
 			
+		});
+	};
+	
+	/**
+	 * busca proximo jogo
+	 */
+	self.nextJogo = function(jogo) {
+		JogoService.nextJogo(jogo).then(function(resp) {
+			var _nextJogo = resp.data;
+			$location.path('/jogo/'+_nextJogo.id+'/resultado'); 
+		}, function(error) {
+			alert(error.data);
 		});
 	};
 	

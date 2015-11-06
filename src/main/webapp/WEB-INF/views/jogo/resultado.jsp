@@ -18,16 +18,22 @@
              <section class="content">
 			             
 					<!-- Placar Responsive -->
-					<h1 class="page-header col-lg-12 col-md-12 col-sm-12 visible-lg visible-md visible-sm"> 
-						<span class="text-center col-md-4">
+					<h1 class="page-header col-lg-12 col-md-12 col-sm-12 visible-lg visible-md visible-sm">
+						<a href title="Anterior">
+							<span class="glyphicon glyphicon-arrow-left col-md-1"></span>
+						</a>
+						<span class="text-center col-md-3">
 							<a href="#/time/{{ jgResultCtrl.jogo.timeA.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeA.nome }}</a>
 						</span>
 						<span class="text-center text-danger col-md-1" id="id_rA" >{{ jgResultCtrl.jogo.resultadoA }}</span>
-						<span class="text-center text-muted col-md-1">X</span>
+						<span class="text-center text-muted col-md-2">X</span>
 						<span class="text-center text-danger col-md-1" id="id_rB">{{ jgResultCtrl.jogo.resultadoB }}</span>
-						<span class="text-center col-md-4">
+						<span class="text-center col-md-3">
 							<a href="#/time/{{ jgResultCtrl.jogo.timeB.id }}/edicao/{{ jgResultCtrl.jogo.grupo.edicao.id }}">{{ jgResultCtrl.jogo.timeB.nome }}</a>
 						</span>
+						<a href ng-click="jgResultCtrl.nextJogo(jgResultCtrl.jogo)" title="Próximo">
+							<span class="glyphicon glyphicon-arrow-right col-md-1"></span>
+						</a>
 					</h1>		
 					<div class="page-header col-xs-12 visible-xs text-center">
 						<table class="table">

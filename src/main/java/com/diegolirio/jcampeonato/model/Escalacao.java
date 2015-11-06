@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Escalacao extends Model {
@@ -18,12 +19,13 @@ public class Escalacao extends Model {
 	@OneToOne
 	private Jogo jogo;
 	
+	@OrderBy("posicao, jogador")
 	@OneToMany(mappedBy="escalacao", fetch=FetchType.EAGER)
 	private List<JogadorEscalado> jogadoresEscalados; 
 
 	public Escalacao(){}
 	
-	public Escalacao(long id) {
+	public Escalacao(long id) { 
 		this.id = id;
 	}
 

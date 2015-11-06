@@ -41,8 +41,9 @@ public class CampeonatoService extends AbstractGenericService<Campeonato> {
 	 * @param usuarioId
 	 */
 	public void save(Campeonato campeonato, long usuarioId) {
+		long id = campeonato.getId();
 		super.save(campeonato);
-		if(campeonato.getId() == 0) {
+		if(id == 0) {
 			// busca usuario
 			Usuario usuario = this.usuarioDao.get(Usuario.class, usuarioId);
 			// criar o perfil como adm

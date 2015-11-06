@@ -46,10 +46,6 @@
                         <!-- form start -->
                         <form role="form" ng-submit="jgFormCtrl.save(jgFormCtrl.jogo)">
                         
-                        	<input type="hidden" ng-model="jgFormCtrl.jogo.id">
-							<input type="hidden" ng-model="jgFormCtrl.jogo.status.id" >
-							<input type="hidden" ng-model="jgFormCtrl.jogo.sequencia" >
-
 							<div class="form-group col-lg-1">
 								<label><small>Rodada</small> </label> 
 								<input class="form-control" type="number" ng-model="jgFormCtrl.jogo.rodada" min="1" required="required">
