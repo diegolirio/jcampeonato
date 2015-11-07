@@ -20,7 +20,7 @@ public class JogadorDao extends AbstractGenericDao<Jogador> {
 	 * @return list jogadores
 	 */
 	public List<Jogador> getListByTime(Time time) {
-		TypedQuery<Jogador> query = super.manager.createQuery("select j from Jogador j JOIN j.times t where t = :time", Jogador.class);
+		TypedQuery<Jogador> query = super.manager.createQuery("select j from Jogador j JOIN j.times t where t = :time order by j.posicao.id", Jogador.class);
 		query.setParameter("time", time);
 		return query.getResultList();
 	}
