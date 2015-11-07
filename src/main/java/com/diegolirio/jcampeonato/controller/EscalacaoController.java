@@ -206,7 +206,7 @@ public class EscalacaoController {
 		}
 		if(jogadorEscalado.getEventos().remove(evento))
 			this.jogadorEscaladoService.save(jogadorEscalado);
-		else return new ResponseEntity<String>("Não foi possivel remover evento", HttpStatus.INTERNAL_SERVER_ERROR);
+		else return new ResponseEntity<String>("Nao foi possivel remover evento", HttpStatus.INTERNAL_SERVER_ERROR);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}		
 	

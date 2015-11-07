@@ -128,6 +128,23 @@ public class JogoController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
+
+	/**
+	 * pega o jogo por id
+	 * @param id
+	 * @return jogo JSON
+	 */
+	@RequestMapping(value="/get/{id}/next", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getNext(@PathVariable("id") long id) {
+		try {
+			Jogo jogo = this.jogoService.get(Jogo.class, id);
+			Jogo nextJogo = this.jogoService.getNextJogo(jogo);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(nextJogo), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	/**
 	 * pega lista de jogos em que jogador marcou gols
@@ -175,6 +192,8 @@ public class JogoController {
 			data.add(Calendar.DATE, 1);
 			jogo.setDataHora(data.getTime()); 
 			// **************************************
+			if(jogo.getSequencia() == -1)
+				jogo.setSequencia((int)(this.jogoService.getLastSequenciaByRodada(jogo.getRodada())+1));
 			this.jogoService.save(jogo);
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(jogo), HttpStatus.OK);
 		} catch(Exception e) {
@@ -342,4 +361,6 @@ public class JogoController {
 		return classificacoes;
 	}
 
+	
+	
 }

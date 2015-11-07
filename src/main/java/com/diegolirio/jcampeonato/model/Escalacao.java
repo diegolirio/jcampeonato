@@ -19,13 +19,13 @@ public class Escalacao extends Model {
 	@OneToOne
 	private Jogo jogo;
 	
-	@OrderBy("posicao")
+	@OrderBy("posicao, jogador")
 	@OneToMany(mappedBy="escalacao", fetch=FetchType.EAGER)
 	private List<JogadorEscalado> jogadoresEscalados; 
 
 	public Escalacao(){}
 	
-	public Escalacao(long id) {
+	public Escalacao(long id) { 
 		this.id = id;
 	}
 

@@ -251,13 +251,20 @@ public class JogoService extends AbstractGenericService<Jogo> {
 	}
 
 	public List<Jogo> getListJogadorWithGols(Jogador jogador) {
-		return this.jogoDao.getListJogadorWithGols(jogador);
+		return this.jogoDao.getListJogadorWithGols(jogador); 
 	}
 
 	public int getLastRodadaByEdicao(Edicao edicao) {
 		return this.jogoDao.getLastRodadaByEdicao(edicao);
+	}
+
+	public int getLastSequenciaByRodada(int rodada) {
+		return this.jogoDao.getLastSequenciaByRodada(rodada); 
 	}	
 
+	public Jogo getNextJogo(Jogo jogo) {
+		return this.jogoDao.getNextJogo(jogo);
+	}
 	
 	
 }
