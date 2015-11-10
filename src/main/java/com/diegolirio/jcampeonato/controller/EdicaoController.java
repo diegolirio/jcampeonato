@@ -135,4 +135,34 @@ public class EdicaoController {
 		}
 	}
 	
+	
+	// @RequestMapping(value="/system/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
+	// public ResponseEntity<String> finalizar1Fase(@PathVariable("id") long id) {
+		// try {
+			// Edicao edicao = this.edicaoDao.get(Edicao.class, id);
+			// List<Grupo> grupos = this.grupoDao.getGruposByEdicao(edicao);
+			// validaFinalizacaoFase(grupos);
+			// if(grupos.size() == 1) {
+				// List<Classificacao> classificacoes = this.classificacaoDao.getClassificacoesByGrupo(grupos.get(0));
+				// if(classificacoes.size() <= 3) {
+					// // Cria somente a Final
+					// criarFinal1Fase1GrupoMenosQ3Times(grupos.get(0));
+				// } else if(classificacoes.size() > 3) {
+					// // cria 3lugar e final
+					// criar3LugarFinal1Fase1GrupoMenosQ3Times(grupos.get(0));
+				// }
+			// } else if (grupos.size() == 2) {
+				// // cria semi
+			// } else if (grupos.size() == 4) {
+				// // cria quartas
+			// } else if (grupos.size() == 8) {
+				// // cria oitavas
+			// }
+			// return new ResponseEntity<String>(HttpStatus.CREATED);
+		// } catch(Exception e) {
+			// e.printStackTrace();
+			// return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		// }
+	// }	
+	
 }
