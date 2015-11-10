@@ -53,7 +53,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#/usuario/{{usuarioLoginCtrl.usuarioLogado.id}}" class="btn btn-default btn-flat">Perfil</a>
+                                        <a href="#/usuario/meus/dados" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href ng-click="usuarioLoginCtrl.logout()" class="btn btn-default btn-flat">Sair</a>

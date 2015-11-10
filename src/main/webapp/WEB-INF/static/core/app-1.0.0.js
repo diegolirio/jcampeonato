@@ -47,7 +47,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		// Jogador
 		.when('/jogador/:id', { templateUrl: SERVER_APP + '/jogador/form' })
 		// Usuario
-		.when('/usuario/:id', { templateUrl: SERVER_APP + '/usuario/form' })
+		.when('/usuario/meus/dados', { templateUrl: SERVER_APP + '/usuario/form' })
 		;
 	
 	

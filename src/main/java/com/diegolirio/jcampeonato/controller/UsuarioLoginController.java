@@ -70,6 +70,23 @@ public class UsuarioLoginController {
 	}	
 	
 	/**
+	 * seta o usuario na sessao
+	 * @param session
+	 * @return restFull JSON usuario
+	 */
+	@RequestMapping(value="/set/session", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> setSessionLogged(@RequestBody Usuario usuario, HttpSession session) {
+		try {
+			session.setAttribute("usuarioLogado", usuario);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(usuario), HttpStatus.OK);
+		} catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+		}
+	}	
+	
+	
+	
+	/**
 	 * Sair da sessao
 	 */
 	@RequestMapping(value="/logout", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
