@@ -41,7 +41,7 @@
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
     
 		<div id="spinner" class="spinner" style="display:none;"> 
-	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
+	         <img id="img-spinner" src="http://www.diegolirio.com/quartashow/bola.gif" alt="Aguarde..."/>
 	         <p>Aguarde...</p>
 	    </div>  	
      
