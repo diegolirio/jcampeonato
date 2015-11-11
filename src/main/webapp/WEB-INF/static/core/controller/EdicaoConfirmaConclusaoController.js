@@ -37,6 +37,8 @@ app.controller('EdicaoConfirmaConclusaoController',
     	self.edicao.status.id = 2;
     	EdicaoService.save(self.edicao).then(function() {
     		$window.location.href = SERVER_APP;
+    	}, function(error) {
+    		alert(error.data);
     	});
      };
      

@@ -150,4 +150,60 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 		return nextjogo;
 	}
 
+	public Jogo getPreviousJogo(Jogo jogo) {
+		Jogo previousjogo = null;
+		String jpql = "Select count(j.id) from Jogo j where j.grupo.edicao = :edicao and j.rodada = :rodada and j.sequencia < :sequencia";
+		Long qtdeAnteriorRodada = super.manager.createQuery(jpql, Long.class)
+											 .setParameter("edicao", jogo.getGrupo().getEdicao())
+											 .setParameter("rodada", jogo.getRodada())
+											 .setParameter("sequencia", jogo.getSequencia())
+											 .getSingleResult();
+		if(qtdeAnteriorRodada > 0) {
+			String jpqlAnteriorDaRodada = "Select j " +
+										    "from Jogo j " +
+											" where j.grupo.edicao = :edicao " +
+											"   and j.rodada = :rodada " +
+											"   and j.sequencia < :sequencia " +
+											"   and j.sequencia = (select max(jj.sequencia) " +
+											" 						from Jogo jj " +
+											"						where jj.rodada = j.rodada " +
+											"						  and jj.sequencia < :sequencia " +
+											"                         and jj.grupo.edicao = j.grupo.edicao)";
+			previousjogo = super.manager.createQuery(jpqlAnteriorDaRodada, Jogo.class)
+								 .setParameter("edicao", jogo.getGrupo().getEdicao())
+								 .setParameter("rodada", jogo.getRodada())
+					 			 .setParameter("sequencia", jogo.getSequencia())
+					 			 .getSingleResult();
+		} else {
+			try {
+				
+				String jpqlMaiorJogoRodadaAnterior = "Select j " +
+												    "from Jogo j " +
+												    "where j.grupo.edicao = :edicao " +
+												    "  and j.rodada < :rodada " +
+												    "  and j.rodada = (Select max(jj.rodada) " +
+												    				   " from Jogo jj " +
+												    				   " where jj.rodada < :rodada " +
+												    				   "   and jj.grupo.edicao = j.grupo.edicao) " +
+											        "  and j.sequencia = (Select max(jj.sequencia) " +
+											        					  " from Jogo jj " +
+											        					  " where jj.rodada = j.rodada " +
+											        					  "   and jj.grupo.edicao = j.grupo.edicao) ";
+				previousjogo = super.manager.createQuery(jpqlMaiorJogoRodadaAnterior, Jogo.class)
+									 .setParameter("edicao", jogo.getGrupo().getEdicao())
+									 .setParameter("rodada", jogo.getRodada())
+						 			 .getSingleResult();
+			} catch(NoResultException e) {
+				// Caso caia aqui pega o primeiro Jogo da edicao 
+				String firstJogo = "Select j from Jogo j " +
+								   " where j.grupo.edicao = :edicao and j.rodada = (select max(jj.rodada) from Jogo jj where jj.grupo.edicao = j.grupo.edicao)" +
+												                  " and j.sequencia = (select max(jj.sequencia) from Jogo jj where jj.grupo.edicao = j.grupo.edicao)";
+				previousjogo = super.manager.createQuery(firstJogo, Jogo.class)
+						 .setParameter("edicao", jogo.getGrupo().getEdicao())
+			 			 .getSingleResult();				
+			}
+		}
+		return previousjogo;
+	}
+
 }

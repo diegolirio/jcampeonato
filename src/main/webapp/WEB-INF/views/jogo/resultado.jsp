@@ -19,7 +19,7 @@
 			             
 					<!-- Placar Responsive -->
 					<h1 class="page-header col-lg-12 col-md-12 col-sm-12 visible-lg visible-md visible-sm">
-						<a href title="Anterior">
+						<a href ng-click="jgResultCtrl.previousJogo(jgResultCtrl.jogo)" title="Anterior">
 							<span class="glyphicon glyphicon-arrow-left col-md-1"></span>
 						</a>
 						<span class="text-center col-md-3">
@@ -35,8 +35,21 @@
 							<span class="glyphicon glyphicon-arrow-right col-md-1"></span>
 						</a>
 					</h1>		
-					<div class="page-header col-xs-12 visible-xs text-center">
+					
+					<div class="page-header col-xs-12 visible-xs ">
 						<table class="table">
+							<tr>
+								<td>
+									<a href ng-click="jgResultCtrl.previousJogo(jgResultCtrl.jogo)" title="Anterior">
+										<span class="glyphicon glyphicon-arrow-left col-md-1"></span>
+									</a>
+								</td>
+								<td>
+									<a href ng-click="jgResultCtrl.nextJogo(jgResultCtrl.jogo)" title="Próximo">
+										<span class="glyphicon glyphicon-arrow-right col-md-1"></span>
+									</a>
+								</td>								
+							</tr>
 							<tr>
 								<td>
 									<h3 class="text-center col-md-4">

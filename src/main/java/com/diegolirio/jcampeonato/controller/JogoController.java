@@ -145,6 +145,23 @@ public class JogoController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	/**
+	 * pega o jogo por id
+	 * @param id
+	 * @return jogo JSON
+	 */
+	@RequestMapping(value="/get/{id}/previous", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getPrevious(@PathVariable("id") long id) {
+		try {
+			Jogo jogo = this.jogoService.get(Jogo.class, id);
+			Jogo previousJogo = this.jogoService.getPreviousJogo(jogo);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(previousJogo), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	/**
 	 * pega lista de jogos em que jogador marcou gols

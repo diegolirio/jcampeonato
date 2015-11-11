@@ -77,6 +77,13 @@ app.factory('JogoService', ['$http', function($http) {
 	var _nextJogo = function(jogo) {
 		return $http.get(serverURL('/get/'+jogo.id+'/next')); 
 	};
+
+	/**
+	 * pega jogo anterior
+	 */
+	var _previousJogo = function(jogo) {
+		return $http.get(serverURL('/get/'+jogo.id+'/previous')); 
+	};	
 	
 	return {
 		
@@ -97,6 +104,8 @@ app.factory('JogoService', ['$http', function($http) {
 		finalizar : _finalizar,
 		
 		returnStatus : _returnStatus,
+		
+		previousJogo : _previousJogo,
 		
 		nextJogo : _nextJogo
  		

@@ -133,6 +133,18 @@ app.controller('JogoResultadoController', ['$rootScope', '$scope', '$routeParams
 		});
 	};
 	
+	/**
+	 * busca proximo jogo
+	 */
+	self.previousJogo = function(jogo) {
+		JogoService.previousJogo(jogo).then(function(resp) {
+			var _previousJogo = resp.data;
+			$location.path('/jogo/'+_previousJogo.id+'/resultado'); 
+		}, function(error) {
+			alert(error.data);
+		});
+	};
+	
 	init();
 	
 }]);

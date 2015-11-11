@@ -265,6 +265,10 @@ public class JogoService extends AbstractGenericService<Jogo> {
 	public Jogo getNextJogo(Jogo jogo) {
 		return this.jogoDao.getNextJogo(jogo);
 	}
+
+	public Jogo getPreviousJogo(Jogo jogo) {
+		return this.jogoDao.getPreviousJogo(jogo);
+	}
 	
 	
 }
