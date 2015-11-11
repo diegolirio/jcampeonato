@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -25,7 +26,15 @@ public class Grupo extends Model {
 	@JsonIgnore
 	@OneToMany(mappedBy="grupo")
 	private List<Classificacao> classificacoes; 
+	
+	@NotNull
+	@ManyToOne
+	private Fase fase;	
 
+	@NotNull
+	@ManyToOne
+	private Status status;	
+	
 	public Grupo() {}
 	
 	public Grupo(long id) {
@@ -62,6 +71,22 @@ public class Grupo extends Model {
 
 	public void setClassificacoes(List<Classificacao> classificacoes) {
 		this.classificacoes = classificacoes;
+	}
+
+	public Fase getFase() {
+		return fase;
+	}
+
+	public void setFase(Fase fase) {
+		this.fase = fase;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	
 	

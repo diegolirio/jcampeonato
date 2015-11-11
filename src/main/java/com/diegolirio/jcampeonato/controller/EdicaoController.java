@@ -1,5 +1,6 @@
 package com.diegolirio.jcampeonato.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -13,10 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Campeonato;
+import com.diegolirio.jcampeonato.model.Classificacao;
 import com.diegolirio.jcampeonato.model.Edicao;
+import com.diegolirio.jcampeonato.model.Fase;
+import com.diegolirio.jcampeonato.model.Grupo;
+import com.diegolirio.jcampeonato.model.Harbito;
+import com.diegolirio.jcampeonato.model.Jogo;
+import com.diegolirio.jcampeonato.model.Local;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.Usuario;
+import com.diegolirio.jcampeonato.service.ClassificacaoService;
 import com.diegolirio.jcampeonato.service.EdicaoService;
+import com.diegolirio.jcampeonato.service.FaseService;
+import com.diegolirio.jcampeonato.service.GrupoService;
+import com.diegolirio.jcampeonato.service.JogoService;
+import com.diegolirio.jcampeonato.service.StatusService;
 
 @Controller
 @RequestMapping("edicao")
@@ -24,6 +36,16 @@ public class EdicaoController {
 	
 	@Autowired
 	private EdicaoService edicaoService;
+	@Autowired
+	private GrupoService grupoService;
+	@Autowired
+	private ClassificacaoService classificacaoService;
+	@Autowired
+	private JogoService jogoService;
+	@Autowired
+	private FaseService faseService;
+	@Autowired
+	private StatusService statusService;
 
 	/*
 	 * Pages
@@ -135,34 +157,176 @@ public class EdicaoController {
 		}
 	}
 	
+	/*
+	 * Finaliza 1a Fase
+	 */
 	
-	// @RequestMapping(value="/system/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
-	// public ResponseEntity<String> finalizar1Fase(@PathVariable("id") long id) {
-		// try {
-			// Edicao edicao = this.edicaoDao.get(Edicao.class, id);
-			// List<Grupo> grupos = this.grupoDao.getGruposByEdicao(edicao);
-			// validaFinalizacaoFase(grupos);
-			// if(grupos.size() == 1) {
-				// List<Classificacao> classificacoes = this.classificacaoDao.getClassificacoesByGrupo(grupos.get(0));
-				// if(classificacoes.size() <= 3) {
-					// // Cria somente a Final
-					// criarFinal1Fase1GrupoMenosQ3Times(grupos.get(0));
-				// } else if(classificacoes.size() > 3) {
-					// // cria 3lugar e final
-					// criar3LugarFinal1Fase1GrupoMenosQ3Times(grupos.get(0));
-				// }
-			// } else if (grupos.size() == 2) {
-				// // cria semi
-			// } else if (grupos.size() == 4) {
-				// // cria quartas
-			// } else if (grupos.size() == 8) {
-				// // cria oitavas
-			// }
-			// return new ResponseEntity<String>(HttpStatus.CREATED);
-		// } catch(Exception e) {
-			// e.printStackTrace();
-			// return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		// }
-	// }	
+	 @RequestMapping(value="/system/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
+	 public ResponseEntity<String> finalizar1Fase(@PathVariable("id") long id) {
+		 try {
+			 Edicao edicao = this.edicaoService.get(Edicao.class, id);
+			 List<Grupo> grupos = this.grupoService.getListaPorEdicao(edicao);
+			 validaFinalizacaoFase(grupos);
+			 if(grupos.size() == 1) {
+				 List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupos.get(0));
+				 if(classificacoes.size() <= 3) {
+					 // Cria somente a Final
+					 criarFinal1Fase1GrupoMenosQ3Times(grupos.get(0));
+				 } else if(classificacoes.size() > 3) {
+					 // cria 3lugar e final
+					 criar3LugarFinal1Fase1GrupoMenosQ3Times(grupos.get(0));
+				 }
+			 } else if (grupos.size() == 2) {
+				 // cria semi
+			 } else if (grupos.size() == 4) {
+				 // cria quartas
+			 } else if (grupos.size() == 8) {
+				 // cria oitavas
+			 }
+			 return new ResponseEntity<String>(HttpStatus.CREATED);
+		 } catch(Exception e) {
+			 e.printStackTrace();
+			 return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		 }
+	 }	
 	
+	 private boolean validaFinalizacaoFase(List<Grupo> grupos) {
+			for (Grupo grupo : grupos) {
+				// verifica se todos os grupos são da 1a fase.
+				if(grupo.getFase().getSigla() != '1')
+					throw new RuntimeException("Existem grupos que nao sao da Primeira fase(pode ja ter sido finalizados), nao ha possibilidades de finalizar.");
+				List<Jogo> jogos = this.jogoService.getListByGrupo(grupo);
+				// verifica se exite pelo menos 1 jogo por grupo.
+				if(jogos.size() <= 0) 
+					throw new RuntimeException("Grupo " + grupo.getDescricao() + " não contem jogos.");
+				for (Jogo jogo : jogos) { 
+					// verifica se todos os jogos estão finalizados.
+					if(jogo.getStatus().getId() != 3)
+						throw new RuntimeException("Existem jogos não encerrados, encerrem todos os jogos para finalizar a Fase!");
+					// verifica se todos os times tem a mesma qtde de jogos.
+				}
+				List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupo);
+				int qtdeJ = classificacoes.get(0).getJogos();
+				for (Classificacao classificacao : classificacoes) {
+					 if(qtdeJ != classificacao.getJogos()) 
+						 throw new RuntimeException("Todos os Times devem estar com a mesma quantidade de Jogos para finalizar a fase!");
+				}
+			}
+			return true;
+		}
+
+		private boolean criarFinal1Fase1GrupoMenosQ3Times(Grupo grupoUnicoPrimeiraFase) {
+			// cria 2 fase com final e 3 lugar
+			Fase _2fase = this.faseService.getBySigla('2');
+			Grupo grupo = new Grupo();
+			grupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
+			grupo.setFase(_2fase);
+			grupo.setDescricao("Segunda Fase (Mata-mata)");
+			grupo.setStatus(this.statusService.get(Status.class, 2l));
+			this.grupoService.save(grupo);
+			List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupoUnicoPrimeiraFase);
+			List<Jogo> jogos = this.jogoService.getListByGrupo(grupoUnicoPrimeiraFase);
+			// Cria a Final, rodada -1
+			criaJogoMataMata(grupo, 
+							 jogos.get(0).getHarbito(), 
+							 jogos.get(0).getLocal(), 
+							 classificacoes,
+							 -1,
+							 1,
+							 2);
+			return true;
+		}
+		
+		private boolean criar3LugarFinal1Fase1GrupoMenosQ3Times(Grupo grupoUnicoPrimeiraFase) {
+			// cria 2 fase com final e 3 lugar
+			Fase _2fase = this.faseService.getBySigla('2');
+			Grupo grupo = new Grupo();
+			grupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
+			grupo.setFase(_2fase);
+			//grupo.setDescricao("Segunda Fase (Mata-mata)");
+			grupo.setStatus(this.statusService.get(Status.class, 2l));
+			this.grupoService.save(grupo);
+			List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupoUnicoPrimeiraFase);
+			List<Jogo> jogos = this.jogoService.getListByGrupo(grupoUnicoPrimeiraFase);
+			// Cria a 3 Lugar, rodada -3
+			criaJogoMataMata(grupo, 
+						     jogos.get(0).getHarbito(), 
+						     jogos.get(0).getLocal(), 
+						     classificacoes,
+						     -3,
+						     3,
+						     4);		
+			// Cria a Final, rodada -1
+			criaJogoMataMata(grupo, 
+							 jogos.get(0).getHarbito(), 
+							 jogos.get(0).getLocal(), 
+							 classificacoes,
+							 -1,
+							 1,
+							 2);
+			grupoUnicoPrimeiraFase.setStatus(new Status(3l));
+			this.grupoService.save(grupoUnicoPrimeiraFase);
+			return true;
+		}
+
+		private void criaJogoMataMata(Grupo grupo, Harbito harbito, Local local, List<Classificacao> classificacoes, int rodada, int colocacaoTimeA, int colocacaoTimeB) {
+			Jogo jogo = new Jogo();
+			jogo.setDataHora(Calendar.getInstance().getTime());
+			jogo.setGrupo(grupo);
+			jogo.setHarbito(harbito);
+			jogo.setLocal(local);
+			jogo.setRodada(rodada);
+			jogo.setSequencia((int)this.jogoService.getListByGrupo(grupo).size()+1); // TODO: refatorar
+			jogo.setStatus(new Status(1l));
+			boolean timeAOK = false;
+			for (Classificacao classificacao : classificacoes) {
+				if(classificacao.getColocacao() == colocacaoTimeA && timeAOK == false) {
+					jogo.setTimeA(classificacao.getTime());
+					timeAOK = true;
+				} else if(classificacao.getColocacao() == colocacaoTimeB || classificacao.getColocacao() == colocacaoTimeA) {
+					jogo.setTimeB(classificacao.getTime());
+				}
+			}
+			this.jogoService.save(jogo);
+		}
+		
+		@RequestMapping(value="/{id}/Voltar/primeira/fase", method=RequestMethod.POST, produces="application/json")
+		public ResponseEntity<String> voltarParaPrimeiraFase(@PathVariable("id") long id) {
+			try {
+				Edicao edicao = this.edicaoService.get(Edicao.class, id);
+				List<Grupo> gruposFase2 = this.grupoService.getListSegundaFaseByEdicao(edicao);
+				for (Grupo grupo : gruposFase2) {
+					List<Jogo> jogos = this.jogoService.getListByGrupo(grupo);
+					for (Jogo jogo : jogos) {
+						if(jogo.getStatus().getId() > 1) { // > 1, em andamento ou finalizado
+							throw new RuntimeException("2ª Fase em andamento impossivel voltar para 1ª Fase!");
+						}
+					}
+				}
+
+				// Exclui Jogos da 2ª Fase
+				for (Grupo grupo : gruposFase2) {
+					List<Jogo> jogos = this.jogoService.getListByGrupo(grupo); 
+					for (Jogo jogo : jogos) {
+						if(jogo.getStatus().getId() == 1) { // > 1, em andamento ou finalizado
+							this.jogoService.delete(Jogo.class, jogo.getId());
+						}
+					}
+					this.grupoService.delete(Grupo.class, grupo.getId());
+				}		
+				
+				List<Grupo> grupos = this.grupoService.getListaPorEdicao(edicao);
+				for (Grupo grupo : grupos) {
+					grupo.setStatus(new Status(2l));
+					this.grupoService.save(grupo);
+				}			
+				//HttpHeaders headers = new HttpHeaders();
+				//headers.setLocation(URI.create("/jchampionship/"));
+				return new ResponseEntity<String>(HttpStatus.OK);
+			} catch(Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}	 
+	 
 }

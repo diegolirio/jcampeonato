@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.jcampeonato.model.Evento;
+import com.diegolirio.jcampeonato.model.Fase;
 import com.diegolirio.jcampeonato.model.Perfil;
 import com.diegolirio.jcampeonato.model.Posicao;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.TipoEdicao;
 import com.diegolirio.jcampeonato.model.Usuario;
 import com.diegolirio.jcampeonato.service.EventoService;
+import com.diegolirio.jcampeonato.service.FaseService;
 import com.diegolirio.jcampeonato.service.PerfilService;
 import com.diegolirio.jcampeonato.service.PosicaoService;
 import com.diegolirio.jcampeonato.service.StatusService;
@@ -47,6 +49,9 @@ public class HomeController {
 
 	@Autowired @Qualifier("eventoService")
 	private EventoService eventoService;
+
+	@Autowired
+	private FaseService faseService;
 
 	
 	@RequestMapping(value="/criar_base")
@@ -155,6 +160,55 @@ public class HomeController {
 			cv.setDescricao("Cart�o Vermelho");
 			cv.setImgName("cartao-vermelho.png");
 			this.eventoService.save(cv);
+		}
+		
+		// Fases
+		Fase _1fase = this.faseService.getBySigla('1');
+		if(_1fase == null) {
+			_1fase = new Fase();
+			_1fase.setDescricao("1ª fase (fase de grupos)");
+			_1fase.setSigla('1');
+			this.faseService.save(_1fase);
+		}
+		Fase pontosCorridosFase = this.faseService.getBySigla('P');
+		if(pontosCorridosFase == null) {
+			pontosCorridosFase = new Fase();
+			pontosCorridosFase.setDescricao("Pontos Corridos");
+			pontosCorridosFase.setSigla('P');
+			this.faseService.save(pontosCorridosFase);
+		}
+//				Fase _final = new Fase(); // id = 3
+//				_final.setDescricao("Final");
+//				_final.setSigla('F');
+//				this.faseDao.save(_final);
+//				
+//				Fase _3Lugar = new Fase(); // id = 4
+//				_3Lugar.setDescricao("3º Lugar");
+//				_3Lugar.setSigla('3');
+//				this.faseDao.save(_3Lugar);
+//				
+//				Fase semiFinal = new Fase(); // id = 5
+//				semiFinal.setDescricao("Semi-Final");
+//				semiFinal.setSigla('S');
+//				this.faseDao.save(semiFinal);
+//				
+//				Fase quartas = new Fase(); // id = 6
+//				quartas.setDescricao("Quarta-de-Final");
+//				quartas.setSigla('Q');		
+//				this.faseDao.save(quartas);
+		//
+//				Fase oitavas = new Fase(); // id = 7
+//				oitavas.setDescricao("Oitavas-de-Final");
+//				oitavas.setSigla('O');
+//				this.faseDao.save(oitavas);
+				
+				// Fases
+		Fase _2fase = this.faseService.getBySigla('2');
+		if(_2fase == null) {
+			_2fase = new Fase();
+			_2fase.setDescricao("2ª fase (Mata-Mata)");
+			_2fase.setSigla('2');
+			this.faseService.save(_2fase);		
 		}
 		return "redirect:/";
 	}

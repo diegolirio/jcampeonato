@@ -19,6 +19,10 @@ public class GrupoService extends AbstractGenericService<Grupo> {
 		return this.grupoDao.getListaPorEdicao(edicao);
 	}
 
+	public List<Grupo> getListSegundaFaseByEdicao(Edicao edicao) {
+		return this.grupoDao.getListSegundaFaseByEdicao(edicao);
+	}
+
 
 	
 }

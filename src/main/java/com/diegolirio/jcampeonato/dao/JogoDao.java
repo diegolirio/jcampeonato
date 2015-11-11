@@ -82,6 +82,18 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 			return 0;
 		}
 	}
+
+	/**
+	 * Pega jogos por grupo
+	 * @param grupo
+	 * @return jogos
+	 */
+	public List<Jogo> getListByGrupo(Grupo grupo) {
+		return super.manager.createQuery("from Jogo j where j.grupo.id = :grupoId", Jogo.class)
+							.setParameter("grupoId", grupo.getId())
+							.getResultList();
+	}
+
 	
 	public Jogo getNextJogo(Jogo jogo) {
 		Jogo nextjogo = null;
@@ -205,5 +217,6 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 		}
 		return previousjogo;
 	}
+
 
 }

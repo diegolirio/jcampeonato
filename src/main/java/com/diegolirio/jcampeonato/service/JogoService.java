@@ -269,6 +269,10 @@ public class JogoService extends AbstractGenericService<Jogo> {
 	public Jogo getPreviousJogo(Jogo jogo) {
 		return this.jogoDao.getPreviousJogo(jogo);
 	}
+
+	public List<Jogo> getListByGrupo(Grupo grupo) {
+		return this.jogoDao.getListByGrupo(grupo);
+	}
 	
 	
 }

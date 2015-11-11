@@ -29,9 +29,9 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.js"></script>
 		<!--------- rotas e config da app angular ------------------->
-		<script src="${pageContext.request.contextPath}/static/core/app.js"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/app-1.0.0.js"></script>  
 		<!--------- Services ----------------> 
-		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService-1.0.0.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.0.js"></script> 
