@@ -3,7 +3,7 @@
 <html ng-app="app">
     <head>
         <meta charset="UTF-8">
-        <title>Quarta Show</title>
+        <title>Quarta Show 2015</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="${pageContext.request.contextPath}/static/adminlte-master/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
