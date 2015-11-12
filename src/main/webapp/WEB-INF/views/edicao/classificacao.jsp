@@ -12,8 +12,18 @@
 						{{ edicaoCLassCtrl.edicao.campeonato.descricao }} {{ edicaoCLassCtrl.edicao.descricao }}		     	
 					</h3>	
 				
+				
+							 		 <!-- Nav tabs -->
+	                <ul class="nav nav-pills">
+                     	<li ng-repeat="g in edicaoCLassCtrl.grupos" class="{{ (g.status.id == 2 || edicaoClassCtrl.grupos.length == $index) ? 'active' : '' }}">
+                     		<a ng-href="g.id" data-toggle="tab">{{g.descricao}}</a>
+                     	</li>
+	                </ul>  
+				  
+				  
+				    <div ng-repeat="grupo in edicaoCLassCtrl.grupos" class="tab-pane fade in {{ (grupo.status.id == 2 || edicaoClassCtrl.grupos.length == $index) ? 'active' : ''}" id="{{g.id}}">
 					 
-					    <div class="row" ng-repeat="grupo in edicaoCLassCtrl.grupos">
+					    <div class="row">
 					        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					            <div class="panel panel-primary">
 					                <div class="panel-heading">
@@ -63,7 +73,7 @@
 					    <!-- /.row -->	    
 					     <br/>						    
 					
-					<!-- JOGOS -->
+						<!-- JOGOS -->
 					
 						      <h5 class="text-muted" ng-repeat="grupo in edicaoCLassCtrl.grupos">{{grupo.descricao}}</h5> 
 
@@ -119,7 +129,7 @@
 						      		<br/>
 						      </div>        
 					                    	
-					<!-- Fim JOGOS -->
+						<!-- Fim JOGOS -->
 					
 						<br/><br/> 
 					
@@ -139,6 +149,8 @@
 							<br/><br/>
 						</div>
             
+            	  </div>
+            	  
              </section>
 	
 		</aside>
