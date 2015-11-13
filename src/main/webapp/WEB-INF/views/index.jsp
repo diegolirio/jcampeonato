@@ -41,8 +41,10 @@
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
     
 		<div id="spinner" class="spinner" style="display:none;"> 
-	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
-	         <p>Aguarde...</p>
+		<%-- 	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/> --%>
+	         <img id="img-spinner"  src="http://diegolirio.com/quartashow/bola.gif" alt="Aguarde..."/> <br/>
+	         <img id="img2-spinner" src="http://diegolirio.com/quartashow/QAURTASHOW.GIF" alt="QuartaShow..."/>
+<!-- 	         <p>Aguarde...</p> -->
 	    </div>  	
      
 		<jsp:include page="_menu.jsp"></jsp:include>
