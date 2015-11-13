@@ -7,7 +7,16 @@ app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routePa
                                                 UsuarioPerfilCampeonatoService) {
 
 	var self = this;
+
 	
+	self.setTab = function (tabId) {
+        self.tab = tabId;
+    };
+    self.isSet = function (tabId) {
+        return self.tab === tabId;
+    };
+
+    
 	var init = function() {
 		// busca edicao
 		EdicaoService.get($routeParams.id).then(function(resp) {
@@ -18,6 +27,7 @@ app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routePa
 			// busca grupos encadeado com edicao
 			GrupoService.getListaPorEdicao(edicaoResp.data).then(function(resp) {
 				self.grupos = resp.data;
+				self.tab = self.grupos.length-1;
 			}, function(error) {
 				alert(error.data);
 			});
