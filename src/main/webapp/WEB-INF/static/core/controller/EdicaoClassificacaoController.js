@@ -1,9 +1,9 @@
 /**
  * 
  */
-app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routeParams', 'EdicaoService', 'GrupoService', 'ClassificacaoService', 'JogoService',
+app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routeParams', '$window', 'EdicaoService', 'GrupoService', 'ClassificacaoService', 'JogoService',
                                                 'UsuarioPerfilCampeonatoService',
-                                               function($rootScope, $scope, $routeParams, EdicaoService, GrupoService, ClassificacaoService, JogoService,
+                                               function($rootScope, $scope, $routeParams, $window, EdicaoService, GrupoService, ClassificacaoService, JogoService,
                                                 UsuarioPerfilCampeonatoService) {
 
 	var self = this;
@@ -47,6 +47,17 @@ app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routePa
 					alert('Erro ao busca perfil: ' + error.data);
 				});
  			}
+		}, function(error) {
+			alert(error.data);
+		});
+	};
+	
+	/**
+	 * 
+	 */
+	self.finalizarPrimeiraFase = function(edicao) {
+		EdicaoService.finalizarPrimeiraFase(edicao).then(function(resp) {
+			$window.location.reload();
 		}, function(error) {
 			alert(error.data);
 		});

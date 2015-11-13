@@ -23,7 +23,7 @@
 				  
 				    <div ng-repeat="grupo in edicaoCLassCtrl.grupos" class="tab-pane fade in {{ (grupo.status.id == 2 || edicaoClassCtrl.grupos.length == $index) ? 'active' : ''}" id="{{g.id}}">
 					 
-					    <div class="row">
+					    <div class="row" ng-show="grupo.fase.id == 1 &&  edicaoCLassCtrl.edicao.tipoEdicao.id == 1">
 					        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					            <div class="panel panel-primary">
 					                <div class="panel-heading">
@@ -74,61 +74,59 @@
 					     <br/>						    
 					
 						<!-- JOGOS -->
-					
-						      <h5 class="text-muted" ng-repeat="grupo in edicaoCLassCtrl.grupos">{{grupo.descricao}}</h5> 
+					    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos | filter: grupo>   
 
-						      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos">   
-						      	
-						      		<div class="table-responsive">
-						      			<a href="#/jogo/{{jogo.id}}/resultado">
-						        		<table class="table well text-center">
-						        			<thead>
-						        				<tr>
-						        					<td colspan="5" class="text-muted">
-						        						<small> 
-						        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
-						        						</small>
-												    		<a href="#/jogo/{{jogo.id}}/novo/edicao/{{edicaoCLassCtrl.edicao.id}}" 
-												    		   ng-show="jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && (edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1 || edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
-												   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
-												   			</a>    
-						        						
-						        					</td>
-						        				</tr>
-						        			</thead>
-						        			<tbody >
-						        				<tr>
-						        					<td>
-						        						<h4 class="text-info">{{ jogo.timeA.nome }}</h4>
-						        					</td>
-						        					<td>
-					        							<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoA }}</h4>
-													</td>	
-													<td><h4 class="text-muted">X</h4></td>
-													<td>				
-								        				<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoB }}</h4>
-									        		</td>
-									        		<td>
-									        			<h4 class="text-info">{{ jogo.timeB.nome }}</h4>
-									        		</td>											        					
-						        				</tr>
-						        			</tbody>
-						        			<tfoot>
-						        				<tr>
-						        					<td colspan="3">
-						        						<small><span class=""><img ng-src="${pageContext.request.contextPath}/static/core/img/{{jogo.status.imgName}}"/> ( {{ jogo.status.descricao }} )</span></small>
-													</td>
-													<td colspan="2">
-														<small>{{ jogo.local.descricao }}</small>
-													</td>
-						        				</tr>
-						        		</table>
-						        	    </a>
-						            </div>   
-						      		
-						      		<br/>
-						      </div>        
-					                    	
+
+					      		<div class="table-responsive">
+					      			<a href="#/jogo/{{jogo.id}}/resultado">
+					        		<table class="table well text-center">
+					        			<thead>
+					        				<tr>
+					        					<td colspan="5" class="text-muted">
+					        						<small> 
+					        							Rodada: {{jogo.rodada}} - {{ jogo.dataHora }}
+					        						</small>
+											    		<a href="#/jogo/{{jogo.id}}/novo/edicao/{{edicaoCLassCtrl.edicao.id}}" 
+											    		   ng-show="jogo.status.id == 1 && usuarioLoginCtrl.isLoggedIn && (edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1 || edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
+											   				<span class="glyphicon glyphicon-pencil text-muted pull-right pencil-edit"></span>
+											   			</a>    
+					        						
+					        					</td>
+					        				</tr>
+					        			</thead>
+					        			<tbody >
+					        				<tr>
+					        					<td>
+					        						<h4 class="text-info">{{ jogo.timeA.nome }}</h4>
+					        					</td>
+					        					<td>
+				        							<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoA }}</h4>
+												</td>	
+												<td><h4 class="text-muted">X</h4></td>
+												<td>				
+							        				<h4 class="text-danger" ng-show="jogo.status.id != 1">{{ jogo.resultadoB }}</h4>
+								        		</td>
+								        		<td>
+								        			<h4 class="text-info">{{ jogo.timeB.nome }}</h4>
+								        		</td>											        					
+					        				</tr>
+					        			</tbody>
+					        			<tfoot>
+					        				<tr>
+					        					<td colspan="3">
+					        						<small><span class=""><img ng-src="${pageContext.request.contextPath}/static/core/img/{{jogo.status.imgName}}"/> ( {{ jogo.status.descricao }} )</span></small>
+												</td>
+												<td colspan="2">
+													<small>{{ jogo.local.descricao }}</small>
+												</td>
+					        				</tr>
+					        		</table>
+					        	    </a>
+					            </div>   
+					      		
+					      		<br/>
+					    </div>        
+				                    	
 						<!-- Fim JOGOS -->
 					
 						<br/><br/> 
@@ -142,7 +140,7 @@
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<br/>
-								<a href="${pageContext.request.contextPath}/edicao/system/${edicao.id}/finalizarPrimeiraFase" class="btn btn-block btn-outline btn-danger" id="idFinalizarFase">
+								<a href ng-click="edicaoCLassCtrl.finalizarPrimeiraFase(edicaoCLassCtrl.edicao)" class="btn btn-block btn-outline btn-danger">
 									Finalizar
 								</a>
 							</div>

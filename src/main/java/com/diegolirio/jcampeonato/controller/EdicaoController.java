@@ -161,7 +161,7 @@ public class EdicaoController {
 	 * Finaliza 1a Fase
 	 */
 	
-	 @RequestMapping(value="/system/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
+	 @RequestMapping(value="/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
 	 public ResponseEntity<String> finalizar1Fase(@PathVariable("id") long id) {
 		 try {
 			 Edicao edicao = this.edicaoService.get(Edicao.class, id);

@@ -36,6 +36,13 @@ app.factory('EdicaoService', ['$http', function($http) {
 		return $http.post(serverURL('/save'), edicao);
 	};
 	
+	/**
+	 * Finaliza Primeira fase
+	 */
+	var _finalizarPrimeiraFase = function(edicao) {
+		return $http.post(serverURL('/' + edicao.id+'/finalizarPrimeiraFase'));
+	};
+	
 	return {
 		
 		getEdicoesPorStatus : _getEdicoesPorStatus,
@@ -46,7 +53,9 @@ app.factory('EdicaoService', ['$http', function($http) {
 		
 		getListByCampeonato : _getListByCampeonato,
 		
-		save : _save
+		save : _save,
+		
+		finalizarPrimeiraFase : _finalizarPrimeiraFase
 		
 	};
 	
