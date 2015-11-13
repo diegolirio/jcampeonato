@@ -183,6 +183,7 @@ public class EdicaoController {
 			 } else if (grupos.size() == 8) {
 				 // cria oitavas
 			 }
+			 this.grupoService.updateSetStatusFinalizado(grupos);
 			 return new ResponseEntity<String>(HttpStatus.CREATED);
 		 } catch(Exception e) {
 			 e.printStackTrace();

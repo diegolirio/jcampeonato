@@ -15,15 +15,15 @@
 				
 							 		 <!-- Nav tabs -->
 	                <ul class="nav nav-pills">
-                     	<li ng-repeat="g in edicaoCLassCtrl.grupos" class="{{ (g.status.id == 2 || edicaoClassCtrl.grupos.length == $index) ? 'active' : '' }}">
+                     	<li ng-repeat="g in edicaoCLassCtrl.grupos" class="{{ (g.status.id == 2 || edicaoClassCtrl.grupos.length-1 == $index) ? 'active' : '' }}">
                      		<a ng-href="g.id" data-toggle="tab">{{g.descricao}}</a>
                      	</li>
 	                </ul>  
 				  
 				  
-				    <div ng-repeat="grupo in edicaoCLassCtrl.grupos" class="tab-pane fade in {{ (grupo.status.id == 2 || edicaoClassCtrl.grupos.length == $index) ? 'active' : ''}" id="{{g.id}}">
+				    <div ng-repeat="grupo in edicaoCLassCtrl.grupos" class="tab-pane fade in {{ (grupo.status.id == 2) ? 'active' : ''}" id="{{grupo.id}}">
 					 
-					    <div class="row" ng-show="grupo.fase.id == 1 &&  edicaoCLassCtrl.edicao.tipoEdicao.id == 1">
+					    <div class="row" ng-show="grupo.fase.sigla == '1' &&  edicaoCLassCtrl.edicao.tipoEdicao.id == 1">
 					        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					            <div class="panel panel-primary">
 					                <div class="panel-heading">
@@ -74,7 +74,7 @@
 					     <br/>						    
 					
 						<!-- JOGOS -->
-					    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos | filter: grupo>   
+					    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos | filter: grupo">   
 
 
 					      		<div class="table-responsive">
