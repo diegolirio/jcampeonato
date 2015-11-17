@@ -26,9 +26,9 @@
 								</ul>
   
 								<div class="tab-content">
-									<div ng-repeat="g in edicaoCLassCtrl.grupos" ng-show="edicaoCLassCtrl.isSet($index)">
+									<div ng-repeat="grupo in edicaoCLassCtrl.grupos" ng-show="edicaoCLassCtrl.isSet($index)">
 
-								            <div class="panel panel-primary" ng-show="g.fase.sigla == '1'">
+								            <div class="panel panel-primary" ng-show="grupo.fase.sigla == '1'">
 								                <div class="panel-heading">
 								                    <h3 class="panel-title"><i class="fa fa-fw fa-table"></i> Classificação {{ grupo.descricao }} </h3>
 								                </div>
@@ -74,8 +74,9 @@
 
 											
 												<!-- JOGOS -->
-											    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos | filter: grupo">   
+											    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in edicaoCLassCtrl.jogos | filter: grupo.id" ng-show="jogo.grupo.fase.sigla == '1'">   
 						
+														<h1>{{jogo.grupo.id}}</h1>
 						
 											      		<div class="table-responsive">
 											      			<a href="#/jogo/{{jogo.id}}/resultado">
@@ -141,15 +142,15 @@
 								            </div> <!-- fim fase 1 -->
 								            
 								            
-								            <div class="panel panel-primary" ng-show="g.fase.sigla == '3' || g.fase.sigla == 'F'">
+								            <div class="panel panel-primary" ng-show="jogo.grupo.fase.sigla == '3' || jogo.grupo.fase.sigla == 'F'" ng-repeat="jogo in edicaoCLassCtrl.jogos | filter: grupo.id">
 												
 													<!-- Final -->
-										      		<div class="table-responsive" ng-show="g.fase.sigla == 'F'">
+										      		<div class="table-responsive" class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-show="jogo.grupo.fase.sigla == 'F'" >
 										      			<a href="#/jogo/{{jogo.id}}/resultado">
 										        		<table class="table well text-center">
 										        			<thead>
 										        				<tr>
-										        					<td colspan="5" class="text-muted">
+										        					<td colspan="5" class="text-muted"> 
 										        						<small> 
 										        							Final - {{ jogo.dataHora }}
 										        						</small>
