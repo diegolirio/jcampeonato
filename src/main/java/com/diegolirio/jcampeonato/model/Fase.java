@@ -25,6 +25,12 @@ public class Fase extends Model {
 	@JsonIgnore
 	@OneToMany(mappedBy="fase")
 	private List<Grupo> grupos;
+	
+	public Fase(){}
+
+	public Fase(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;

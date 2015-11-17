@@ -217,6 +217,7 @@ public class EdicaoController {
 		}
 
 		private boolean criarFinal1Fase1GrupoMenosQ3Times(Grupo grupoUnicoPrimeiraFase) {
+			// TODO: refatorar criar final
 			// cria 2 fase com final e 3 lugar
 			Fase _2fase = this.faseService.getBySigla('2');
 			Grupo grupo = new Grupo();
@@ -238,31 +239,46 @@ public class EdicaoController {
 			return true;
 		}
 		
+		/**
+		 * Criar 3 lugar e final 
+		 * @param grupoUnicoPrimeiraFase
+		 * @return
+		 */
 		private boolean criar3LugarFinal1Fase1GrupoMenosQ3Times(Grupo grupoUnicoPrimeiraFase) {
 			// cria 2 fase com final e 3 lugar
-			Fase _2fase = this.faseService.getBySigla('2');
-			Grupo grupo = new Grupo();
-			grupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
-			grupo.setFase(_2fase);
-			//grupo.setDescricao("Segunda Fase (Mata-mata)");
-			grupo.setStatus(this.statusService.get(Status.class, 2l));
-			this.grupoService.save(grupo);
+			Fase _3 = this.faseService.getBySigla('3');
+			Grupo _3LugarGrupo = new Grupo();
+			_3LugarGrupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
+			_3LugarGrupo.setFase(_3);
+			_3LugarGrupo.setDescricao(_3.getDescricao());
+			_3LugarGrupo.setStatus(this.statusService.get(Status.class, 2l));
+			this.grupoService.save(_3LugarGrupo);
+
 			List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupoUnicoPrimeiraFase);
 			List<Jogo> jogos = this.jogoService.getListByGrupo(grupoUnicoPrimeiraFase);
 			// Cria a 3 Lugar, rodada -3
-			criaJogoMataMata(grupo, 
+			criaJogoMataMata(_3LugarGrupo, 
 						     jogos.get(0).getHarbito(), 
 						     jogos.get(0).getLocal(), 
 						     classificacoes,
-						     -3,
+						     1,
 						     3,
 						     4);		
+
 			// Cria a Final, rodada -1
-			criaJogoMataMata(grupo, 
+			Fase _final = this.faseService.getBySigla('F');
+			Grupo finalGrupo = new Grupo();
+			finalGrupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
+			finalGrupo.setFase(_final);
+			_3LugarGrupo.setDescricao(_final.getDescricao());
+			finalGrupo.setStatus(this.statusService.get(Status.class, 2l));
+			this.grupoService.save(finalGrupo);
+
+			criaJogoMataMata(finalGrupo, 
 							 jogos.get(0).getHarbito(), 
 							 jogos.get(0).getLocal(), 
 							 classificacoes,
-							 -1,
+							 2,
 							 1,
 							 2);
 			grupoUnicoPrimeiraFase.setStatus(new Status(3l));

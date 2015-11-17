@@ -191,7 +191,8 @@ app.controller('JogoFormController', ['$routeParams', '$route', '$location', 'Ed
 			if(self.modoEdicao == true)
 				$location.path( '/edicao/'+self.edicao.id+'/classificacao' );
 			self.jogos.push(resp.data);
-			self.jogo = {};
+			self.jogo.timeA = {};
+			self.jogo.timeB = {};
 		}, function(error) {
 			alert(error.data);
 		});

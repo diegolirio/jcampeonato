@@ -150,14 +150,14 @@ public class HomeController {
 		Evento ca = this.eventoService.getByDescricao("Cart�o Amarelo");
 		if(ca == null) {
 			ca = new Evento();
-			ca.setDescricao("Cart�o Amarelo");
+			ca.setDescricao("Cartao Amarelo");
 			ca.setImgName("cartao-amarelo.png");
 			this.eventoService.save(ca);
 		}
 		Evento cv = this.eventoService.getByDescricao("Cart�o Vermelho");
 		if(cv == null) {
 			cv = new Evento();
-			cv.setDescricao("Cart�o Vermelho");
+			cv.setDescricao("Cartao Vermelho");
 			cv.setImgName("cartao-vermelho.png");
 			this.eventoService.save(cv);
 		}
@@ -209,6 +209,41 @@ public class HomeController {
 			_2fase.setDescricao("2ª fase (Mata-Mata)");
 			_2fase.setSigla('2');
 			this.faseService.save(_2fase);		
+		}
+		Fase _8final = this.faseService.getBySigla('8');
+		if(_8final == null) {
+			_8final = new Fase();
+			_8final.setDescricao("Oitavas-de-Final (Mata-Mata)");
+			_8final.setSigla('8');
+			this.faseService.save(_8final);		
+		}
+		Fase _4final = this.faseService.getBySigla('4');
+		if(_4final == null) {
+			_4final = new Fase();
+			_4final.setDescricao("Quartas-de-Final (Mata-Mata)");
+			_4final.setSigla('4');
+			this.faseService.save(_4final);		
+		}
+		Fase _sFinal = this.faseService.getBySigla('S');
+		if(_sFinal == null) {
+			_sFinal = new Fase();
+			_sFinal.setDescricao("Semi-Final (Mata-Mata)");
+			_sFinal.setSigla('S');
+			this.faseService.save(_sFinal);		
+		}
+		Fase _3 = this.faseService.getBySigla('3');
+		if(_3 == null) {
+			_3 = new Fase();
+			_3.setDescricao("Terceiro-Lugar");
+			_3.setSigla('3');
+			this.faseService.save(_3);		
+		}
+		Fase _final = this.faseService.getBySigla('F');
+		if(_final == null) {
+			_final = new Fase();
+			_final.setDescricao("Final");
+			_final.setSigla('F');
+			this.faseService.save(_final);		
 		}
 		return "redirect:/";
 	}

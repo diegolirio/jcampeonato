@@ -30,6 +30,10 @@ app.controller('GrupoFormController', ['$routeParams', '$route', '$location', 'E
 	 */
 	self.save = function(grupo) {
 		grupo.edicao = self.edicao;
+		grupo.fase = {};
+		grupo.fase.id = 1;
+		grupo.status = {};
+		grupo.status.id = 1;
 		GrupoService.save(grupo).then(function(resp) {
 			self.grupo = resp.data;	
 			alert("Grupo: " + grupo.descricao + " gravado com sucesso"); 
