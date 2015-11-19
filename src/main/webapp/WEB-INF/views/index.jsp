@@ -71,7 +71,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService-1.0.0.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
-		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.0.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.1.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>
@@ -94,7 +94,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController-1.0.0.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController-1.0.2.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController-1.0.0.js"></script>    
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoResultadoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 

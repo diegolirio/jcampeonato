@@ -35,6 +35,10 @@ app.factory('EdicaoService', ['$http', function($http) {
 	var _save = function(edicao) {
 		return $http.post(serverURL('/save'), edicao);
 	};
+
+	var _confirmaConclusao = function(edicao) {
+		return $http.post(serverURL('/confirma/conclusao'), edicao);
+	};
 	
 	/**
 	 * Finaliza Primeira fase

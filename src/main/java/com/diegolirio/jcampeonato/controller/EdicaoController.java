@@ -140,6 +140,7 @@ public class EdicaoController {
 		}
 	}
 	
+
 	/**
 	 * Salvar Edicao
 	 * @param edicao
@@ -153,14 +154,30 @@ public class EdicaoController {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-	
+			
 		}
 	}
 	
-	/*
+	/**
+	 * Confirma conclusao setando edicao e grupos da edicao para em andamento
+	 * @param edicao
+	 * @return JSON
+	 */
+	@RequestMapping(value="/confirma/conclucao", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> confirmaConclusao(@RequestBody Edicao edicao) {
+		try {
+			this.edicaoService.confirmaConclusao(edicao);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicao), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+	}
+
+	/**
 	 * Finaliza 1a Fase
 	 */
-	
 	 @RequestMapping(value="/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
 	 public ResponseEntity<String> finalizar1Fase(@PathVariable("id") long id) {
 		 try {
@@ -270,7 +287,7 @@ public class EdicaoController {
 			Grupo finalGrupo = new Grupo();
 			finalGrupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
 			finalGrupo.setFase(_final);
-			_3LugarGrupo.setDescricao(_final.getDescricao());
+			finalGrupo.setDescricao(_final.getDescricao());
 			finalGrupo.setStatus(this.statusService.get(Status.class, 2l));
 			this.grupoService.save(finalGrupo);
 

@@ -127,13 +127,13 @@
 													 <div class="row" ng-show="usuarioLoginCtrl.isLoggedIn && (edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1 || edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 2)">
 														<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 															<br/>
-															<a href="#/jogo/novo/edicao/{{ edicaoCLassCtrl.edicao.id }}/true" class="btn btn-block btn-outline btn-success" ng-disabled="grupo.status.id != 1">
+															<a href="#/jogo/novo/edicao/{{ edicaoCLassCtrl.edicao.id }}/true" class="btn btn-block btn-outline btn-success" ng-disabled="grupo.status.id != 2">
 																Cadastrar Novo jogo
 															</a> 
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 															<br/>
-															<a href ng-click="edicaoCLassCtrl.finalizarPrimeiraFase(edicaoCLassCtrl.edicao)" class="btn btn-block btn-outline btn-danger" ng-disabled="grupo.status.id != 1">
+															<a href ng-click="edicaoCLassCtrl.finalizarPrimeiraFase(edicaoCLassCtrl.edicao)" class="btn btn-block btn-outline btn-danger" ng-disabled="grupo.status.id != 2">
 																Finalizar
 															</a>
 														</div>
