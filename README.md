@@ -14,9 +14,12 @@ git clone ssh://56327c6a7628e112bd000066@campeonato-diegolirio.rhcloud.com/~/git
 
 #jenkins
 
-https://jenkinscamp-diegolirio.rhcloud.com/job/campeonato-build/
-https://jenkinscamp-diegolirio.rhcloud.com/me/configure
 
 User: admin
 Password: sY2BEMgLTkWS
+
+#mysql
+
+admin2aNjnhQ
+GwTRIFbQ9r81
 

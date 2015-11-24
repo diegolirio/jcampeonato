@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.GrupoDao;
 import com.diegolirio.jcampeonato.model.Edicao;
+import com.diegolirio.jcampeonato.model.Fase;
 import com.diegolirio.jcampeonato.model.Grupo;
 import com.diegolirio.jcampeonato.model.Status;
 
@@ -31,6 +32,10 @@ public class GrupoService extends AbstractGenericService<Grupo> {
 				this.grupoDao.save(grupo);
 			}
 		}
+	}
+
+	public List<Grupo> getListByEdicaoAndFase(Edicao edicao, Fase fase) {
+		return this.grupoDao.getListByEdicaoAndFase(edicao, fase);
 	}
 
 

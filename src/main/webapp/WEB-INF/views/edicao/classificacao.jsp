@@ -233,6 +233,8 @@
 									   </div> 
 										
 										
+									   <button class="btn btn-danger" ng-show="$last && !$first" ng-click="edicaoCLassCtrl.voltarParaFaseAnterior(edicaoCLassCtrl.edicao, grupo.fase)">Voltar para fase anterior</button>
+										
 										
 									 </div>								
 								</div> 

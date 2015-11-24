@@ -46,6 +46,13 @@ app.factory('EdicaoService', ['$http', function($http) {
 	var _finalizarPrimeiraFase = function(edicao) {
 		return $http.post(serverURL('/' + edicao.id+'/finalizarPrimeiraFase'));
 	};
+
+	/**
+	 * _voltarParaPrimeiraFase
+	 */
+	var _voltarParaPrimeiraFase = function(edicao, faseAtual) {
+		return $http.post(serverURL('/' + edicao.id+'/voltar/fase/'+faseAtual.id));
+	}
 	
 	return {
 		
@@ -59,7 +66,9 @@ app.factory('EdicaoService', ['$http', function($http) {
 		
 		save : _save,
 		
-		finalizarPrimeiraFase : _finalizarPrimeiraFase
+		finalizarPrimeiraFase : _finalizarPrimeiraFase,
+		
+		voltarParaPrimeiraFase : _voltarParaPrimeiraFase
 		
 	};
 	

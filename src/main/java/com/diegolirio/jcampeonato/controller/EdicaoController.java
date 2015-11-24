@@ -324,12 +324,18 @@ public class EdicaoController {
 			this.jogoService.save(jogo);
 		}
 		
-		@RequestMapping(value="/{id}/Voltar/primeira/fase", method=RequestMethod.POST, produces="application/json")
-		public ResponseEntity<String> voltarParaPrimeiraFase(@PathVariable("id") long id) {
+		@RequestMapping(value="/{id}/voltar/fase/{faseId}", method=RequestMethod.POST, produces="application/json")
+		public ResponseEntity<String> voltarParaPrimeiraFase(@PathVariable("id") long id, @PathVariable("faseId") long faseId) {
 			try {
 				Edicao edicao = this.edicaoService.get(Edicao.class, id);
-				List<Grupo> gruposFase2 = this.grupoService.getListSegundaFaseByEdicao(edicao);
-				for (Grupo grupo : gruposFase2) {
+				Fase fase = this.faseService.get(Fase.class, faseId);
+				
+				List<Grupo> gruposFaseAtual = this.grupoService.getListByEdicaoAndFase(edicao, fase);
+				if(fase.getSigla() == 'F') {
+					gruposFaseAtual.addAll(this.grupoService.getListByEdicaoAndFase(edicao, this.faseService.getBySigla('3')));
+				}
+				
+				for (Grupo grupo : gruposFaseAtual) {
 					List<Jogo> jogos = this.jogoService.getListByGrupo(grupo);
 					for (Jogo jogo : jogos) {
 						if(jogo.getStatus().getId() > 1) { // > 1, em andamento ou finalizado
@@ -339,7 +345,7 @@ public class EdicaoController {
 				}
 
 				// Exclui Jogos da 2ª Fase
-				for (Grupo grupo : gruposFase2) {
+				for (Grupo grupo : gruposFaseAtual) {
 					List<Jogo> jogos = this.jogoService.getListByGrupo(grupo); 
 					for (Jogo jogo : jogos) {
 						if(jogo.getStatus().getId() == 1) { // > 1, em andamento ou finalizado
@@ -361,6 +367,9 @@ public class EdicaoController {
 				e.printStackTrace();
 				return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-		}	 
+		}
+		
+		
+		
 	 
 }

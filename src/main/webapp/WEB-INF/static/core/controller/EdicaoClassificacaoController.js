@@ -73,6 +73,17 @@ app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routePa
 		});
 	};
 	
+	/**
+	 * voltarParaFaseAnterior
+	 */
+	self.voltarParaFaseAnterior = function(edicao, faseAtual) {
+		EdicaoService.voltarParaPrimeiraFase(edicao, faseAtual).then(function(resp) {
+			$window.location.reload();
+		}, function(error) {
+			alert(error.data);
+		});
+	};
+	
 	init();
 	
 }]);

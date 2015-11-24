@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.diegolirio.jcampeonato.model.Edicao;
+import com.diegolirio.jcampeonato.model.Fase;
 import com.diegolirio.jcampeonato.model.Grupo;
 
 @Repository("grupoDao")
@@ -33,6 +34,20 @@ public class GrupoDao extends AbstractGenericDao<Grupo> {
 		TypedQuery<Grupo> query = super.manager.createQuery("Select g from Grupo g where g.edicao.id = :edicaoId and g.fase.sigla = '2'", Grupo.class);
 		query.setParameter("edicaoId", edicao.getId());
 		return query.getResultList();  
+	}
+
+
+	/**
+	 * pega lista de grupos por edicao e por fase
+	 * @param edicao
+	 * @param fase
+	 * @return
+	 */
+	public List<Grupo> getListByEdicaoAndFase(Edicao edicao, Fase fase) {
+		TypedQuery<Grupo> query = super.manager.createQuery("Select g from Grupo g where g.edicao.id = :edicaoId and g.fase.id = :faseId", Grupo.class);
+		query.setParameter("edicaoId", edicao.getId());
+		query.setParameter("faseId", fase.getId());
+		return query.getResultList(); 
 	}
 
 }
