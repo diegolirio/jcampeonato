@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.diegolirio.jcampeonato.dao.ClassificacaoDao;
 import com.diegolirio.jcampeonato.dao.ClassificacaoHistDao;
+import com.diegolirio.jcampeonato.dao.EdicaoDao;
 import com.diegolirio.jcampeonato.dao.EscalacaoDao;
+import com.diegolirio.jcampeonato.dao.GrupoDao;
 import com.diegolirio.jcampeonato.dao.JogadorInfoEdicaoDao;
 import com.diegolirio.jcampeonato.dao.JogoDao;
+import com.diegolirio.jcampeonato.dao.PodiumDao;
 import com.diegolirio.jcampeonato.model.Classificacao;
 import com.diegolirio.jcampeonato.model.ClassificacaoHist;
 import com.diegolirio.jcampeonato.model.Edicao;
@@ -21,6 +24,7 @@ import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
 import com.diegolirio.jcampeonato.model.Jogo;
+import com.diegolirio.jcampeonato.model.Podium;
 import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.Time;
 
@@ -44,6 +48,15 @@ public class JogoService extends AbstractGenericService<Jogo> {
 
 	@Autowired @Qualifier("classificacaoHistDao")
 	private ClassificacaoHistDao classificacaoHistDao;
+
+	@Autowired @Qualifier("grupoDao")
+	private GrupoDao grupoDao;
+
+	@Autowired
+	private PodiumDao podiumDao;
+
+	@Autowired
+	private EdicaoDao edicaoDao;
 	
 	public List<Jogo> getListByEdicao(Edicao edicao) {
 		return this.getList(Jogo.class);
@@ -56,23 +69,120 @@ public class JogoService extends AbstractGenericService<Jogo> {
 	public void finalizar(Jogo jogo) {
 		if(jogo.getStatus().getId() != 2)
 			throw new RuntimeException("Jogo nao encontra-se em andamento.");
-		// se tipo edicao for fase grupo mata-mata
-		if(jogo.getGrupo().getEdicao().getTipoEdicao().getId() == 1) {
+		
+		
+		// se tipo edicao for fase grupo mata-mata e se jogo for primeira fase
+		if(jogo.getGrupo().getEdicao().getTipoEdicao().getId() == 1 && jogo.getGrupo().getFase().getSigla() == '1') {
 			//FinalizaJogo finalizaJogo = new FinalizaJogoFaseGrupoMata();
-			this.execute(jogo);
-		} else {
+			this.executeFinalizaFaseGrupoPrimeiraFase(jogo);
+		} 
+		
+		// se tipo edicao for fase grupo mata-mata e se jogo for disputa terceiro lugar
+		else if(jogo.getGrupo().getEdicao().getTipoEdicao().getId() == 1 && jogo.getGrupo().getFase().getSigla() == '3') {
+			this.executeFinalizaFaseGrupo3Lugar(jogo);
+		} 
+
+		// se tipo edicao for fase grupo mata-mata e se jogo for FINAL
+		else if(jogo.getGrupo().getEdicao().getTipoEdicao().getId() == 1 && jogo.getGrupo().getFase().getSigla() == 'F') {
+			this.executeFinalizaFaseGrupoFinal(jogo);
+		} 		
+		
+		else {
 			throw new RuntimeException("Em desenvolvimento");
 		}
+		
+		
 	}
 	
-	public void execute(Jogo jogo) {
+	/**
+	 * Final Fase de Grupo Mata-Mata
+	 * @param jogo
+	 */
+	private void executeFinalizaFaseGrupoFinal(Jogo jogo) {
+		
+		Edicao edicao = jogo.getGrupo().getEdicao();
+		
+		if(jogo.getResultadoA() == jogo.getResultadoB()) { // se empate 
+			jogo.setStatus(new Status(4)); // disputa por penalti
+		} else {
+			
+			//Atualiza JogodorInfo
+			this.atualizaJogadorinfoEdicao(jogo);
+			
+			// verifica se todos os jogos estao finalizados
+			List<Jogo> todosJogosEdicao = this.jogoDao.getListByEdicao(edicao);
+			for (Jogo j : todosJogosEdicao) {
+				if(j.getStatus().getId() != 3 && j.getId() != jogo.getId())
+					throw new RuntimeException("Todos os jogos precisam estar Finalizados");
+			}
+			
+			// Salva Jogo Finalizando o mesmo
+			this.saveJogoFinalizado(jogo);
+			System.out.println("===================================================================");
+			System.out.println(jogo);
+			System.out.println("===================================================================");
+			
+			// finaliza grupo final
+			Grupo grupoFinal = jogo.getGrupo();
+			grupoFinal.setStatus(new Status(3));
+			this.grupoDao.save(grupoFinal);
+			
+			// cria podium
+			Podium podium = this.podiumDao.getByEdicao(edicao);
+			if(podium == null) {
+				podium = new Podium();
+			}
+			podium.setEdicao(edicao);
+			podium.setTimeCampeao(jogo.getVencedor() == 'A' ? jogo.getTimeA() : jogo.getTimeB());
+			podium.setTimeViceCampeao(jogo.getVencedor() == 'A' ? jogo.getTimeB() : jogo.getTimeA());
+			Jogo jogoTerceiroLugar = this.jogoDao.getTerceiroLugar(edicao);
+			podium.setTimeTerceiroColocado(jogoTerceiroLugar.getVencedor() == 'A' ? jogoTerceiroLugar.getTimeA() : jogoTerceiroLugar.getTimeB());
+			this.podiumDao.save(podium);
+
+			// TODO: finaliza edicao
+			edicao.setStatus(new Status(3));
+			this.edicaoDao.save(edicao);
+		}		
+		
+		//throw new RuntimeException("FInal Em desenvolvimento");
+		
+	}
+
+	public void executeFinalizaFaseGrupoPrimeiraFase(Jogo jogo) {
 		this.calculaClassificacao(jogo);
 		this.ordenaClassificacao(jogo);
 		this.atualizaJogadorinfoEdicao(jogo);
-		jogo.setStatus(new Status(3));
-		this.jogoDao.save(jogo);
+		this.saveJogoFinalizado(jogo);
 		// guarda historico da classificacao se todos os jogos da rodada finalizado!
 		this.saveClassificacaoHist(jogo.getGrupo(), jogo.getRodada());
+	}
+	
+	public void executeFinalizaFaseGrupo3Lugar(Jogo jogo) {
+
+		if(jogo.getResultadoA() == jogo.getResultadoB()) { // se empate 
+			jogo.setStatus(new Status(4)); // disputa por penalti
+		} else {
+			this.atualizaJogadorinfoEdicao(jogo);
+			this.saveJogoFinalizado(jogo);
+			
+			// finaliza grupo 3 Lugar
+			Grupo grupo3Lugar = jogo.getGrupo();
+			grupo3Lugar.setStatus(new Status(3));
+			this.grupoDao.save(grupo3Lugar);
+		}
+	}
+	
+	public void saveJogoFinalizado(Jogo jogo) {
+		jogo.setStatus(new Status(3));
+		
+		if(jogo.getResultadoA() > jogo.getResultadoB())			
+			jogo.setVencedor('A');
+		else if(jogo.getResultadoB() > jogo.getResultadoA())
+			jogo.setVencedor('B');
+		if(jogo.getResultadoA() == jogo.getResultadoB())
+			// TODO: se nao contem penalti
+			jogo.setVencedor('E');
+		this.jogoDao.save(jogo);
 	}
 	
 	private List<Classificacao> calculaClassificacao(Jogo jogo) {

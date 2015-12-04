@@ -218,5 +218,31 @@ public class JogoDao extends AbstractGenericDao<Jogo> {
 		return previousjogo;
 	}
 
+	/**
+	 * get list jogo by edicao
+	 * @param edicao
+	 * @return list jogo
+	 */
+	public List<Jogo> getListByEdicao(Edicao edicao) {
+		return super.manager.createQuery("from Jogo j where j.grupo.edicao.id = :edicaoId", Jogo.class)
+				.setParameter("edicaoId", edicao.getId())
+				.getResultList();		
+	}
+
+	/**
+	 * pega jogo da disputa pelo terceiro lugar
+	 * @param edicao
+	 * @return jogo
+	 */
+	public Jogo getTerceiroLugar(Edicao edicao) {
+		try {
+			return super.manager.createQuery("from Jogo j where j.grupo.edicao.id = :edicaoId and j.grupo.fase.sigla = '3'", Jogo.class)
+					.setParameter("edicaoId", edicao.getId())
+					.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		}
+	}
+
 
 }
