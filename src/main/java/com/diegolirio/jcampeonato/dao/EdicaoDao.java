@@ -49,6 +49,15 @@ public class EdicaoDao extends AbstractGenericDao<Edicao> {
 				        	.getResultList();
 	}
 
+	/**
+	 * pega lista de edicao com Status Em Andamento e Finalizado
+	 * @return list edicao
+	 */
+	public List<Edicao> getListStatusEmAndamentoAndFinalizado() {
+		return super.manager.createQuery("Select e from Edicao e where e.status.id In (2,3)", Edicao.class)
+							.getResultList();
+	}
+
 
 	
 }

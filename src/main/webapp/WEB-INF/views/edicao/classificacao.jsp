@@ -16,6 +16,12 @@
 					
 					<div class="row col-md-12">
 					 
+					 		<div ng-show="edicaoCLassCtrl.edicao.status.id == 3" class="text-center">
+					 			<h1 class="text-warning">Campeão: {{ edicaoCLassCtrl.podium.timeCampeao.nome }}</h1>
+					 			<h3 class="text-danger">Vice Campeão: {{ edicaoCLassCtrl.podium.timeViceCampeao.nome }}</h3>
+					 			<h5 class="text-muted">Terceiro Colocado: {{ edicaoCLassCtrl.podium.timeTerceiroColocado.nome }}</h5>
+					 		</div>
+					 
 							<div class="nav-tabs-custom">
 							
 								<ul class="nav nav-tabs">
@@ -232,8 +238,11 @@
 
 									   </div> 
 										
-										
-									   <button class="btn btn-danger" ng-show="$last && !$first" ng-click="edicaoCLassCtrl.voltarParaFaseAnterior(edicaoCLassCtrl.edicao, grupo.fase)">Voltar para fase anterior</button>
+									   <!-- Mostra botao se for o ultimo grupo e != do primeiro.... e usuario estiver logado e se usuarioPerfil for 1(admin) ou 2(edita campeonato) -->	
+									   <button class="btn btn-danger" ng-show="$last && !$first && usuarioLoginCtrl.isLoggedIn && (edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 1 || edicaoCLassCtrl.usuarioPerfilCampeonato.perfil.id == 2)"  
+									   		   ng-click="edicaoCLassCtrl.voltarParaFaseAnterior(edicaoCLassCtrl.edicao, grupo.fase)">
+									   		   	Voltar para fase anterior
+									   </button>
 										
 										
 									 </div>								

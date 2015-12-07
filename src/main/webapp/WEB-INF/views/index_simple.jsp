@@ -34,7 +34,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService-1.0.0.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
-		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.1.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.2.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>

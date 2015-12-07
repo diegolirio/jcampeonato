@@ -2,9 +2,9 @@
  * 
  */
 app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routeParams', '$window', 'EdicaoService', 'GrupoService', 'ClassificacaoService', 'JogoService',
-                                                'UsuarioPerfilCampeonatoService',
+                                                'UsuarioPerfilCampeonatoService', 'PodiumService',
                                                function($rootScope, $scope, $routeParams, $window, EdicaoService, GrupoService, ClassificacaoService, JogoService,
-                                                UsuarioPerfilCampeonatoService) {
+                                                UsuarioPerfilCampeonatoService, PodiumService) {
 
 	var self = this;
 
@@ -57,6 +57,16 @@ app.controller('EdicaoClassificacaoController',['$rootScope', '$scope','$routePa
 					alert('Erro ao busca perfil: ' + error.data);
 				});
  			}
+ 			return edicaoResp;
+		}).then(function(edicaoResp) {
+			// pega podium por edicao se edicao estiver finalizada
+			if(edicaoResp.data.status.id == 3) {
+				PodiumService.getByEdicao(edicaoResp.data).then(function(resp) {
+					self.podium = resp.data;
+				}, function(error) {
+					alert(error.data);
+				});
+			}
 		}, function(error) {
 			alert(error.data);
 		});

@@ -93,6 +93,21 @@ public class EdicaoController {
 	}
 
 	/**
+	 * Pega as edicoes com Status em andamento e finalizado
+	 * @return list edicao
+	 */
+	@RequestMapping(value="/get/list/status/emandamento/and/finalizado", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListStatusEmAndamentoAndFinalizado() {
+		try {
+			List<Edicao> edicoes = this.edicaoService.getListStatusEmAndamentoAndFinalizado();
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicoes ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
 	 * pega lista de edicao por status e usuario administrador
 	 * @param idStatus
 	 * @return

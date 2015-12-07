@@ -53,6 +53,14 @@ public class EdicaoService extends AbstractGenericService<Edicao> {
 		}	
 	}
 
+	/**
+	 * pega lista de edicao com Status Em andamento e Finalizado
+	 * @return
+	 */
+	public List<Edicao> getListStatusEmAndamentoAndFinalizado() {
+		return this.edicaoDao.getListStatusEmAndamentoAndFinalizado();
+	}
+
 	
 	
 }
