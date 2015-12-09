@@ -75,7 +75,7 @@
 					    	<div ng-show="jogadorInfoPgCtrl.jogadorInfoEdicao.gols > 0">
 					    		
 					    		<div class="row">
-					    			<h3 class="text-warning text-center">Média de {{jogadorInfoPgCtrl.jogadorInfoEdicao.gols / jogadorInfoPgCtrl.jogadorInfoEdicao.jogos}} gols por partida</h3>
+					    			<h3 class="text-warning text-center">Média de {{(jogadorInfoPgCtrl.jogadorInfoEdicao.gols / jogadorInfoPgCtrl.jogadorInfoEdicao.jogos) | number:2}} gols por partida</h3>
 					    		</div>
 					    		<div class="row">
 					    			<h5 class="text-muted text-center">Jogos em que marcou gols</center> 
