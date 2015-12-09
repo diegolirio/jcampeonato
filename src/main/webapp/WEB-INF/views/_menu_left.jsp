@@ -50,7 +50,7 @@
 <!--                             </a> -->
 <!--                         </li> -->
                         <li ng-hide="edicao == null">
-                            <a href="#/jogadorinfo/jogadores/edicao/{{edicao.id}}" >
+                            <a href="#/jogadorinfo/jogadores/edicao/{{edicao.id}}" onclick="$('#idBtnMenuShowHide').trigger('click');">
                                 <i class="fa fa-group"></i> <span>Jogadores</span>
                             </a>
                         </li>

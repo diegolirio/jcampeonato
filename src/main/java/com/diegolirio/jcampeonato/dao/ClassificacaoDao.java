@@ -40,7 +40,7 @@ public class ClassificacaoDao extends AbstractGenericDao<Classificacao> {
 	public Classificacao getByEdicaoAndTime(Edicao edicao, Time time) {
 		Query query = this.manager.createQuery("Select c from Classificacao c where c.grupo.edicao.id = :edicaoId and c.time.id = :timeId");
 		query.setParameter("edicaoId", edicao.getId());
-		query.setParameter("timeId", edicao.getId());
+		query.setParameter("timeId", time.getId());
 		try {
 			return (Classificacao) query.getSingleResult();
 		} catch(NoResultException e) {

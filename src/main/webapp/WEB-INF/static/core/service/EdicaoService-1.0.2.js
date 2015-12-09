@@ -10,6 +10,10 @@ app.factory('EdicaoService', ['$http', function($http) {
 	var _getEdicoesPorStatus = function(idStatus) {
 		return $http.get(serverURL('/get/list/por/status/'+idStatus));
 	};
+
+	var _getListStatusEmAndamentoAndFinalizado = function() {
+		return $http.get(serverURL('/get/list/status/emandamento/and/finalizado'));
+	};
 	
 	/**
 	 * pega lista de edicoes por status e usuarioAdministrador
@@ -35,10 +39,30 @@ app.factory('EdicaoService', ['$http', function($http) {
 	var _save = function(edicao) {
 		return $http.post(serverURL('/save'), edicao);
 	};
+
+	var _confirmaConclusao = function(edicao) {
+		return $http.post(serverURL('/confirma/conclusao'), edicao);
+	};
+	
+	/**
+	 * Finaliza Primeira fase
+	 */
+	var _finalizarPrimeiraFase = function(edicao) {
+		return $http.post(serverURL('/' + edicao.id+'/finalizarPrimeiraFase'));
+	};
+
+	/**
+	 * _voltarParaPrimeiraFase
+	 */
+	var _voltarParaPrimeiraFase = function(edicao, faseAtual) {
+		return $http.post(serverURL('/' + edicao.id+'/voltar/fase/'+faseAtual.id));
+	}
 	
 	return {
 		
 		getEdicoesPorStatus : _getEdicoesPorStatus,
+		
+		getListStatusEmAndamentoAndFinalizado : _getListStatusEmAndamentoAndFinalizado,
 		
 		getListByStatusAndUsuarioAdm : _getListByStatusAndUsuarioAdm,
 		
@@ -46,7 +70,11 @@ app.factory('EdicaoService', ['$http', function($http) {
 		
 		getListByCampeonato : _getListByCampeonato,
 		
-		save : _save
+		save : _save,
+		
+		finalizarPrimeiraFase : _finalizarPrimeiraFase,
+		
+		voltarParaPrimeiraFase : _voltarParaPrimeiraFase
 		
 	};
 	

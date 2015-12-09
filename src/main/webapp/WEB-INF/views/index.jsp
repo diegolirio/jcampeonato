@@ -41,8 +41,10 @@
     <body class="skin-blue" ng-controller="UsuarioLoginController as usuarioLoginCtrl">
     
 		<div id="spinner" class="spinner" style="display:none;"> 
-	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/>
-	         <p>Aguarde...</p>
+		<%-- 	         <img id="img-spinner" src="${pageContext.request.contextPath}/static/core/img/bola_carregamento.gif" alt="Aguarde..."/> --%>
+	         <img id="img-spinner"  src="http://diegolirio.com/quartashow/bola.gif" alt="Aguarde..."/> <br/>
+	         <img id="img2-spinner" src="http://diegolirio.com/quartashow/QAURTASHOW.GIF" alt="QuartaShow..."/>
+<!-- 	         <p>Aguarde...</p> -->
 	    </div>  	
      
 		<jsp:include page="_menu.jsp"></jsp:include>
@@ -69,7 +71,7 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioService-1.0.0.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/CampeonatoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TipoEdicaoService.js"></script> 
-		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.0.js"></script> 
+		<script src="${pageContext.request.contextPath}/static/core/service/EdicaoService-1.0.2.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/GrupoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/TimeService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/ClassificacaoService.js"></script>
@@ -83,17 +85,18 @@
 		<script src="${pageContext.request.contextPath}/static/core/service/UsuarioPerfilCampeonatoService.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/service/JogadorInfoEdicaoService.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/service/JogadorEscaladoService.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/service/PodiumService-1.0.0.js"></script>
 		<!--------- Controllers ------------->
 		<script src="${pageContext.request.contextPath}/static/core/controller/UsuarioLoginController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/HomeController-1.0.0.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/CampeonatoFormController.js"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoFormController.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoListController-1.0.1.js" charset="UTF-8"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController.js" charset="UTF-8"></script>  
+		<script src="${pageContext.request.contextPath}/static/core/controller/GrupoFormController-1.0.1.js" charset="UTF-8"></script>  
 		<script src="${pageContext.request.contextPath}/static/core/controller/ClassificacaoFormController.js"></script>  
-		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController-1.0.1.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController.js"></script>    
-		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/JogoFormController-1.0.2.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoConfirmaConclusaoController-1.0.0.js"></script>    
+		<script src="${pageContext.request.contextPath}/static/core/controller/EdicaoClassificacaoController-1.0.0.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/JogoResultadoController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimePageController.js"></script> 
 		<script src="${pageContext.request.contextPath}/static/core/controller/TimeFormController.js"></script>

@@ -51,6 +51,8 @@ public class Jogo extends Model {
 	
 	private int sequencia;
 
+	private char vencedor;
+
 	public Jogo() {}
 	
 	public Jogo(long id) {
@@ -152,12 +154,26 @@ public class Jogo extends Model {
 		this.sequencia = sequencia;
 	}
 
+	public char getVencedor() {
+		return vencedor;
+	}
+
+	public void setVencedor(char vencedor) {
+		this.vencedor = vencedor;
+	}
+
 	@Override
 	public String toString() {
 		return "Jogo [id=" + id + ", grupo=" + grupo + ", timeA=" + timeA
 				+ ", resultadoA=" + resultadoA + ", timeB=" + timeB
 				+ ", resultadoB=" + resultadoB + ", local=" + local
-				+ ", harbito=" + harbito + "]";
+				+ ", harbito=" + harbito + ", status=" + status + ", rodada="
+				+ rodada + ", dataHora=" + dataHora + ", sequencia="
+				+ sequencia + ", vencedor=" + vencedor + "]";
 	}
+
+	
+
+
 	
 }

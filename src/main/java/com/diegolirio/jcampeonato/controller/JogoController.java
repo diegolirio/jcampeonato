@@ -19,6 +19,7 @@ import com.diegolirio.jcampeonato.model.ClassificacaoHist;
 import com.diegolirio.jcampeonato.model.Edicao;
 import com.diegolirio.jcampeonato.model.Escalacao;
 import com.diegolirio.jcampeonato.model.Evento;
+import com.diegolirio.jcampeonato.model.Grupo;
 import com.diegolirio.jcampeonato.model.Jogador;
 import com.diegolirio.jcampeonato.model.JogadorEscalado;
 import com.diegolirio.jcampeonato.model.JogadorInfoEdicao;
@@ -27,7 +28,9 @@ import com.diegolirio.jcampeonato.model.Status;
 import com.diegolirio.jcampeonato.model.Time;
 import com.diegolirio.jcampeonato.service.ClassificacaoHistService;
 import com.diegolirio.jcampeonato.service.ClassificacaoService;
+import com.diegolirio.jcampeonato.service.EdicaoService;
 import com.diegolirio.jcampeonato.service.EscalacaoService;
+import com.diegolirio.jcampeonato.service.GrupoService;
 import com.diegolirio.jcampeonato.service.JogadorEscaladoService;
 import com.diegolirio.jcampeonato.service.JogadorInfoEdicaoService;
 import com.diegolirio.jcampeonato.service.JogoService;
@@ -53,6 +56,12 @@ public class JogoController {
 
 	@Autowired
 	private JogadorEscaladoService jogadorEscaladoService;
+
+	@Autowired
+	private GrupoService grupoService;
+
+	@Autowired
+	private EdicaoService edicaoService;
 
 	/*
 	 * Pages
@@ -264,9 +273,19 @@ public class JogoController {
 			if (jogo.getStatus().getId() == 3) {
 				this.retornaCalculoJogadorInfoEdicao(jogo);
 				this.retornaCalculaClassificacao(jogo);
+				
+				Grupo grupoDoJogo = jogo.getGrupo();
+				grupoDoJogo.setStatus(new Status(2));
+				this.grupoService.save(grupoDoJogo);
+				
 				this.jogoService.ordenaClassificacao(jogo); 
 				jogo.setStatus(new Status(2)); // seta jogo p/ status em andamento...
 				this.jogoService.save(jogo);
+				if(jogo.getGrupo().getFase().getSigla() == 'F') {
+					Edicao edicao = jogo.getGrupo().getEdicao();
+					edicao.setStatus(new Status(2));
+					this.edicaoService.save(edicao);
+				}
 			}
 			else if(jogo.getStatus().getId() == 2) {
 				Escalacao escalacao = this.escalacaoService.getByJogo(jogo);

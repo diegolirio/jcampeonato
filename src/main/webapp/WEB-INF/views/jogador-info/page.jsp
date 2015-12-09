@@ -27,7 +27,7 @@
 							<tbody>
 								<tr>
 									<td><img ng-src="{{ jogadorInfoPgCtrl.jogador.uriFoto }}" class="img-circle" height="100"></td>
-									<td><h1 class="page-header text-primary">{{ jogadorInfoPgCtrl.jogador.nome }} <small>...</small></h1></td>
+									<td><h1 class="page-header text-primary">{{ jogadorInfoPgCtrl.jogador.nome }} <small>{{ jogadorInfoPgCtrl.jogador.apelido }}</small></h1></td>
 									<td><h1><small class="text-success">R$ 0,00</small></h1></td>
 									<td></td>
 								</tr> 
@@ -73,8 +73,12 @@
 					    	
 					    	<!-- jogos -->
 					    	<div ng-show="jogadorInfoPgCtrl.jogadorInfoEdicao.gols > 0">
+					    		
 					    		<div class="row">
-					    			<center>Jogos em que marcou gols</center> 
+					    			<h3 class="text-warning text-center">Média de {{jogadorInfoPgCtrl.jogadorInfoEdicao.gols / jogadorInfoPgCtrl.jogadorInfoEdicao.jogos}} gols por partida</h3>
+					    		</div>
+					    		<div class="row">
+					    			<h5 class="text-muted text-center">Jogos em que marcou gols</center> 
 					    		</div>
 					    		<div class="row">
 								    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="jogo in jogadorInfoPgCtrl.jogosComGols">   

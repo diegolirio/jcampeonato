@@ -93,6 +93,21 @@ public class EdicaoController {
 	}
 
 	/**
+	 * Pega as edicoes com Status em andamento e finalizado
+	 * @return list edicao
+	 */
+	@RequestMapping(value="/get/list/status/emandamento/and/finalizado", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> getListStatusEmAndamentoAndFinalizado() {
+		try {
+			List<Edicao> edicoes = this.edicaoService.getListStatusEmAndamentoAndFinalizado();
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicoes ), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
 	 * pega lista de edicao por status e usuario administrador
 	 * @param idStatus
 	 * @return
@@ -140,6 +155,7 @@ public class EdicaoController {
 		}
 	}
 	
+
 	/**
 	 * Salvar Edicao
 	 * @param edicao
@@ -153,15 +169,31 @@ public class EdicaoController {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-	
+			
 		}
 	}
 	
-	/*
+	/**
+	 * Confirma conclusao setando edicao e grupos da edicao para em andamento
+	 * @param edicao
+	 * @return JSON
+	 */
+	@RequestMapping(value="/confirma/conclucao", method=RequestMethod.POST, consumes="application/json; charset=UTF-8", produces="application/json; charset=UTF-8")
+	public ResponseEntity<String> confirmaConclusao(@RequestBody Edicao edicao) {
+		try {
+			this.edicaoService.confirmaConclusao(edicao);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(edicao), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+	}
+
+	/**
 	 * Finaliza 1a Fase
 	 */
-	
-	 @RequestMapping(value="/system/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
+	 @RequestMapping(value="/{id}/finalizarPrimeiraFase", method=RequestMethod.POST, produces="application/json")
 	 public ResponseEntity<String> finalizar1Fase(@PathVariable("id") long id) {
 		 try {
 			 Edicao edicao = this.edicaoService.get(Edicao.class, id);
@@ -183,6 +215,7 @@ public class EdicaoController {
 			 } else if (grupos.size() == 8) {
 				 // cria oitavas
 			 }
+			 this.grupoService.updateSetStatusFinalizado(grupos);
 			 return new ResponseEntity<String>(HttpStatus.CREATED);
 		 } catch(Exception e) {
 			 e.printStackTrace();
@@ -216,6 +249,7 @@ public class EdicaoController {
 		}
 
 		private boolean criarFinal1Fase1GrupoMenosQ3Times(Grupo grupoUnicoPrimeiraFase) {
+			// TODO: refatorar criar final
 			// cria 2 fase com final e 3 lugar
 			Fase _2fase = this.faseService.getBySigla('2');
 			Grupo grupo = new Grupo();
@@ -237,31 +271,46 @@ public class EdicaoController {
 			return true;
 		}
 		
+		/**
+		 * Criar 3 lugar e final 
+		 * @param grupoUnicoPrimeiraFase
+		 * @return
+		 */
 		private boolean criar3LugarFinal1Fase1GrupoMenosQ3Times(Grupo grupoUnicoPrimeiraFase) {
 			// cria 2 fase com final e 3 lugar
-			Fase _2fase = this.faseService.getBySigla('2');
-			Grupo grupo = new Grupo();
-			grupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
-			grupo.setFase(_2fase);
-			//grupo.setDescricao("Segunda Fase (Mata-mata)");
-			grupo.setStatus(this.statusService.get(Status.class, 2l));
-			this.grupoService.save(grupo);
+			Fase _3 = this.faseService.getBySigla('3');
+			Grupo _3LugarGrupo = new Grupo();
+			_3LugarGrupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
+			_3LugarGrupo.setFase(_3);
+			_3LugarGrupo.setDescricao(_3.getDescricao());
+			_3LugarGrupo.setStatus(this.statusService.get(Status.class, 2l));
+			this.grupoService.save(_3LugarGrupo);
+
 			List<Classificacao> classificacoes = this.classificacaoService.getClassificacoesByGrupo(grupoUnicoPrimeiraFase);
 			List<Jogo> jogos = this.jogoService.getListByGrupo(grupoUnicoPrimeiraFase);
 			// Cria a 3 Lugar, rodada -3
-			criaJogoMataMata(grupo, 
+			criaJogoMataMata(_3LugarGrupo, 
 						     jogos.get(0).getHarbito(), 
 						     jogos.get(0).getLocal(), 
 						     classificacoes,
-						     -3,
+						     1,
 						     3,
 						     4);		
+
 			// Cria a Final, rodada -1
-			criaJogoMataMata(grupo, 
+			Fase _final = this.faseService.getBySigla('F');
+			Grupo finalGrupo = new Grupo();
+			finalGrupo.setEdicao(grupoUnicoPrimeiraFase.getEdicao());
+			finalGrupo.setFase(_final);
+			finalGrupo.setDescricao(_final.getDescricao());
+			finalGrupo.setStatus(this.statusService.get(Status.class, 2l));
+			this.grupoService.save(finalGrupo);
+
+			criaJogoMataMata(finalGrupo, 
 							 jogos.get(0).getHarbito(), 
 							 jogos.get(0).getLocal(), 
 							 classificacoes,
-							 -1,
+							 2,
 							 1,
 							 2);
 			grupoUnicoPrimeiraFase.setStatus(new Status(3l));
@@ -290,12 +339,18 @@ public class EdicaoController {
 			this.jogoService.save(jogo);
 		}
 		
-		@RequestMapping(value="/{id}/Voltar/primeira/fase", method=RequestMethod.POST, produces="application/json")
-		public ResponseEntity<String> voltarParaPrimeiraFase(@PathVariable("id") long id) {
+		@RequestMapping(value="/{id}/voltar/fase/{faseId}", method=RequestMethod.POST, produces="application/json")
+		public ResponseEntity<String> voltarParaPrimeiraFase(@PathVariable("id") long id, @PathVariable("faseId") long faseId) {
 			try {
 				Edicao edicao = this.edicaoService.get(Edicao.class, id);
-				List<Grupo> gruposFase2 = this.grupoService.getListSegundaFaseByEdicao(edicao);
-				for (Grupo grupo : gruposFase2) {
+				Fase fase = this.faseService.get(Fase.class, faseId);
+				
+				List<Grupo> gruposFaseAtual = this.grupoService.getListByEdicaoAndFase(edicao, fase);
+				if(fase.getSigla() == 'F') {
+					gruposFaseAtual.addAll(this.grupoService.getListByEdicaoAndFase(edicao, this.faseService.getBySigla('3')));
+				}
+				
+				for (Grupo grupo : gruposFaseAtual) {
 					List<Jogo> jogos = this.jogoService.getListByGrupo(grupo);
 					for (Jogo jogo : jogos) {
 						if(jogo.getStatus().getId() > 1) { // > 1, em andamento ou finalizado
@@ -305,7 +360,7 @@ public class EdicaoController {
 				}
 
 				// Exclui Jogos da 2ª Fase
-				for (Grupo grupo : gruposFase2) {
+				for (Grupo grupo : gruposFaseAtual) {
 					List<Jogo> jogos = this.jogoService.getListByGrupo(grupo); 
 					for (Jogo jogo : jogos) {
 						if(jogo.getStatus().getId() == 1) { // > 1, em andamento ou finalizado
@@ -327,6 +382,9 @@ public class EdicaoController {
 				e.printStackTrace();
 				return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-		}	 
+		}
+		
+		
+		
 	 
 }
