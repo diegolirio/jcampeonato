@@ -17,8 +17,10 @@
 					<div class="row col-md-12">
 					 
 					 		<div ng-show="edicaoCLassCtrl.edicao.status.id == 3" class="text-center">
+					 			<img alt="{{ e.id }}" src="${pageContext.request.contextPath}/static/core/img/trofeu_100.png">
 					 			<h1 class="text-warning">Campeão: {{ edicaoCLassCtrl.podium.timeCampeao.nome }}</h1>
-					 			<h3 class="text-danger">Vice Campeão: {{ edicaoCLassCtrl.podium.timeViceCampeao.nome }}</h3>
+					 			<br/><br/>
+					 			<h4 class="text-danger">Vice Campeão: {{ edicaoCLassCtrl.podium.timeViceCampeao.nome }}</h4>
 					 			<h5 class="text-muted">Terceiro Colocado: {{ edicaoCLassCtrl.podium.timeTerceiroColocado.nome }}</h5>
 					 		</div>
 					 
